@@ -4,7 +4,7 @@
       <HomeMobile />
     </div>
     <div v-else>
-      <Home />
+      <Home :user = "user"/>
     </div>
   </v-app>
 </template>
@@ -18,6 +18,8 @@ export default {
     Home,
     HomeMobile,
   },
+  props: ['user'],
+
   methods: {
     isMobile() {
       let width = document.documentElement.clientWidth;

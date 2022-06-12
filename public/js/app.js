@@ -7465,6 +7465,7 @@ __webpack_require__.r(__webpack_exports__);
     Home: _components_Desktop_Home_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     HomeMobile: _components_Mobile_HomeMobile_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
+  props: ['user'],
   methods: {
     isMobile: function isMobile() {
       var width = document.documentElement.clientWidth;
@@ -7487,8 +7488,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../app */ "./resources/js/app.js");
-/* harmony import */ var _LoginRegistration_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LoginRegistration.vue */ "./resources/js/components/Desktop/LoginRegistration.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../app */ "./resources/js/app.js");
+/* harmony import */ var _LoginRegistration_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LoginRegistration.vue */ "./resources/js/components/Desktop/LoginRegistration.vue");
 //
 //
 //
@@ -7543,11 +7546,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    Login: _LoginRegistration_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Login: _LoginRegistration_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  props: {
+    user: Object
   },
   data: function data() {
     return {
@@ -7555,9 +7569,19 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    login: function login() {
-      _app__WEBPACK_IMPORTED_MODULE_0__.bus.$emit("openLogin");
+    loginUser: function loginUser() {
+      _app__WEBPACK_IMPORTED_MODULE_1__.bus.$emit("openLogin");
+    },
+    logoutUser: function logoutUser() {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/logout').then(this.user = null);
     }
+  },
+  created: function created() {
+    var _this = this;
+
+    _app__WEBPACK_IMPORTED_MODULE_1__.bus.$on('getUser', function (data) {
+      _this.user = data;
+    });
   }
 });
 
@@ -7626,6 +7650,7 @@ __webpack_require__.r(__webpack_exports__);
     Header: _Header_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Slider: _Slider_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
+  props: ['user'],
   data: function data() {
     return {};
   }
@@ -7644,7 +7669,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../app */ "./resources/js/app.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../app */ "./resources/js/app.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7692,18 +7751,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      dialog: false
+      login: false,
+      register: false,
+      data: {}
     };
   },
   created: function created() {
     var _this = this;
 
-    _app__WEBPACK_IMPORTED_MODULE_0__.bus.$on('openLogin', function () {
-      _this.dialog = true;
+    _app__WEBPACK_IMPORTED_MODULE_1__.bus.$on('openLogin', function () {
+      _this.login = true;
     });
+  },
+  methods: {
+    loginUser: function loginUser() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/login', this.data).then(function (response) {
+        console.log(response.data);
+        _app__WEBPACK_IMPORTED_MODULE_1__.bus.$emit('getUser', response.data);
+        _this2.login = false;
+      });
+    },
+    registerUser: function registerUser() {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/register', this.data).then(function (response) {
+        _app__WEBPACK_IMPORTED_MODULE_1__.bus.$emit('getUser', response.data);
+        _this3.register = false;
+      });
+    }
   }
 });
 
@@ -37781,7 +37862,7 @@ var render = function () {
   return _c("v-app", [
     _vm.isMobile()
       ? _c("div", [_c("HomeMobile")], 1)
-      : _c("div", [_c("Home")], 1),
+      : _c("div", [_c("Home", { attrs: { user: _vm.user } })], 1),
   ])
 }
 var staticRenderFns = []
@@ -37852,14 +37933,116 @@ var render = function () {
                       _vm._v(" "),
                       _c(
                         "v-col",
-                        {
-                          staticClass: "pointer",
-                          attrs: { align: "right" },
-                          on: { click: _vm.login },
-                        },
+                        { staticClass: "pointer", attrs: { align: "right" } },
                         [
                           _c("v-icon", [_vm._v("mdi-account")]),
-                          _vm._v("\n            Girish\n          "),
+                          _vm._v(" "),
+                          _vm.user
+                            ? _c(
+                                "span",
+                                [
+                                  _c(
+                                    "v-menu",
+                                    {
+                                      attrs: { "offset-y": "" },
+                                      scopedSlots: _vm._u(
+                                        [
+                                          {
+                                            key: "activator",
+                                            fn: function (ref) {
+                                              var on = ref.on
+                                              var attrs = ref.attrs
+                                              return [
+                                                _c(
+                                                  "span",
+                                                  _vm._g(
+                                                    _vm._b(
+                                                      {},
+                                                      "span",
+                                                      attrs,
+                                                      false
+                                                    ),
+                                                    on
+                                                  ),
+                                                  [
+                                                    _vm._v(
+                                                      "\n                    " +
+                                                        _vm._s(_vm.user.name) +
+                                                        "\n                  "
+                                                    ),
+                                                  ]
+                                                ),
+                                              ]
+                                            },
+                                          },
+                                        ],
+                                        null,
+                                        false,
+                                        2993632042
+                                      ),
+                                    },
+                                    [
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-list",
+                                        [
+                                          _c(
+                                            "v-list-item",
+                                            [
+                                              _c("v-list-title", [
+                                                _vm._v("Profile"),
+                                              ]),
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-list-item",
+                                            [
+                                              _c("v-list-title", [
+                                                _vm._v("Admin Panel"),
+                                              ]),
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-list-item",
+                                            [
+                                              _c(
+                                                "v-list-title",
+                                                {
+                                                  on: {
+                                                    click: function ($event) {
+                                                      return _vm.logoutUser()
+                                                    },
+                                                  },
+                                                },
+                                                [_vm._v("Logout")]
+                                              ),
+                                            ],
+                                            1
+                                          ),
+                                        ],
+                                        1
+                                      ),
+                                    ],
+                                    1
+                                  ),
+                                ],
+                                1
+                              )
+                            : _c(
+                                "span",
+                                {
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.loginUser()
+                                    },
+                                  },
+                                },
+                                [_vm._v("Girish")]
+                              ),
                         ],
                         1
                       ),
@@ -37949,7 +38132,12 @@ var render = function () {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "sticky" }, [_c("Header")], 1),
+      _c(
+        "div",
+        { staticClass: "sticky" },
+        [_c("Header", { attrs: { user: _vm.user } })],
+        1
+      ),
       _vm._v(" "),
       _c("Slider"),
       _vm._v(" "),
@@ -38080,11 +38268,138 @@ var render = function () {
         {
           attrs: { persistent: "", "max-width": "600px" },
           model: {
-            value: _vm.dialog,
+            value: _vm.login,
             callback: function ($$v) {
-              _vm.dialog = $$v
+              _vm.login = $$v
             },
-            expression: "dialog",
+            expression: "login",
+          },
+        },
+        [
+          _c(
+            "v-card",
+            [
+              _c("v-card-title", [
+                _c("span", { staticClass: "text-h5" }, [_vm._v("Login")]),
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  _c(
+                    "v-container",
+                    [
+                      _c(
+                        "v-row",
+                        [
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Email*", required: "" },
+                                model: {
+                                  value: _vm.data.email,
+                                  callback: function ($$v) {
+                                    _vm.$set(_vm.data, "email", $$v)
+                                  },
+                                  expression: "data.email",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "password*", required: "" },
+                                model: {
+                                  value: _vm.data.password,
+                                  callback: function ($$v) {
+                                    _vm.$set(_vm.data, "password", $$v)
+                                  },
+                                  expression: "data.password",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "blue darken-1", text: "" },
+                      on: {
+                        click: function ($event) {
+                          ;(_vm.register = true), (_vm.login = false)
+                        },
+                      },
+                    },
+                    [_vm._v("\n          Register\n        ")]
+                  ),
+                  _vm._v(" "),
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "blue darken-1", text: "" },
+                      on: {
+                        click: function ($event) {
+                          _vm.login = false
+                        },
+                      },
+                    },
+                    [_vm._v("\n          Close\n        ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "blue darken-1", text: "" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.loginUser()
+                        },
+                      },
+                    },
+                    [_vm._v("\n          Login\n        ")]
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          attrs: { persistent: "", "max-width": "600px" },
+          model: {
+            value: _vm.register,
+            callback: function ($$v) {
+              _vm.register = $$v
+            },
+            expression: "register",
           },
         },
         [
@@ -38112,6 +38427,13 @@ var render = function () {
                             [
                               _c("v-text-field", {
                                 attrs: { label: "First name*", required: "" },
+                                model: {
+                                  value: _vm.data.firstname,
+                                  callback: function ($$v) {
+                                    _vm.$set(_vm.data, "firstname", $$v)
+                                  },
+                                  expression: "data.firstname",
+                                },
                               }),
                             ],
                             1
@@ -38123,6 +38445,13 @@ var render = function () {
                             [
                               _c("v-text-field", {
                                 attrs: { label: "Last name*", required: "" },
+                                model: {
+                                  value: _vm.data.lastname,
+                                  callback: function ($$v) {
+                                    _vm.$set(_vm.data, "lastname", $$v)
+                                  },
+                                  expression: "data.lastname",
+                                },
                               }),
                             ],
                             1
@@ -38134,6 +38463,13 @@ var render = function () {
                             [
                               _c("v-text-field", {
                                 attrs: { label: "Email*", required: "" },
+                                model: {
+                                  value: _vm.data.email,
+                                  callback: function ($$v) {
+                                    _vm.$set(_vm.data, "email", $$v)
+                                  },
+                                  expression: "data.email",
+                                },
                               }),
                             ],
                             1
@@ -38149,6 +38485,13 @@ var render = function () {
                                   type: "password",
                                   required: "",
                                 },
+                                model: {
+                                  value: _vm.data.password,
+                                  callback: function ($$v) {
+                                    _vm.$set(_vm.data, "password", $$v)
+                                  },
+                                  expression: "data.password",
+                                },
                               }),
                             ],
                             1
@@ -38160,6 +38503,13 @@ var render = function () {
                             [
                               _c("v-text-field", {
                                 attrs: { label: "Phone Number*", required: "" },
+                                model: {
+                                  value: _vm.data.phone,
+                                  callback: function ($$v) {
+                                    _vm.$set(_vm.data, "phone", $$v)
+                                  },
+                                  expression: "data.phone",
+                                },
                               }),
                             ],
                             1
@@ -38171,6 +38521,13 @@ var render = function () {
                             [
                               _c("v-text-field", {
                                 attrs: { label: "Adress*", required: "" },
+                                model: {
+                                  value: _vm.data.address,
+                                  callback: function ($$v) {
+                                    _vm.$set(_vm.data, "address", $$v)
+                                  },
+                                  expression: "data.address",
+                                },
                               }),
                             ],
                             1
@@ -38190,6 +38547,19 @@ var render = function () {
               _c(
                 "v-card-actions",
                 [
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "blue darken-1", text: "" },
+                      on: {
+                        click: function ($event) {
+                          ;(_vm.login = true), (_vm.register = false)
+                        },
+                      },
+                    },
+                    [_vm._v("Login")]
+                  ),
+                  _vm._v(" "),
                   _c("v-spacer"),
                   _vm._v(" "),
                   _c(
@@ -38198,7 +38568,7 @@ var render = function () {
                       attrs: { color: "blue darken-1", text: "" },
                       on: {
                         click: function ($event) {
-                          _vm.dialog = false
+                          _vm.register = false
                         },
                       },
                     },
@@ -38211,7 +38581,7 @@ var render = function () {
                       attrs: { color: "blue darken-1", text: "" },
                       on: {
                         click: function ($event) {
-                          _vm.dialog = false
+                          return _vm.registerUser()
                         },
                       },
                     },
