@@ -8,9 +8,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in desserts" :key="item.name">
+        <tr v-for="item in allcategories" :key="item.name">
           <td>{{ item.name }}</td>
-          <td>{{ item.calories }}</td>
+          <td> <v-icon>mdi-{{ item.icon }}</v-icon></td>
         </tr>
       </tbody>
     </v-simple-table>
@@ -21,53 +21,17 @@
 import AdminLayout from "../../Layouts/admin/Admin.vue";
 
 export default {
+  props: ["categories", 'icons'],
   components: {
     AdminLayout,
   },
   data: () => ({
-    desserts: [
-      {
-        name: "Frozen Yogurt",
-        calories: 159,
-      },
-      {
-        name: "Ice cream sandwich",
-        calories: 237,
-      },
-      {
-        name: "Eclair",
-        calories: 262,
-      },
-      {
-        name: "Cupcake",
-        calories: 305,
-      },
-      {
-        name: "Gingerbread",
-        calories: 356,
-      },
-      {
-        name: "Jelly bean",
-        calories: 375,
-      },
-      {
-        name: "Lollipop",
-        calories: 392,
-      },
-      {
-        name: "Honeycomb",
-        calories: 408,
-      },
-      {
-        name: "Donut",
-        calories: 452,
-      },
-      {
-        name: "KitKat",
-        calories: 518,
-      },
-    ],
+    allcategories:{},
   }),
+
+  created() {
+   this.allcategories = this.categories
+  }
 };
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="sticky">
-      <Header :user = "user"/>
+      <Header :user = "user" :topmenus = "topmenus"/>
     </div>
     <Slider />
     <v-container>
@@ -49,7 +49,7 @@ export default {
     Header,
     Slider,
   },
-  props:['user'],
+  props:['user', 'topmenus'],
   data: () => ({}),
 };
 </script>

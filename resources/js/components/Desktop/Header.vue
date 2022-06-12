@@ -24,20 +24,20 @@
             </v-col>
             <v-col align="right" class="pointer">
               <v-icon>mdi-account</v-icon>
-              <span v-if="user">
+              <span v-if="auth">
                 <v-menu offset-y>
                   <template v-slot:activator="{ on, attrs }">
                     <span v-bind="attrs" v-on="on">
-                      {{ user.name }}
+                      {{ auth.name }}
                     </span>
                   </template>
                   <v-list>
                     <v-list-item>
                       <v-list-item-title>Profile</v-list-item-title>
                     </v-list-item>
-                    <v-list-item>
-                      <v-list-item-title> <Link href="/admin">Admin Panel</Link>  </v-list-item-title>
-                    </v-list-item>
+                    <Link href="/admin" as="v-list-item">
+                      <v-list-item-title> Admin Panel </v-list-item-title>
+                    </Link>
                     <v-list-item>
                       <v-list-item-title @click="logoutUser()">Logout</v-list-item-title>
                     </v-list-item>
@@ -58,11 +58,11 @@
           </v-row>
           <div class="d-flex justify-space-between mt-5 ml-2 mr-2">
             <span
-              v-for="(topmenu, index) in topmenus"
+              v-for="(category, index) in categories"
               :key="index"
               class="topmenu pl-2 pr-2"
             >
-              {{ topmenu }}
+              {{ category }}
             </span>
           </div>
         </v-container>
@@ -77,40 +77,32 @@
 import axios from "axios";
 import { bus } from "../../app";
 import Login from "./LoginRegistration.vue";
-import { Link } from '@inertiajs/inertia-vue'
+import { Link } from "@inertiajs/inertia-vue";
 export default {
   components: {
     Login,
-    Link
+    Link,
   },
-  props: {
-    user: Object,
-  },
+  props: ["user", "topmenus"],
   data: () => ({
-    topmenus: [
-      "kadin",
-      "cocuk",
-      "ev & eshya",
-      "SuperMarket",
-      "Kozmetik",
-      "Cop",
-      "elektronik",
-      "BIlgisayar",
-      "telefon",
-    ],
+    auth: null,
+    categories: [],
   }),
   methods: {
     loginUser() {
       bus.$emit("openLogin");
     },
     logoutUser() {
-      axios.post("/logout").then((this.user = null));
+      axios.post("/logout").then((this.auth = null));
     },
   },
   created() {
     bus.$on("getUser", (data) => {
-      this.user = data;
+      this.auth = data;
     });
+
+    this.categories = this.topmenus;
+    this.auth = this.user;
   },
 };
 </script>

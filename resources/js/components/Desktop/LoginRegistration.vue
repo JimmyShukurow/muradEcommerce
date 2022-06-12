@@ -93,7 +93,6 @@ export default {
   methods: {
     loginUser() {
       axios.post('/login', this.data).then((response) => {
-        console.log(response.data);
         bus.$emit('getUser', response.data);
         this.login = false
 

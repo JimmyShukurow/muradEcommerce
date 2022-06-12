@@ -4,7 +4,7 @@
       <HomeMobile />
     </div>
     <div v-else>
-      <Home :user = "user"/>
+      <Home :user = "user" :topmenus = "topmenus"/>
     </div>
   </v-app>
 </template>
@@ -18,7 +18,7 @@ export default {
     Home,
     HomeMobile,
   },
-  props: ['user'],
+  props: ['user', 'topmenus'],
 
   methods: {
     isMobile() {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,6 +15,7 @@ class AdminController extends Controller
 
     public function menus()
     {
-        return Inertia::render('Admin/Menus');
+        $categories = Category::all();
+        return Inertia::render('Admin/Menus', ['categories' => $categories]);
     }
 }

@@ -7539,43 +7539,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["categories", 'icons'],
   components: {
     AdminLayout: _Layouts_admin_Admin_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
-      desserts: [{
-        name: "Frozen Yogurt",
-        calories: 159
-      }, {
-        name: "Ice cream sandwich",
-        calories: 237
-      }, {
-        name: "Eclair",
-        calories: 262
-      }, {
-        name: "Cupcake",
-        calories: 305
-      }, {
-        name: "Gingerbread",
-        calories: 356
-      }, {
-        name: "Jelly bean",
-        calories: 375
-      }, {
-        name: "Lollipop",
-        calories: 392
-      }, {
-        name: "Honeycomb",
-        calories: 408
-      }, {
-        name: "Donut",
-        calories: 452
-      }, {
-        name: "KitKat",
-        calories: 518
-      }]
+      allcategories: {}
     };
+  },
+  created: function created() {
+    this.allcategories = this.categories;
   }
 });
 
@@ -7642,7 +7616,7 @@ __webpack_require__.r(__webpack_exports__);
     Home: _components_Desktop_Home_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     HomeMobile: _components_Mobile_HomeMobile_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  props: ['user'],
+  props: ['user', 'topmenus'],
   methods: {
     isMobile: function isMobile() {
       var width = document.documentElement.clientWidth;
@@ -7781,12 +7755,11 @@ __webpack_require__.r(__webpack_exports__);
     Login: _LoginRegistration_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     Link: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_3__.Link
   },
-  props: {
-    user: Object
-  },
+  props: ["user", "topmenus"],
   data: function data() {
     return {
-      topmenus: ["kadin", "cocuk", "ev & eshya", "SuperMarket", "Kozmetik", "Cop", "elektronik", "BIlgisayar", "telefon"]
+      auth: null,
+      categories: []
     };
   },
   methods: {
@@ -7794,15 +7767,17 @@ __webpack_require__.r(__webpack_exports__);
       _app__WEBPACK_IMPORTED_MODULE_1__.bus.$emit("openLogin");
     },
     logoutUser: function logoutUser() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/logout").then(this.user = null);
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/logout").then(this.auth = null);
     }
   },
   created: function created() {
     var _this = this;
 
     _app__WEBPACK_IMPORTED_MODULE_1__.bus.$on("getUser", function (data) {
-      _this.user = data;
+      _this.auth = data;
     });
+    this.categories = this.topmenus;
+    this.auth = this.user;
   }
 });
 
@@ -7871,7 +7846,7 @@ __webpack_require__.r(__webpack_exports__);
     Header: _Header_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Slider: _Slider_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  props: ['user'],
+  props: ['user', 'topmenus'],
   data: function data() {
     return {};
   }
@@ -7993,7 +7968,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/login', this.data).then(function (response) {
-        console.log(response.data);
         _app__WEBPACK_IMPORTED_MODULE_1__.bus.$emit('getUser', response.data);
         _this2.login = false;
       });
@@ -38485,11 +38459,11 @@ var render = function () {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.desserts, function (item) {
+          _vm._l(_vm.allcategories, function (item) {
             return _c("tr", { key: item.name }, [
               _c("td", [_vm._v(_vm._s(item.name))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(item.calories))]),
+              _c("td", [_c("v-icon", [_vm._v("mdi-" + _vm._s(item.icon))])], 1),
             ])
           }),
           0
@@ -38550,7 +38524,11 @@ var render = function () {
   return _c("v-app", [
     _vm.isMobile()
       ? _c("div", [_c("HomeMobile")], 1)
-      : _c("div", [_c("Home", { attrs: { user: _vm.user } })], 1),
+      : _c(
+          "div",
+          [_c("Home", { attrs: { user: _vm.user, topmenus: _vm.topmenus } })],
+          1
+        ),
   ])
 }
 var staticRenderFns = []
@@ -38661,7 +38639,7 @@ var render = function () {
                         [
                           _c("v-icon", [_vm._v("mdi-account")]),
                           _vm._v(" "),
-                          _vm.user
+                          _vm.auth
                             ? _c(
                                 "span",
                                 [
@@ -38691,7 +38669,7 @@ var render = function () {
                                                   [
                                                     _vm._v(
                                                       "\n                    " +
-                                                        _vm._s(_vm.user.name) +
+                                                        _vm._s(_vm.auth.name) +
                                                         "\n                  "
                                                     ),
                                                   ]
@@ -38702,7 +38680,7 @@ var render = function () {
                                         ],
                                         null,
                                         false,
-                                        2993632042
+                                        2562960851
                                       ),
                                     },
                                     [
@@ -38721,21 +38699,17 @@ var render = function () {
                                           ),
                                           _vm._v(" "),
                                           _c(
-                                            "v-list-item",
+                                            "Link",
+                                            {
+                                              attrs: {
+                                                href: "/admin",
+                                                as: "v-list-item",
+                                              },
+                                            },
                                             [
-                                              _c(
-                                                "v-list-item-title",
-                                                [
-                                                  _c(
-                                                    "Link",
-                                                    {
-                                                      attrs: { href: "/admin" },
-                                                    },
-                                                    [_vm._v("Admin Panel")]
-                                                  ),
-                                                ],
-                                                1
-                                              ),
+                                              _c("v-list-item-title", [
+                                                _vm._v(" Admin Panel "),
+                                              ]),
                                             ],
                                             1
                                           ),
@@ -38810,13 +38784,13 @@ var render = function () {
                       staticClass:
                         "d-flex justify-space-between mt-5 ml-2 mr-2",
                     },
-                    _vm._l(_vm.topmenus, function (topmenu, index) {
+                    _vm._l(_vm.categories, function (category, index) {
                       return _c(
                         "span",
                         { key: index, staticClass: "topmenu pl-2 pr-2" },
                         [
                           _vm._v(
-                            "\n            " + _vm._s(topmenu) + "\n          "
+                            "\n            " + _vm._s(category) + "\n          "
                           ),
                         ]
                       )
@@ -38869,7 +38843,7 @@ var render = function () {
       _c(
         "div",
         { staticClass: "sticky" },
-        [_c("Header", { attrs: { user: _vm.user } })],
+        [_c("Header", { attrs: { user: _vm.user, topmenus: _vm.topmenus } })],
         1
       ),
       _vm._v(" "),
