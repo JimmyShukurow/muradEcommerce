@@ -8,8 +8,19 @@
               <span>TurkmenYOL</span>
             </v-col>
             <v-col cols="6" sm="6" row>
-              <v-text-field dense flat solo append-icon="mdi-magnify" hide-details="auto" color="orange" filled outlined
-                label="Gozle" clearable clear-icon="mdi-close"></v-text-field>
+              <v-text-field
+                dense
+                flat
+                solo
+                append-icon="mdi-magnify"
+                hide-details="auto"
+                color="orange"
+                filled
+                outlined
+                label="Gozle"
+                clearable
+                clear-icon="mdi-close"
+              ></v-text-field>
             </v-col>
             <v-col align="right" class="pointer">
               <v-icon>mdi-account</v-icon>
@@ -22,20 +33,19 @@
                   </template>
                   <v-list>
                     <v-list-item>
-                      <v-list-title>Profile</v-list-title>
+                      <v-list-item-title>Profile</v-list-item-title>
                     </v-list-item>
                     <v-list-item>
-                      <v-list-title>Admin Panel</v-list-title>
+                      <v-list-item-title> <Link href="/admin">Admin Panel</Link>  </v-list-item-title>
                     </v-list-item>
                     <v-list-item>
-                      <v-list-title @click="logoutUser()">Logout</v-list-title>
+                      <v-list-item-title @click="logoutUser()">Logout</v-list-item-title>
                     </v-list-item>
                   </v-list>
                 </v-menu>
               </span>
 
               <span v-else @click="loginUser()">Girish</span>
-
             </v-col>
             <v-col align="right">
               <v-icon>mdi-heart</v-icon>
@@ -47,7 +57,11 @@
             </v-col>
           </v-row>
           <div class="d-flex justify-space-between mt-5 ml-2 mr-2">
-            <span v-for="(topmenu, index) in topmenus" :key="index" class="topmenu pl-2 pr-2">
+            <span
+              v-for="(topmenu, index) in topmenus"
+              :key="index"
+              class="topmenu pl-2 pr-2"
+            >
               {{ topmenu }}
             </span>
           </div>
@@ -63,9 +77,11 @@
 import axios from "axios";
 import { bus } from "../../app";
 import Login from "./LoginRegistration.vue";
+import { Link } from '@inertiajs/inertia-vue'
 export default {
   components: {
     Login,
+    Link
   },
   props: {
     user: Object,
@@ -85,18 +101,16 @@ export default {
   }),
   methods: {
     loginUser() {
-      bus.$emit("openLogin")
+      bus.$emit("openLogin");
     },
     logoutUser() {
-      axios.post('/logout').then(
-        this.user = null
-      );
-    }
+      axios.post("/logout").then((this.user = null));
+    },
   },
   created() {
-    bus.$on('getUser', (data) => {
-      this.user = data
-    })
+    bus.$on("getUser", (data) => {
+      this.user = data;
+    });
   },
 };
 </script>

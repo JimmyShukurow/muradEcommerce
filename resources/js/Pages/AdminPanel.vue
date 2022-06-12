@@ -1,17 +1,15 @@
 <template>
   <v-layout>
-    <v-btn>
-      <Link href="/"> back to home </Link>
-    </v-btn>
+    <Dashboard />
   </v-layout>
 </template>
 
 <script>
-import { Link } from "@inertiajs/inertia-vue";
+import Dashboard from "../components/Desktop/Dashboard.vue";
 
 export default {
   components: {
-    Link,
+    Dashboard,
   },
 };
 </script>
