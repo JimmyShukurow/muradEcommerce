@@ -11,4 +11,9 @@ class AdminController extends Controller
     {
         return Inertia::render('AdminPanel');
     }
+
+    public function menus()
+    {
+        return Inertia::render('Admin/Menus');
+    }
 }

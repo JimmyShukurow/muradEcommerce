@@ -1,8 +1,6 @@
 <template>
   <v-layout>
-    <v-btn>
-      <Link href="/"> back to home </Link>
-    </v-btn>
+    <Link href="/"> <v-btn>back to home </v-btn> </Link>
   </v-layout>
 </template>
 
