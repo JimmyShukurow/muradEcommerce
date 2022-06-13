@@ -4,7 +4,7 @@
       <v-navigation-drawer class="deep-purple accent-4" dark permanent>
         <v-list>
           <v-list-item v-for="item in items" :key="item.title" link>
-            <Link as="v-list-item"  :href="item.route">
+            <Link as="v-list-item" :href="item.route">
               <v-list-item-icon>
                 <v-icon>{{ item.icon }}</v-icon>
               </v-list-item-icon>
@@ -22,7 +22,11 @@
           </div>
         </template>
       </v-navigation-drawer>
-      <slot></slot>
+      <v-container fluid class="mt-5" >
+        <v-card>
+          <slot></slot>
+        </v-card>
+      </v-container>
     </v-layout>
   </v-app>
 </template>

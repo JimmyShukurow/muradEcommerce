@@ -15,7 +15,9 @@ class AdminController extends Controller
 
     public function menus()
     {
-        $categories = Category::all();
-        return Inertia::render('Admin/Menus', ['categories' => $categories]);
+        $categories = Category::with('parent')->get();
+        return Inertia::render('Admin/Menus/Menus', ['categories' => $categories]);
     }
+
+
 }
