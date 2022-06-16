@@ -12,6 +12,10 @@ class App extends Controller
     public function index()
     {
         $topmenus = Category::get()->pluck('name');
-        return Inertia::render('App', ['user' => Auth::user(), 'topmenus' => $topmenus ]);
+        $user = Auth::user();
+        if($user != null && $user->roles->contains('name', 'admin')){
+            $user['roles'] = $user->roles;
+        };
+        return Inertia::render('App', ['user' => Auth::user(), 'topmenus' => $topmenus]);
     }
 }

@@ -40,7 +40,14 @@ class UserController extends Controller
             'address' => $request->address,
             'phone' => $request->phone
         ]);
+        if(User::all()->count() == 1){
+            $user->assignRole('admin');
+        }
+        else{
+            $user->assignRole('user');
+        }
         Auth::login($user);
+        $user['roles'] = $user->roles;
         return $user;
     }
 }
