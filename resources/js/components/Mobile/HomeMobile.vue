@@ -134,11 +134,11 @@
 
           <v-icon>mdi-cart</v-icon>
         </v-btn>
-        <v-btn value="account">
+        <Link as="v-btn" href="/profile" value="account">
           <span class="textspacescloser">Hesabim</span>
 
           <v-icon>mdi-account</v-icon>
-        </v-btn>
+        </Link>
       </v-bottom-navigation>
     </v-layout>
   </div>
@@ -146,9 +146,11 @@
 
 <script>
 import HeaderMobile from "./HeaderMobile.vue";
+import { Link } from "@inertiajs/inertia-vue";
 export default {
   components: {
     HeaderMobile,
+    Link
   },
   data: () => ({
     model: 0,

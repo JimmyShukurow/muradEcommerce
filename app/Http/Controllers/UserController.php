@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class UserController extends Controller
 {
@@ -49,5 +50,10 @@ class UserController extends Controller
         Auth::login($user);
         $user['roles'] = $user->roles;
         return $user;
+    }
+
+    public function profile()
+    {
+        return Inertia::render('Web/Profile/Profile');
     }
 }

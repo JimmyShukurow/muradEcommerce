@@ -28,3 +28,5 @@ Route::post('/register', [UserController::class, 'register']);
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 Route::get('/menus', [AdminController::class, 'menus']);
+
+Route::get('/profile', [UserController::class, 'profile']);
