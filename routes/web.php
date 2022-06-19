@@ -29,4 +29,8 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 Route::get('/menus', [AdminController::class, 'menus']);
 
+//Mobile Footer
+Route::get('/quick', [UserController::class, 'quick']);
+Route::get('/favorites', [UserController::class, 'favorites']);
+Route::get('/basket', [UserController::class, 'basket']);
 Route::get('/profile', [UserController::class, 'profile']);

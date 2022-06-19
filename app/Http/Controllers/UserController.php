@@ -54,6 +54,23 @@ class UserController extends Controller
 
     public function profile()
     {
-        return Inertia::render('Web/Profile/Profile');
+        return Inertia::render('Mobile/Profile/Profile');
     }
+
+    public function quick()
+    {
+        return true;
+    }
+
+    public function favorites()
+    {
+        return true;
+    }
+
+    public function basket()
+    {
+        return true;
+    }
+
+   
 }

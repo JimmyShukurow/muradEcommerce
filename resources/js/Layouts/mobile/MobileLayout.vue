@@ -29,7 +29,7 @@
 
           <v-icon>mdi-cart</v-icon>
         </v-btn>
-        <Link as="v-btn" href="/profile" value="account">
+        <Link as="v-btn" :class="{'orange white--text': $page.url === '/profile'}"  href="/profile" value="account">
           <span class="textspacescloser">Hesabim</span>
 
           <v-icon>mdi-account</v-icon>
@@ -53,7 +53,7 @@ export default {
       { title: "Users", icon: "mdi-account", route: "/users" }
     ],
     right: null,
-    value: 'home',
+    value: 'account',
   })
 };
 </script>
