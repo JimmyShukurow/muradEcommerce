@@ -25,9 +25,13 @@ Route::post('/logout', [UserController::class, 'logout']);
 
 Route::post('/register', [UserController::class, 'register']);
 
+//Dashboard
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-
 Route::get('/menus', [AdminController::class, 'menus']);
+Route::get('/slides', [AdminController::class, 'slides']);
+Route::get('/users', [AdminController::class, 'users']);
+Route::get('/products', [AdminController::class, 'products']);
+
 
 //Mobile Footer
 Route::get('/quick', [UserController::class, 'quick']);

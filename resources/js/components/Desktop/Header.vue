@@ -23,20 +23,20 @@
               ></v-text-field>
             </v-col>
             <v-col align="right" class="pointer">
-              <v-icon>mdi-account</v-icon>
               <span v-if="auth">
                 <v-menu offset-y>
                   <template v-slot:activator="{ on, attrs }">
-                    <span v-bind="attrs" v-on="on">
-                      {{ auth.name }}
-                    </span>
+                    <div v-bind="attrs" v-on="on">
+                      <v-icon>mdi-account</v-icon>
+                      <span >{{ auth.name }}</span>
+                    </div>
                   </template>
                   <v-list>
                     <v-list-item>
                       <v-list-item-title>Profile</v-list-item-title>
                     </v-list-item>
                     <Link href="/admin" as="v-list-item">
-                      <v-list-item-title> Admin Panel </v-list-item-title>
+                      <v-list-item-title>Admin Panel</v-list-item-title>
                     </Link>
                     <v-list-item>
                       <v-list-item-title @click="logoutUser()">Logout</v-list-item-title>
@@ -48,12 +48,10 @@
               <span v-else @click="loginUser()">Girish</span>
             </v-col>
             <v-col align="right">
-              <v-icon>mdi-heart</v-icon>
-              Favorilerim
+              <v-icon>mdi-heart</v-icon>Favorilerim
             </v-col>
             <v-col align="right">
-              <v-icon>mdi-basket</v-icon>
-              Sepetim
+              <v-icon>mdi-basket</v-icon>Sepetim
             </v-col>
           </v-row>
           <div class="d-flex justify-space-between mt-5 ml-2 mr-2">
@@ -61,9 +59,7 @@
               v-for="(category, index) in categories"
               :key="index"
               class="topmenu pl-2 pr-2"
-            >
-              {{ category }}
-            </span>
+            >{{ category }}</span>
           </div>
         </v-container>
       </div>
@@ -81,12 +77,12 @@ import { Link } from "@inertiajs/inertia-vue";
 export default {
   components: {
     Login,
-    Link,
+    Link
   },
   props: ["user", "topmenus"],
   data: () => ({
     auth: null,
-    categories: [],
+    categories: []
   }),
   methods: {
     loginUser() {
@@ -94,16 +90,16 @@ export default {
     },
     logoutUser() {
       axios.post("/logout").then((this.auth = null));
-    },
+    }
   },
   created() {
-    bus.$on("getUser", (data) => {
+    bus.$on("getUser", data => {
       this.auth = data;
     });
 
     this.categories = this.topmenus;
     this.auth = this.user;
-  },
+  }
 };
 </script>
 

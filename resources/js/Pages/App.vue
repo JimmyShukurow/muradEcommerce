@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <div v-if="isMobile()">
-      <HomeMobile />
+      <HomeMobile :user = "user" :topmenus = "topmenus" />
     </div>
     <div v-else>
       <Home :user = "user" :topmenus = "topmenus"/>

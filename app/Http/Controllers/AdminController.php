@@ -19,5 +19,19 @@ class AdminController extends Controller
         return Inertia::render('Admin/Menus/Menus', ['categories' => $categories]);
     }
 
+    public function slides()
+    {
+       return Inertia::render('Admin/Slides/Slides');
+    }
+
+    public function users()
+    {
+       return Inertia::render('Admin/Users/Users');
+    }
+
+    public function products()
+    {
+        return Inertia::render('Admin/Products/Products');
+    }
 
 }

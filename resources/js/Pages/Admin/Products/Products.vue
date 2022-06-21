@@ -1,16 +1,15 @@
 <template>
   <AdminLayout>
-   <h1>Slides Control here</h1>
+    <h1>Products control here</h1>
   </AdminLayout>
 </template>
 
 <script>
 import AdminLayout from "../../../Layouts/admin/Admin.vue";
-
 export default {
-    components: {
-        AdminLayout
-    }
+components: {
+    AdminLayout
+}
 }
 </script>
 

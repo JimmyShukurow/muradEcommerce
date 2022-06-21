@@ -1,6 +1,5 @@
 <template>
   <AdminLayout>
-
     <v-simple-table>
       <thead>
         <tr>

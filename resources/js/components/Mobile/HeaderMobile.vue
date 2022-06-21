@@ -35,14 +35,9 @@
             <v-btn outlined text class="mr-2">Keşfet</v-btn>
             <v-divider vertical></v-divider>
 
-            <Link as="v-btn" :class="{'orange white--text': $page.url === '/'}" href="/" outlined text class="rounded-xl ml-2">Erkek</Link>
-            <v-btn outlined text class="rounded-xl ml-2">Kadın</v-btn>
-            <v-btn outlined text class="rounded-xl ml-2">Elektorik</v-btn>
-            <v-btn outlined text class="rounded-xl ml-2">Kozmetik</v-btn>
-            <v-btn outlined text class="rounded-xl ml-2">Kozmetik</v-btn>
-            <v-btn outlined text class="rounded-xl ml-2">Kozmetik</v-btn>
-            <v-btn outlined text class="rounded-xl ml-2">Kozmetik</v-btn>
-            <v-btn outlined text class="rounded-xl ml-2">Kozmetik</v-btn>
+            <v-layout v-for="(category, id) in categories" :key="id">
+              <Link as="v-btn" :class="{'orange white--text': $page.url === category.name}" href="/" outlined text class="rounded-xl ml-2">{{ category }}</Link>
+            </v-layout>
           </v-slide-group>
         </v-sheet>
       </v-row>
@@ -54,9 +49,13 @@
 <script>
 import { Link } from "@inertiajs/inertia-vue";
 export default {
+  props:['user', 'categories'],
   components: {
     Link
-  }
+  },
+  data:() =>({
+    // categories:{}
+  }),
 };
 </script>
 
