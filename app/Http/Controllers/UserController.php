@@ -72,5 +72,8 @@ class UserController extends Controller
         return true;
     }
 
-   
+    public function mobileLogin()
+    {
+        return Inertia::render('Mobile/Login/Login');
+    }
 }

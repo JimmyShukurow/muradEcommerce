@@ -1,48 +1,63 @@
 <template>
   <v-layout>
-    <v-bottom-navigation v-model="value" app class="textspacescloser">
-      <v-btn value="home">
+    <v-bottom-navigation app class="textspacescloser">
+      <inertia-link as="v-btn" href="/" :class="{ 'orange white--text': $page.url === '/' }" >
         <span class="textspacescloser">Home</span>
 
         <v-icon>mdi-home</v-icon>
-      </v-btn>
+      </inertia-link>
 
-      <v-btn value="fast">
+      <inertia-link as="v-btn" >
         <span class="textspacescloser">Hemen Gelsin</span>
 
         <v-icon>mdi-moped</v-icon>
-      </v-btn>
+      </inertia-link>
 
-      <v-btn value="favorites">
+      <inertia-link as="v-btn">
         <span class="textspacescloser">Favorilerim</span>
 
         <v-icon>mdi-heart</v-icon>
-      </v-btn>
-      <v-btn value="basket">
+      </inertia-link>
+      <inertia-link as="v-btn">
         <span class="textspacescloser">Sepetim</span>
 
         <v-icon>mdi-cart</v-icon>
-      </v-btn>
-      <Link as="v-btn" href="/profile" value="account">
+      </inertia-link>
+      <inertia-link as="v-btn" :href="profile"  :class="{ 'orange white--text': $page.url === profile }">
         <span class="textspacescloser">Hesabim</span>
 
         <v-icon>mdi-account</v-icon>
-      </Link>
+      </inertia-link>
     </v-bottom-navigation>
   </v-layout>
 </template>
 
 <script>
-import { Link } from "@inertiajs/inertia-vue";
+import { InertiaLink } from "@inertiajs/inertia-vue";
 export default {
     components: {
-        Link
+        InertiaLink
     },
   data: () => ({
-    value: "home"
-  })
+
+  }),
+  computed: {
+    profile(){
+      if(this.$page.props.user) return '/profile';
+      else return '/mobileLogin';
+    }
+  }
 };
 </script>
 
-<style>
+<style scoped>
+.textspacescloser {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: -0.5px;
+}
+  .white {
+    color:aliceblue
+  }
 </style>

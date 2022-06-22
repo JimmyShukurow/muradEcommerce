@@ -35,9 +35,9 @@
                     <v-list-item>
                       <v-list-item-title>Profile</v-list-item-title>
                     </v-list-item>
-                    <Link href="/admin" as="v-list-item">
+                    <inertia-link href="/admin" as="v-list-item">
                       <v-list-item-title>Admin Panel</v-list-item-title>
-                    </Link>
+                    </inertia-link>
                     <v-list-item>
                       <v-list-item-title @click="logoutUser()">Logout</v-list-item-title>
                     </v-list-item>
@@ -45,7 +45,9 @@
                 </v-menu>
               </span>
 
-              <span v-else @click="loginUser()">Girish</span>
+              <span v-else @click="loginUser()">
+                <v-icon>mdi-account</v-icon>Girish
+                </span>
             </v-col>
             <v-col align="right">
               <v-icon>mdi-heart</v-icon>Favorilerim
@@ -73,11 +75,11 @@
 import axios from "axios";
 import { bus } from "../../app";
 import Login from "./LoginRegistration.vue";
-import { Link } from "@inertiajs/inertia-vue";
+import { InertiaLink } from "@inertiajs/inertia-vue";
 export default {
   components: {
     Login,
-    Link
+    InertiaLink
   },
   props: ["user", "topmenus"],
   data: () => ({

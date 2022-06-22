@@ -38,3 +38,4 @@ Route::get('/quick', [UserController::class, 'quick']);
 Route::get('/favorites', [UserController::class, 'favorites']);
 Route::get('/basket', [UserController::class, 'basket']);
 Route::get('/profile', [UserController::class, 'profile']);
+Route::get('/mobileLogin', [UserController::class, 'mobileLogin'])->name('mobile.login');

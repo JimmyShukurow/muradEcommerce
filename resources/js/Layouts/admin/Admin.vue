@@ -1,13 +1,13 @@
 <template>
-  <v-app>
+  <v-app class="admin-layout">
     <v-layout>
       <v-navigation-drawer class="deep-purple accent-4" dark permanent>
         <v-layout>
-          <Link href="/" as="span" class="white--text"> TurkmenYOL </Link>
+          <inertia-link href="/" as="a" class="white--text mx-auto my-5"> TurkmenYOL </inertia-link>
         </v-layout>
         <v-list>
           <v-list-item v-for="item in items" :key="item.title" link>
-            <Link as="v-list-item" :href="item.route">
+            <inertia-link as="v-list-item" :href="item.route">
               <v-list-item-icon>
                 <v-icon>{{ item.icon }}</v-icon>
               </v-list-item-icon>
@@ -15,7 +15,7 @@
               <v-list-item-content>
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
               </v-list-item-content>
-            </Link>
+            </inertia-link>
           </v-list-item>
         </v-list>
 
@@ -35,10 +35,10 @@
 </template>
 
 <script>
-import { Link } from "@inertiajs/inertia-vue";
+import { InertiaLink } from "@inertiajs/inertia-vue";
 export default {
   components: {
-    Link,
+    InertiaLink,
   },
   data: () => ({
     items: [
@@ -54,5 +54,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.admin-layout  a {
+  text-decoration: none;
+}
 </style>
