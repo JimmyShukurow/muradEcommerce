@@ -7528,8 +7528,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
-/* harmony import */ var _components_Mobile_FooterMobile_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Mobile/FooterMobile.vue */ "./resources/js/components/Mobile/FooterMobile.vue");
+/* harmony import */ var _components_Mobile_FooterMobile_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/Mobile/FooterMobile.vue */ "./resources/js/components/Mobile/FooterMobile.vue");
 //
 //
 //
@@ -7541,12 +7540,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    Link: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.Link,
-    FooterMobile: _components_Mobile_FooterMobile_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    FooterMobile: _components_Mobile_FooterMobile_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {};
@@ -7854,6 +7851,24 @@ __webpack_require__.r(__webpack_exports__);
       register: false,
       data: {}
     };
+  },
+  methods: {
+    loginUser: function loginUser() {
+      var _this = this;
+
+      axios.post('/login', this.data).then(function (response) {
+        bus.$emit('getUser', response.data);
+        _this.login = false;
+      });
+    },
+    registerUser: function registerUser() {
+      var _this2 = this;
+
+      axios.post('/register', this.data).then(function (response) {
+        bus.$emit('getUser', response.data);
+        _this2.register = false;
+      });
+    }
   }
 });
 
@@ -8346,6 +8361,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -8356,9 +8375,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     profile: function profile() {
-      if (this.$page.props.user) return '/profile';else return '/mobileLogin';
+      if (this.$page.props.user) return "/profile";else return "/mobileLogin";
     }
-  }
+  },
+  methods: {}
 });
 
 /***/ }),
@@ -13953,7 +13973,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.textspacescloser[data-v-2bf4e76f] {\n    font-family: Arial, Helvetica, sans-serif;\n    font-weight: 600;\n    font-size: 0.75rem;\n    letter-spacing: -0.5px;\n}\n.white[data-v-2bf4e76f] {\n    color:aliceblue\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.textspacescloser[data-v-2bf4e76f] {\n  font-family: Arial, Helvetica, sans-serif;\n  font-weight: 600;\n  font-size: 0.75rem;\n  letter-spacing: -0.5px;\n}\n.white[data-v-2bf4e76f] {\n  -webkit-text-decoration-color: aliceblue !important;\n          text-decoration-color: aliceblue !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -40926,16 +40946,20 @@ var render = function () {
     [
       _c(
         "v-bottom-navigation",
-        { staticClass: "textspacescloser", attrs: { app: "" } },
+        { attrs: { app: "" } },
         [
           _c(
-            "inertia-link",
+            "InertiaLink",
             {
-              class: { "orange white--text": _vm.$page.url === "/" },
+              class: { "orange white": _vm.$page.url === "/" },
               attrs: { as: "v-btn", href: "/" },
             },
             [
-              _c("span", { staticClass: "textspacescloser" }, [_vm._v("Home")]),
+              _c(
+                "span",
+                { staticClass: "textspacescloser", attrs: { value: "home" } },
+                [_vm._v("Home")]
+              ),
               _vm._v(" "),
               _c("v-icon", [_vm._v("mdi-home")]),
             ],
@@ -40943,7 +40967,7 @@ var render = function () {
           ),
           _vm._v(" "),
           _c(
-            "inertia-link",
+            "InertiaLink",
             { attrs: { as: "v-btn" } },
             [
               _c("span", { staticClass: "textspacescloser" }, [
@@ -40956,7 +40980,7 @@ var render = function () {
           ),
           _vm._v(" "),
           _c(
-            "inertia-link",
+            "InertiaLink",
             { attrs: { as: "v-btn" } },
             [
               _c("span", { staticClass: "textspacescloser" }, [
@@ -40969,7 +40993,7 @@ var render = function () {
           ),
           _vm._v(" "),
           _c(
-            "inertia-link",
+            "InertiaLink",
             { attrs: { as: "v-btn" } },
             [
               _c("span", { staticClass: "textspacescloser" }, [
@@ -40982,9 +41006,9 @@ var render = function () {
           ),
           _vm._v(" "),
           _c(
-            "inertia-link",
+            "InertiaLink",
             {
-              class: { "orange white--text": _vm.$page.url === _vm.profile },
+              class: { orange: _vm.$page.url === _vm.profile },
               attrs: { as: "v-btn", href: _vm.profile },
             },
             [

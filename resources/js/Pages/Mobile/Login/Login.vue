@@ -76,7 +76,24 @@ export default {
     login: true,
     register: false,
     data: {}
-  })
+  }),
+  methods:{
+     loginUser() {
+      axios.post('/login', this.data).then((response) => {
+        bus.$emit('getUser', response.data);
+        this.login = false
+
+      });
+    },
+    registerUser() {
+      axios.post('/register', this.data).then((response) => {
+        bus.$emit('getUser', response.data);
+        this.register = false
+      }
+
+      );
+    }
+  }
 };
 </script>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class UserController extends Controller
@@ -17,7 +18,7 @@ class UserController extends Controller
         ]);
         $user = Auth::attempt($credentials);
         if ($user){
-            return auth()->user();
+            return Redirect::back();
         }
         return response()->json('error');
     }

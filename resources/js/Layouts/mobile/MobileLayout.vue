@@ -10,11 +10,9 @@
 </template>
 
 <script>
-import { Link } from "@inertiajs/inertia-vue";
 import FooterMobile from "../../components/Mobile/FooterMobile.vue";
 export default {
   components: {
-    Link,
     FooterMobile
   },
   data: () => ({})
