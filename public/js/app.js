@@ -7852,22 +7852,13 @@ __webpack_require__.r(__webpack_exports__);
       data: {}
     };
   },
+  mounted: function mounted() {},
   methods: {
     loginUser: function loginUser() {
-      var _this = this;
-
-      axios.post('/login', this.data).then(function (response) {
-        bus.$emit('getUser', response.data);
-        _this.login = false;
-      });
+      axios.post('/mobileLogin', this.data).then(function (response) {});
     },
     registerUser: function registerUser() {
-      var _this2 = this;
-
-      axios.post('/register', this.data).then(function (response) {
-        bus.$emit('getUser', response.data);
-        _this2.register = false;
-      });
+      axios.post('/register', this.data).then(function (response) {});
     }
   }
 });
@@ -8447,7 +8438,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['user', 'categories'],
   components: {
-    Link: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.Link
+    InertiaLink: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.InertiaLink
   },
   data: function data() {
     return {// categories:{}
@@ -41168,7 +41159,7 @@ var render = function () {
                           { key: id },
                           [
                             _c(
-                              "Link",
+                              "InertiaLink",
                               {
                                 staticClass: "rounded-xl ml-2",
                                 class: {

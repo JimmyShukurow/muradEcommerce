@@ -18,7 +18,7 @@ class UserController extends Controller
         ]);
         $user = Auth::attempt($credentials);
         if ($user){
-            return Redirect::back();
+            return Redirect::route('home');
         }
         return response()->json('error');
     }
@@ -76,5 +76,18 @@ class UserController extends Controller
     public function mobileLogin()
     {
         return Inertia::render('Mobile/Login/Login');
+    }
+
+    public function loginMobile(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+        $user = Auth::attempt($credentials);
+        if ($user){
+            return Redirect::route('home');
+        }
+        return response()->json('error');
     }
 }

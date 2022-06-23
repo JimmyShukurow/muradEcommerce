@@ -36,7 +36,7 @@
             <v-divider vertical></v-divider>
 
             <v-layout v-for="(category, id) in categories" :key="id">
-              <Link as="v-btn" :class="{'orange white--text': $page.url === category.name}" href="/" outlined text class="rounded-xl ml-2">{{ category }}</Link>
+              <InertiaLink as="v-btn" :class="{'orange white--text': $page.url === category.name}" href="/" outlined text class="rounded-xl ml-2">{{ category }}</InertiaLink>
             </v-layout>
           </v-slide-group>
         </v-sheet>
@@ -47,11 +47,11 @@
 </template>
 
 <script>
-import { Link } from "@inertiajs/inertia-vue";
+import { InertiaLink } from "@inertiajs/inertia-vue";
 export default {
   props:['user', 'categories'],
   components: {
-    Link
+    InertiaLink
   },
   data:() =>({
     // categories:{}

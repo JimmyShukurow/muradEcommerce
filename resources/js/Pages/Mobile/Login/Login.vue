@@ -77,18 +77,18 @@ export default {
     register: false,
     data: {}
   }),
+  mounted() {
+
+  },
   methods:{
      loginUser() {
-      axios.post('/login', this.data).then((response) => {
-        bus.$emit('getUser', response.data);
-        this.login = false
-
+      axios.post('/mobileLogin', this.data).then((response) => {
+       
       });
     },
     registerUser() {
       axios.post('/register', this.data).then((response) => {
-        bus.$emit('getUser', response.data);
-        this.register = false
+    
       }
 
       );

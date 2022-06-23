@@ -32,10 +32,12 @@ Route::get('/slides', [AdminController::class, 'slides']);
 Route::get('/users', [AdminController::class, 'users']);
 Route::get('/products', [AdminController::class, 'products']);
 
-
+//Moblie
+Route::post('/mobileLogin', [UserController::class, 'loginMobile']);
 //Mobile Footer
 Route::get('/quick', [UserController::class, 'quick']);
 Route::get('/favorites', [UserController::class, 'favorites']);
 Route::get('/basket', [UserController::class, 'basket']);
 Route::get('/profile', [UserController::class, 'profile']);
 Route::get('/mobileLogin', [UserController::class, 'mobileLogin'])->name('mobile.login');
+
