@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\App;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,3 +42,6 @@ Route::get('/basket', [UserController::class, 'basket']);
 Route::get('/profile', [UserController::class, 'profile']);
 Route::get('/mobileLogin', [UserController::class, 'mobileLogin'])->name('mobile.login');
 
+
+//products
+Route::get('/products/{product}', [ProductController::class, 'edit'])->name('product');

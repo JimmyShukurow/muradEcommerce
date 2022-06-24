@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        <InertiaLink as="tr" href="/" v-for="product in products" :key="product.name">
+        <InertiaLink as="tr" :href="'/products/' + product.id" v-for="product in products" :key="product.name">
           <td class="deep-orange--text"> {{ product.name }}</td>
           <td class="red--text">{{ product.category.name }}</td>
           <td> Nothing here</td>
