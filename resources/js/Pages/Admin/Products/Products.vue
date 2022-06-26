@@ -41,4 +41,7 @@ export default {
   width: 400px;
   height: 400px;
 } 
+tr:hover {
+  cursor: pointer;
+}
 </style>

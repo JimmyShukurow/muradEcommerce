@@ -31,7 +31,7 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::get('/menus', [AdminController::class, 'menus']);
 Route::get('/slides', [AdminController::class, 'slides']);
 Route::get('/users', [AdminController::class, 'users']);
-Route::get('/products', [AdminController::class, 'products']);
+Route::get('/products', [AdminController::class, 'products'])->name('admin.products');
 
 //Moblie
 Route::post('/mobileLogin', [UserController::class, 'loginMobile']);
@@ -45,3 +45,4 @@ Route::get('/mobileLogin', [UserController::class, 'mobileLogin'])->name('mobile
 
 //products
 Route::get('/products/{product}', [ProductController::class, 'edit'])->name('product');
+Route::put('/products/{product}', [ProductController::class, 'update']);
