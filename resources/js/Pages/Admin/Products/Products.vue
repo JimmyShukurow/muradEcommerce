@@ -17,6 +17,12 @@
         </InertiaLink>
       </tbody>
     </v-simple-table>
+     <v-snackbar color="succes" v-model="snackbar" timeout="2000" transition="scale-transition" >
+          {{ $page.props.message.success }}
+          <template v-slot:action="{ attrs }">
+            <v-btn color="error" fab text v-bind="attrs" @click="snackbar=false"> <v-icon>mdi-close</v-icon> </v-btn>
+          </template>
+        </v-snackbar>
   </AdminLayout>
 </template>
 
@@ -32,6 +38,14 @@ export default {
     UploadMedia,
     UpdateMedia,
     InertiaLink
+  },
+  data: () => ({
+    snackbar: false
+  }),
+  mounted() {
+      if(this.$page.props.message.success){
+        this.snackbar = true
+      }
   }
 };
 </script>

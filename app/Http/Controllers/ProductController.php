@@ -7,7 +7,6 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 
 class ProductController extends Controller
@@ -28,6 +27,14 @@ class ProductController extends Controller
 
         $product->update($request->validated());
         
+
+        return Redirect::route('admin.products')->setStatusCode(303)->with('success', 'Product was updated');
+    }
+
+    public function updloadImages(Request $request)
+    {
+        $product = Product::find(2);
+        $product->addMediaFromRequest('image')->toMediaCollection('products');
 
         return $product;
     }

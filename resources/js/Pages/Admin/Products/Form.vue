@@ -4,19 +4,11 @@
       <v-container>
         <v-row class="ma-5">
           <v-spacer></v-spacer>
-          <InertiaLink as="v-btn" href="/products" color="secondary"
-            >Back</InertiaLink
-          >
+          <InertiaLink as="v-btn" href="/products" color="secondary">Back</InertiaLink>
         </v-row>
         <v-row>
           <v-col cols="12" md="12">
-            <v-text-field
-              v-model="form.name"
-              :counter="10"
-              outlined
-              label="First name"
-              required
-            ></v-text-field>
+            <v-text-field v-model="form.name" :counter="10" outlined label="First name" required></v-text-field>
           </v-col>
           <v-col cols="12" md="12">
             <v-select
@@ -39,33 +31,28 @@
           </v-col>
 
           <v-col cols="12" md="12">
-            <v-text-field
-              label="Price"
-              type="number"
-              outlined
-              required
-            ></v-text-field>
+            <v-text-field label="Price" type="number" outlined required></v-text-field>
           </v-col>
 
           <v-col cols="12" md="12">
-            <upload-media server="/api/upload"> </upload-media>
+            <file-pond
+              name="test"
+              ref="pond"
+              label-idle="Drop files here..."
+              v-bind:allow-multiple="true"
+              accepted-file-types="image/jpeg, image/png"
+              server="/api"
+              v-bind:files="form.images"
+            />
           </v-col>
           <v-col cols="12" md="12">
             <v-row class="ma-5">
-              <InertiaLink as="v-btn" href="/products" color="error"
-                >Cancel</InertiaLink
-              >
+              <InertiaLink as="v-btn" href="/products" color="error">Cancel</InertiaLink>
               <v-spacer></v-spacer>
-              <v-btn color="primary" @click="update"> Save </v-btn>
+              <v-btn color="primary" @click="update()">Save</v-btn>
             </v-row>
           </v-col>
         </v-row>
-        <v-snackbar v-model="snackbar" timeout="2000">
-            JImi
-          <template  v-slot:action="{ attrs }">
-            <v-btn color="blue" text v-bind="attrs"> Close </v-btn>
-          </template>
-        </v-snackbar>
       </v-container>
     </v-form>
   </AdminLayout>
@@ -73,31 +60,56 @@
 
 <script>
 import AdminLayout from "../../../Layouts/admin/Admin.vue";
-import { UploadMedia, UpdateMedia } from "vue-media-upload";
 import { InertiaLink } from "@inertiajs/inertia-vue";
-import axios from "axios";
+// Import Vue FilePond
+import vueFilePond from "vue-filepond";
+
+// Import FilePond styles
+import "filepond/dist/filepond.min.css";
+
+// Import FilePond plugins
+// Please note that you need to install these plugins separately
+
+// Import image preview plugin styles
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
+
+// Import image preview and file type validation plugins
+import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+
+// Create component
+const FilePond = vueFilePond(
+  FilePondPluginFileValidateType,
+  FilePondPluginImagePreview
+);
 export default {
   props: ["product", "categories"],
   components: {
     AdminLayout,
-    UploadMedia,
-    UpdateMedia,
-    InertiaLink,
+    FilePond,
+
+    InertiaLink
   },
   data: () => ({
-    form: {},
-    snackbar: true
+    form: {}
   }),
   mounted() {
     this.form = this.product;
   },
   methods: {
     update() {
-      axios.put("/products/" + this.product.id, this.form).then((response) => {
-        console.log(response);
-      });
-    },
-  },
+      let afterRequest = {
+        onSuccess: () => {},
+        onError: () => {}
+      };
+      this.form.images = this.media;
+      this.$inertia.put(
+        "/products/" + this.product.id,
+        this.form,
+        afterRequest
+      );
+    }
+  }
 };
 </script>
 
