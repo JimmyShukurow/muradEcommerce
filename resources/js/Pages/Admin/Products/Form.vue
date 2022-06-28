@@ -36,12 +36,12 @@
 
           <v-col cols="12" md="12">
             <file-pond
-              name="test"
+              name="images"
               ref="pond"
               label-idle="Drop files here..."
               v-bind:allow-multiple="true"
               accepted-file-types="image/jpeg, image/png"
-              server="/api"
+              server="/api/upload"
               v-bind:files="form.images"
             />
           </v-col>
