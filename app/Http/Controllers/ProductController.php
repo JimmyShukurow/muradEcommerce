@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Product\ProductsRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\TemporaryFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -26,6 +27,12 @@ class ProductController extends Controller
     {
 
         $product->update($request->validated());
+
+        foreach($request->images as $image){
+            $temp = TemporaryFile::where('folder', $image)->first();
+            $product->addMedia(storage_path('app/public/images/temp/'.$image.'/'.$temp->filename))->toMediaCollection();
+            rmdir(storage_path('app/public/images/temp/'.$image));
+        }
         
 
         return Redirect::route('admin.products')->setStatusCode(303)->with('success', 'Product was updated');

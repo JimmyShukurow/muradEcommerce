@@ -42,7 +42,6 @@
               v-bind:allow-multiple="true"
               accepted-file-types="image/jpeg, image/png"
               server="/api/upload"
-              v-bind:files="form.images"
             />
           </v-col>
           <v-col cols="12" md="12">
@@ -87,11 +86,10 @@ export default {
   components: {
     AdminLayout,
     FilePond,
-
     InertiaLink
   },
   data: () => ({
-    form: {}
+    form: {},
   }),
   mounted() {
     this.form = this.product;
@@ -102,7 +100,10 @@ export default {
         onSuccess: () => {},
         onError: () => {}
       };
-      this.form.images = this.media;
+      this.form.images = []
+      for (let index = 0; index < document.getElementsByName('images').length; index++) {
+        this.form.images.push(document.getElementsByName('images')[index].value)
+      }
       this.$inertia.put(
         "/products/" + this.product.id,
         this.form,
