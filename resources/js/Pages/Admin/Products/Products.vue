@@ -1,28 +1,39 @@
 <template>
   <AdminLayout>
-    <h1>Products</h1>
-     <v-simple-table>
+    <v-row >
+      <h1 class="ma-5" >Products</h1>
+      <v-spacer></v-spacer>
+      <v-btn class="ma-5" color="success"> Add new Product</v-btn>
+    </v-row>
+    <v-simple-table class="m-5">
       <thead>
         <tr>
           <th class="text-left headline">Name</th>
-          <th class="text-left headline" >Category</th>
+          <th class="text-left headline">Category</th>
           <th class="text-left headline">Icon</th>
         </tr>
       </thead>
       <tbody>
-        <InertiaLink as="tr" :href="'/products/' + product.id" v-for="product in products" :key="product.name">
-          <td class="deep-orange--text"> {{ product.name }}</td>
+        <InertiaLink
+          as="tr"
+          :href="'/products/' + product.id"
+          v-for="product in products"
+          :key="product.name"
+        >
+          <td class="deep-orange--text">{{ product.name }}</td>
           <td class="red--text">{{ product.category.name }}</td>
-          <td> Nothing here</td>
+          <td>Nothing here</td>
         </InertiaLink>
       </tbody>
     </v-simple-table>
-     <v-snackbar color="succes" v-model="snackbar" timeout="2000" transition="scale-transition" >
-          {{ $page.props.message.success }}
-          <template v-slot:action="{ attrs }">
-            <v-btn color="error" fab text v-bind="attrs" @click="snackbar=false"> <v-icon>mdi-close</v-icon> </v-btn>
-          </template>
-        </v-snackbar>
+    <v-snackbar color="succes" v-model="snackbar" timeout="2000" transition="scale-transition">
+      {{ $page.props.message.success }}
+      <template v-slot:action="{ attrs }">
+        <v-btn color="error" fab text v-bind="attrs" @click="snackbar=false">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
   </AdminLayout>
 </template>
 
@@ -32,7 +43,7 @@ import { UploadMedia, UpdateMedia } from "vue-media-upload";
 import { InertiaLink } from "@inertiajs/inertia-vue";
 
 export default {
-  props:['products'],
+  props: ["products"],
   components: {
     AdminLayout,
     UploadMedia,
@@ -43,9 +54,9 @@ export default {
     snackbar: false
   }),
   mounted() {
-      if(this.$page.props.message.success){
-        this.snackbar = true
-      }
+    if (this.$page.props.message.success) {
+      this.snackbar = true;
+    }
   }
 };
 </script>
@@ -54,7 +65,7 @@ export default {
 .image {
   width: 400px;
   height: 400px;
-} 
+}
 tr:hover {
   cursor: pointer;
 }

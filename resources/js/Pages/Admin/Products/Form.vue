@@ -34,7 +34,7 @@
             <v-text-field label="Price" type="number" outlined required></v-text-field>
           </v-col>
 
-          <v-col cols="12" md="12">
+          <v-col cols="12" md="6">
             <file-pond
               name="images"
               ref="pond"
@@ -43,6 +43,20 @@
               accepted-file-types="image/jpeg, image/png"
               server="/api/upload"
             />
+          </v-col>
+          <v-col cols="12" md="6">
+            <v-sheet>
+              <v-row v-for="(image, index) in form.media" :key="index">
+                <v-card width="70%" class="ma-5">
+                  <v-img :src="image.preview_url" height="125" contain class="grey lighten-4"></v-img>
+                </v-card>
+                <v-layout align-center>
+                  <v-btn icon class="mx-auto" @click="deleteImage(index)">
+                    <v-icon color="error" large>mdi-delete</v-icon>
+                  </v-btn>
+                </v-layout>
+              </v-row>
+            </v-sheet>
           </v-col>
           <v-col cols="12" md="12">
             <v-row class="ma-5">
@@ -89,7 +103,7 @@ export default {
     InertiaLink
   },
   data: () => ({
-    form: {},
+    form: {}
   }),
   mounted() {
     this.form = this.product;
@@ -100,15 +114,24 @@ export default {
         onSuccess: () => {},
         onError: () => {}
       };
-      this.form.images = []
-      for (let index = 0; index < document.getElementsByName('images').length; index++) {
-        this.form.images.push(document.getElementsByName('images')[index].value)
+      this.form.images = [];
+      for (
+        let index = 0;
+        index < document.getElementsByName("images").length;
+        index++
+      ) {
+        this.form.images.push(
+          document.getElementsByName("images")[index].value
+        );
       }
       this.$inertia.put(
         "/products/" + this.product.id,
         this.form,
         afterRequest
       );
+    },
+    deleteImage(imageOrder) {
+        this.form.media.splice(imageOrder,1);
     }
   }
 };

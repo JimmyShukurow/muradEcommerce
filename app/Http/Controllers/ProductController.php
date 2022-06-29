@@ -20,6 +20,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::select('id', 'name')->get();
+        $product->getMedia();
         return Inertia::render('Admin/Products/Form', ['product'=> $product, 'categories' => $categories]);
     }
 
