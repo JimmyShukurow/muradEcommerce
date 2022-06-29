@@ -17,6 +17,11 @@ class ProductController extends Controller
         return 'ok';
     }
 
+    public function create()
+    {
+        return Inertia::render('Admin/Products/Form');
+    }
+
     public function edit(Product $product)
     {
         $categories = Category::select('id', 'name')->get();
