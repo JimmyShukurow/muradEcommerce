@@ -13,14 +13,15 @@ const messages = {
         "cancel": 'Cancel',
         "OK": 'OK',
         "confirm": "Confirm",
-        "Are you sure you want to delete this record?": "Are you sure you want to delete this record?"
+        "Are you sure you want to delete this record?": "Are you sure you want to delete this record?",
+        "no Image":"no Image"
       },
       tkm: {
         "cancel": 'Yok',
         "OK": 'Bass',
         "confirm": "Tassykla",
-        "Are you sure you want to delete this record?": "Sen Uwerynmy?"
-
+        "Are you sure you want to delete this record?": "Sen Uwerynmy?",
+        "no Image":"Surat Yok"
       },
   }
   const i18n = new VueI18n({

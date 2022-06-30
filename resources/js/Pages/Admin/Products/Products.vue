@@ -22,7 +22,10 @@
         >
           <td class="deep-orange--text">{{ product.name }}</td>
           <td class="red--text">{{ product.category.name }}</td>
-          <td><v-img :src="image.preview_url" height="125" contain class="grey lighten-4"></v-img></td>
+          <td v-if="product.preview_image">
+            <v-img :src="product.preview_image.preview_url" height="50" width="50"></v-img>
+          </td>
+          <td v-else>{{$t('no Image')}}</td>
         </InertiaLink>
       </tbody>
     </v-simple-table>
@@ -62,10 +65,6 @@ export default {
 </script>
 
 <style scoped>
-.image {
-  width: 400px;
-  height: 400px;
-}
 tr:hover {
   cursor: pointer;
 }
