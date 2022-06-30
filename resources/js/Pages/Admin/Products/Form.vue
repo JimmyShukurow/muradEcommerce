@@ -31,7 +31,7 @@
           </v-col>
 
           <v-col cols="12" md="12">
-            <v-text-field label="Price" type="number" outlined required></v-text-field>
+            <v-text-field label="Price" v-model="form.price" type="number" outlined required></v-text-field>
           </v-col>
 
           <v-col cols="12" md="6">
@@ -45,13 +45,13 @@
             />
           </v-col>
           <v-col cols="12" md="6">
-            <v-sheet>
+            <v-sheet v-if="form.media">
               <v-row v-for="(image, index) in form.media" :key="index">
                 <v-card width="70%" class="ma-5">
                   <v-img :src="image.preview_url" height="125" contain class="grey lighten-4"></v-img>
                 </v-card>
                 <v-layout align-center>
-                  <v-btn icon class="mx-auto" @click="deleteImage(index)">
+                  <v-btn icon class="mx-auto" @click="deleteImage(image.id)">
                     <v-icon color="error" large>mdi-delete</v-icon>
                   </v-btn>
                 </v-layout>
@@ -60,33 +60,25 @@
           </v-col>
           <v-col cols="12" md="12">
             <v-row class="ma-5">
-              <InertiaLink as="v-btn" href="/products" color="error">Cancel</InertiaLink>
+              <v-btn color="error" @click="delRecord()">Delete</v-btn>
               <v-spacer></v-spacer>
-              <v-btn color="primary" @click="update()">Save</v-btn>
+              <v-btn color="primary" @click="edit ? updateProduct() : saveProduct()">{{buttonText}}</v-btn>
             </v-row>
           </v-col>
         </v-row>
       </v-container>
     </v-form>
+    <Confirm ref="confirm" />
   </AdminLayout>
 </template>
 
 <script>
 import AdminLayout from "../../../Layouts/admin/Admin.vue";
 import { InertiaLink } from "@inertiajs/inertia-vue";
-// Import Vue FilePond
+import Confirm from "../../../components/ConfirmDlg.vue";
 import vueFilePond from "vue-filepond";
-
-// Import FilePond styles
 import "filepond/dist/filepond.min.css";
-
-// Import FilePond plugins
-// Please note that you need to install these plugins separately
-
-// Import image preview plugin styles
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
-
-// Import image preview and file type validation plugins
 import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 
@@ -96,25 +88,62 @@ const FilePond = vueFilePond(
   FilePondPluginImagePreview
 );
 export default {
-  props: ["product", "categories"],
+  props: ["product", "categories", "edit"],
   components: {
     AdminLayout,
     FilePond,
-    InertiaLink
+    InertiaLink,
+    Confirm
   },
   data: () => ({
-    form: {}
+    form: {},
+    buttonText:'save',
+    delete: []
   }),
   mounted() {
-    this.form = this.product;
+    if(this.edit){
+      this.form = JSON.parse(JSON.stringify(this.product));;
+      this.buttonText = 'update'
+    }
   },
   methods: {
-    update() {
+    saveProduct(){
       let afterRequest = {
         onSuccess: () => {},
         onError: () => {}
       };
       this.form.images = [];
+      for (let index = 0; index < document.getElementsByName("images").length;index++) {
+        this.form.images.push(
+          document.getElementsByName("images")[index].value
+        );
+      }
+      this.$inertia.post("/product", this.form, afterRequest);
+    },
+    async delRecord() {
+        if (
+          await this.$refs.confirm.open(
+            this.$t("confirm"),
+            this.$t("Are you sure you want to delete this record?")
+          )
+        ) {
+          this.deleteProduct();
+        }
+      },
+    deleteProduct(){
+      let afterRequest = {
+        onSuccess: () => {},
+        onError: () => {}
+      };
+      this.$inertia.delete("/product/" + this.product.id, {}, afterRequest);
+    },
+    updateProduct() {
+      let afterRequest = {
+        onSuccess: () => {},
+        onError: () => {}
+      };
+      this.form.images = [];
+      this.form.delete = [...this.delete];
       for (
         let index = 0;
         index < document.getElementsByName("images").length;
@@ -130,8 +159,12 @@ export default {
         afterRequest
       );
     },
-    deleteImage(imageOrder) {
-        this.form.media.splice(imageOrder,1);
+    deleteImage(id) {
+      console.log(id);
+      let imageOrder = this.product.media.findIndex(element=>{return element.id === id});
+      this.delete.push(imageOrder);
+      let deleteOrder = this.form.media.findIndex(element=>{return element.id === id})
+      this.form.media.splice(deleteOrder,1);
     }
   }
 };

@@ -47,4 +47,7 @@ Route::get('/mobileLogin', [UserController::class, 'mobileLogin'])->name('mobile
 Route::get('/products/{product}', [ProductController::class, 'edit'])->name('product');
 Route::put('/products/{product}', [ProductController::class, 'update']);
 Route::get('/product/create', [ProductController::class, 'create']);
+Route::post('/product', [ProductController::class, 'store']);
+Route::delete('/product/{product}', [ProductController::class, 'delete']);
+
 

@@ -10,7 +10,7 @@
         <tr>
           <th class="text-left headline">Name</th>
           <th class="text-left headline">Category</th>
-          <th class="text-left headline">Icon</th>
+          <th class="text-left headline">Image</th>
         </tr>
       </thead>
       <tbody>
@@ -22,7 +22,7 @@
         >
           <td class="deep-orange--text">{{ product.name }}</td>
           <td class="red--text">{{ product.category.name }}</td>
-          <td>Nothing here</td>
+          <td><v-img :src="image.preview_url" height="125" contain class="grey lighten-4"></v-img></td>
         </InertiaLink>
       </tbody>
     </v-simple-table>

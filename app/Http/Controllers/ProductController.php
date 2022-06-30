@@ -17,16 +17,34 @@ class ProductController extends Controller
         return 'ok';
     }
 
+    public function store(ProductsRequest $request)
+    {
+        $product = Product::create($request->validated());
+
+        foreach($request->images as $image){
+            if($image != null){
+                $temp = TemporaryFile::where('folder', $image)->first();
+                $product->addMedia(storage_path('app/public/images/temp/'.$image.'/'.$temp->filename))->toMediaCollection();
+                rmdir(storage_path('app/public/images/temp/'.$image));
+            }
+         
+        }
+
+        return Redirect::route('admin.products')->setStatusCode(303)->with('success', 'Product was saved');
+
+    }
+
     public function create()
     {
-        return Inertia::render('Admin/Products/Form');
+        $categories = Category::select('id', 'name')->get();
+        return Inertia::render('Admin/Products/Form', ['categories' => $categories]);
     }
 
     public function edit(Product $product)
     {
         $categories = Category::select('id', 'name')->get();
         $product->getMedia();
-        return Inertia::render('Admin/Products/Form', ['product'=> $product, 'categories' => $categories]);
+        return Inertia::render('Admin/Products/Form', ['product'=> $product, 'categories' => $categories, 'edit' => true]);
     }
 
     public function update(Product $product, ProductsRequest $request)
@@ -35,9 +53,16 @@ class ProductController extends Controller
         $product->update($request->validated());
 
         foreach($request->images as $image){
-            $temp = TemporaryFile::where('folder', $image)->first();
-            $product->addMedia(storage_path('app/public/images/temp/'.$image.'/'.$temp->filename))->toMediaCollection();
-            rmdir(storage_path('app/public/images/temp/'.$image));
+            if($image != null){
+                $temp = TemporaryFile::where('folder', $image)->first();
+                $product->addMedia(storage_path('app/public/images/temp/'.$image.'/'.$temp->filename))->toMediaCollection();
+                rmdir(storage_path('app/public/images/temp/'.$image));
+            }
+         
+        }
+        $media = $product->getMedia();
+        foreach($request->delete as $index){
+            $media[$index]->delete();
         }
         
 
@@ -50,5 +75,13 @@ class ProductController extends Controller
         $product->addMediaFromRequest('image')->toMediaCollection('products');
 
         return $product;
+    }
+
+    public function delete(Product $product)
+    {
+        $product->delete();
+
+        return Redirect::route('admin.products')->setStatusCode(303)->with('success', 'Product was deleted');
+
     }
 }
