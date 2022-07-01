@@ -7,18 +7,13 @@
     <v-simple-table class="m-5">
       <thead>
         <tr>
-          <th class="text-left headline">Name</th>
+          <th class="text-left headline">{{$t('name')}}</th>
           <th class="text-left headline">Email</th>
           <th class="text-left headline">Role</th>
         </tr>
       </thead>
       <tbody>
-        <InertiaLink
-          as="tr"
-          :href="'/users/'+user.id"
-          v-for="(user, id) in users"
-          :key="id"
-        >
+        <InertiaLink as="tr" :href="'/users/'+user.id" v-for="(user, id) in users" :key="id">
           <td class="deep-orange--text">{{ user.name }}</td>
           <td class="red--text">{{ user.email }}</td>
           <td>{{ $t("no Image") }}</td>
@@ -36,9 +31,12 @@ export default {
   components: {
     AdminLayout,
     InertiaLink
-  },
+  }
 };
 </script>
 
-<style>
+<style scoped>
+tr:hover {
+  cursor: pointer;
+}
 </style>

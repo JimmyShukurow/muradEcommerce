@@ -30,7 +30,7 @@
       </tbody>
     </v-simple-table>
     <v-snackbar color="succes" v-model="snackbar" timeout="2000" transition="scale-transition">
-      {{ $page.props.message.success }}
+      {{ $t($page.props.message.success) }}
       <template v-slot:action="{ attrs }">
         <v-btn color="error" fab text v-bind="attrs" @click="snackbar=false">
           <v-icon>mdi-close</v-icon>

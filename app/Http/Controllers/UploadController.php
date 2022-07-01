@@ -28,9 +28,8 @@ class UploadController extends Controller
         
     }
 
-    public function delete($folder)
+    public function delete(Request $request)
     {
-        rmdir('public/images/temp/'.$folder);
         return 'ok';
     }
 }
