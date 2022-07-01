@@ -1,14 +1,14 @@
 <template>
   <AdminLayout>
     <v-row >
-      <h1 class="ma-5" >Products</h1>
+      <h1 class="ma-5" >{{$t('Products')}}</h1>
       <v-spacer></v-spacer>
-      <InertiaLink as="v-btn" :href="'/product/create'"  class="ma-5" color="success"> Add new Product</InertiaLink>
+      <InertiaLink as="v-btn" :href="'/product/create'"  class="ma-5" color="success"> {{$t('Add new Product')}}</InertiaLink>
     </v-row>
     <v-simple-table class="m-5">
       <thead>
         <tr>
-          <th class="text-left headline">Name</th>
+          <th class="text-left headline">{{$t('name')}}</th>
           <th class="text-left headline">Category</th>
           <th class="text-left headline">Image</th>
         </tr>

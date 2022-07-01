@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
@@ -34,9 +35,16 @@ class AdminController extends Controller
 
     public function products()
     {
-        $products = Product::with('category','previewImage')->get();
+        $products = Product::with('category','previewImage')->orderBY('created_at', 'DESC')->get();
         
         return Inertia::render('Admin/Products/Products', ['products' => $products]);
+    }
+
+    public function roles()
+    {
+        $roles = Role::all();
+
+        return  Inertia::render('Admin/Roles/Roles', ['roles' => $roles]);
     }
 
 }

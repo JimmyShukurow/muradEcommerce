@@ -90,4 +90,9 @@ class UserController extends Controller
         }
         return response()->json('error');
     }
+
+    public function edit(User $user)
+    {
+        return Inertia::render('Admin/Users/Form', ['user'=> $user]);
+    }
 }

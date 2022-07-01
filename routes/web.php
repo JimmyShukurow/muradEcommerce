@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\App;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,8 @@ Route::get('/menus', [AdminController::class, 'menus']);
 Route::get('/slides', [AdminController::class, 'slides']);
 Route::get('/users', [AdminController::class, 'users']);
 Route::get('/products', [AdminController::class, 'products'])->name('admin.products');
+Route::get('/roles', [AdminController::class, 'roles'])->name('admin.roles');
+
 
 //Moblie
 Route::post('/mobileLogin', [UserController::class, 'loginMobile']);
@@ -50,4 +53,8 @@ Route::get('/product/create', [ProductController::class, 'create']);
 Route::post('/product', [ProductController::class, 'store']);
 Route::delete('/product/{product}', [ProductController::class, 'delete']);
 
+//users
+Route::get('/users/{user}', [UserController::class, 'edit']);
 
+//roles 
+Route::get('/roles/create', [RoleController::class, 'create']);

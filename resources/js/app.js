@@ -14,14 +14,26 @@ const messages = {
         "OK": 'OK',
         "confirm": "Confirm",
         "Are you sure you want to delete this record?": "Are you sure you want to delete this record?",
-        "no Image":"no Image"
+        "no Image":"no Image",
+        "name":"Name",
+        "Language":"Language",
+        "Products": "Products",
+        "Roles": "Roles",
+        "Add new Product": "Add new Product",
+        "Add new Role": "Add new Role",
       },
-      tkm: {
+    tkm: {
         "cancel": 'Yok',
         "OK": 'Bass',
         "confirm": "Tassykla",
         "Are you sure you want to delete this record?": "Sen Uwerynmy?",
-        "no Image":"Surat Yok"
+        "no Image":"Surat Yok",
+        "name":"Ady",
+        "Language":"Dil",
+        "Products": "Önümler",
+        "Roles": "Rollar",
+        "Add new Product": "Taze önüm goş",
+        "Add new Role": "Taze rol goş",
       },
   }
   const i18n = new VueI18n({

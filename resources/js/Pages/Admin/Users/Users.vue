@@ -15,7 +15,7 @@
       <tbody>
         <InertiaLink
           as="tr"
-          :href="'/users'"
+          :href="'/users/'+user.id"
           v-for="(user, id) in users"
           :key="id"
         >
