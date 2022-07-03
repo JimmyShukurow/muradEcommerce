@@ -21,7 +21,7 @@
 
         <template v-slot:append>
           <div class="pa-2">
-            <v-btn block>Logout</v-btn>
+            <v-btn  @click="logout()" block>Logout</v-btn>
           </div>
         </template>
       </v-navigation-drawer>
@@ -29,7 +29,6 @@
         <v-app-bar
           color="deep-purple accent-4"
           dark
-          scroll-target="#scrolling-techniques-6"
           prominent
           outlined
           rounded
@@ -62,12 +61,22 @@ export default {
       { title: "Slides", icon: "mdi-image", route: "/slides" },
       { title: "Users", icon: "mdi-account", route: "/users" },
       { title: "Products", icon: "mdi-inbox-multiple", route: "/products" },
-      { title: "Roles", icon: "mdi-account-details", route: "/roles" }
+      { title: "Roles", icon: "mdi-account-details", route: "/roles" },
+      { title: "Settings", icon: "mdi-cog", route: "/settings" },
 
     ],
     
     right: null
   }),
+  methods: {
+    logout(){
+       let afterRequest = {
+        onSuccess: () => {},
+        onError: () => {}
+      };
+      this.$inertia.post("/logout", {}, afterRequest);
+    }
+  }
   
 };
 </script>
@@ -75,5 +84,6 @@ export default {
 <style scoped>
 .admin-layout a {
   text-decoration: none;
+  max-height: 100vh;
 }
 </style>

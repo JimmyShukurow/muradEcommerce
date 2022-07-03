@@ -3,14 +3,15 @@
     <v-form>
       <v-container>
         <v-row class="ma-5">
+          <h2>{{product ? product.name : "New Product"}}</h2>
           <v-spacer></v-spacer>
           <InertiaLink as="v-btn" href="/products" color="secondary">Back</InertiaLink>
         </v-row>
         <v-row>
-          <v-col cols="12" md="12">
-            <v-text-field v-model="form.name" :counter="10" outlined label="First name" required></v-text-field>
+          <v-col cols="12" md="6">
+            <v-text-field v-model="form.name" :counter="16" maxlength="16"  outlined :label="$t('name')" required></v-text-field>
           </v-col>
-          <v-col cols="12" md="12">
+          <v-col cols="12" md="6">
             <v-select
               outlined
               label="Category"
@@ -35,14 +36,7 @@
           </v-col>
 
           <v-col cols="12" md="6">
-            <file-pond
-              name="images"
-              ref="pond"
-              label-idle="Drop files here..."
-              v-bind:allow-multiple="true"
-              accepted-file-types="image/jpeg, image/png"
-              server="/api/upload"
-            />
+            <file-pond :mulitpleImage="true"/>
           </v-col>
           <v-col cols="12" md="6">
             <v-sheet v-if="form.media">
@@ -76,17 +70,8 @@
 import AdminLayout from "../../../Layouts/admin/Admin.vue";
 import { InertiaLink } from "@inertiajs/inertia-vue";
 import Confirm from "../../../components/ConfirmDlg.vue";
-import vueFilePond from "vue-filepond";
-import "filepond/dist/filepond.min.css";
-import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
-import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
-import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import FilePond from "../../../components/FilePond.vue";
 
-// Create component
-const FilePond = vueFilePond(
-  FilePondPluginFileValidateType,
-  FilePondPluginImagePreview
-);
 export default {
   props: ["product", "categories", "edit"],
   components: {
@@ -160,7 +145,6 @@ export default {
       );
     },
     deleteImage(id) {
-      console.log(id);
       let imageOrder = this.product.media.findIndex(element=>{return element.id === id});
       this.delete.push(imageOrder);
       let deleteOrder = this.form.media.findIndex(element=>{return element.id === id})

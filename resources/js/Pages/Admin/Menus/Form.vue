@@ -1,0 +1,116 @@
+<template>
+  <AdminLayout>
+    <v-form>
+      <v-container>
+        <v-row>
+          <h2 class="ma-5">{{ menu ? menu.name : "New Menu" }}</h2>
+          <v-spacer></v-spacer>
+          <InertiaLink as="v-btn" href="/menus" color="secondary" class="ma-5">Back</InertiaLink>
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="6">
+            <v-text-field
+              outlined
+              :label="$t('name')"
+              v-model="form.name"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="6">
+            <v-select
+              outlined
+              :label="$t('category')"
+              v-model="form.parent_id"
+              :items="categories"
+              item-value="id"
+              item-text="name"
+            ></v-select>
+          </v-col>
+        </v-row>
+        <v-row class="ma-5">
+          <v-btn color="error" @click="delRecord()">Delete</v-btn>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" @click="edit ? updateMenu() : saveMenu()">{{ buttonText }}</v-btn>
+        </v-row>
+      </v-container>
+      <v-snackbar color="succes" v-model="snackbar" timeout="2000" transition="scale-transition">
+        {{ $page.props.message.success}}
+        <template v-slot:action="{ attrs }">
+          <v-btn color="error" fab text v-bind="attrs" @click="snackbar=false">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </template>
+    </v-snackbar>
+    </v-form>
+    <Confirm ref="confirm" />
+  </AdminLayout>
+</template>
+
+<script>
+import AdminLayout from "../../../Layouts/admin/Admin.vue";
+import { InertiaLink } from "@inertiajs/inertia-vue";
+import Confirm from "../../../components/ConfirmDlg.vue";
+
+export default {
+  props: ["menu", "categories", "edit"],
+  components: {
+    AdminLayout,
+    InertiaLink,
+    Confirm
+  },
+  data: () => ({
+    form: {},
+    buttonText: "save",
+    snackbar: false
+  }),
+  mounted() {
+    if (this.edit) {
+      this.form = JSON.parse(JSON.stringify(this.menu));
+      this.buttonText = "update";
+    }
+  },
+  methods: {
+    saveMenu() {
+      let afterRequest = {
+        onSuccess: () => {},
+        onError: () => {},
+      };
+      this.$inertia.post("/menus", this.form, afterRequest);
+    },
+    updateMenu() {
+      let afterRequest = {
+        onSuccess: () => {},
+        onError: () => {},
+      };
+      this.$inertia.put("/menus", this.form, afterRequest);
+    },
+    async delRecord() {
+        if (
+          await this.$refs.confirm.open(
+            this.$t("confirm"),
+            this.$t("Are you sure you want to delete this record?")
+          )
+        ) {
+          this.deleteMenu();
+        }
+      },
+    deleteMenu(){
+      let afterRequest = {
+        onSuccess: () => {
+            if (this.$page.props.message.success) {
+              this.snackbar = true;
+            }
+        },
+        onError: () => {
+          if (this.$page.props.message.success) {
+              this.snackbar = true;
+            }
+        }
+      };
+      this.$inertia.delete("/menus/" + this.menu.id, {}, afterRequest);
+    },
+  },
+};
+</script>
+
+<style>
+</style>

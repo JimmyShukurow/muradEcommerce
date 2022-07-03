@@ -28,6 +28,10 @@ const messages = {
         "Product was deleted": "Product was deleted",
         "Product was updated": "Product was updated",
         "Product was saved" : "Product was saved",
+        "Settings": "Settings",
+        "Update": "Update",
+        "Drop files here...": "Drop files here...",
+        "category": " Category"
       },
     tkm: {
         "cancel": 'Yok',
@@ -48,6 +52,11 @@ const messages = {
         "Product was deleted": "Önüm Yoklandy",
         "Product was updated": "Önüm Tazelendi",
         "Product was saved" : "Taze  Önüm Goşuldy",
+        "Settings": "Sazlamalar",
+        "Update": "Tazele",
+        "Drop files here...": "Suratlary şu yere taşla...",
+        "category": " Kategoriyasy"
+
 
       },
   }

@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\App;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Mobile\ProductController as MobileProductController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,15 +32,22 @@ Route::post('/register', [UserController::class, 'register']);
 
 //Dashboard
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-Route::get('/menus', [AdminController::class, 'menus']);
+Route::get('/menus', [AdminController::class, 'menus'])->name('admin.menus');
 Route::get('/slides', [AdminController::class, 'slides']);
 Route::get('/users', [AdminController::class, 'users']);
 Route::get('/products', [AdminController::class, 'products'])->name('admin.products');
 Route::get('/roles', [AdminController::class, 'roles'])->name('admin.roles');
+Route::get('/settings', [AdminController::class, 'settings']);
 
 
 //Moblie
 Route::post('/mobileLogin', [UserController::class, 'loginMobile']);
+Route::prefix('mobile')->group(function(){
+    Route::get('/products/{category}', [MobileProductController::class, 'products']);
+    Route::get('/product/{product}', [MobileProductController::class, 'product']);
+
+});
+
 //Mobile Footer
 Route::get('/quick', [UserController::class, 'quick']);
 Route::get('/favorites', [UserController::class, 'favorites']);
@@ -58,3 +68,13 @@ Route::get('/users/{user}', [UserController::class, 'edit']);
 
 //roles 
 Route::get('/roles/create', [RoleController::class, 'create']);
+
+//settings
+Route::post('/settings', [SettingsController::class, 'store']);
+
+//menus
+Route::get('/menus/{menu}', [CategoryController::class, 'edit'])->name('admin.menu.edit');
+Route::get('/menu/create', [CategoryController::class, 'create']);
+Route::post('/menus',[CategoryController::class, 'store']);
+Route::put('/menus/{menu}', [CategoryController::class, 'update']);
+Route::delete('/menus/{menu}', [CategoryController::class, 'delete']);

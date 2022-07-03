@@ -36,7 +36,7 @@
             <v-divider vertical></v-divider>
 
             <v-layout v-for="(category, id) in categories" :key="id">
-              <InertiaLink as="v-btn" :class="{'orange white--text': $page.url === category.name}" href="/" outlined text class="rounded-xl ml-2">{{ category }}</InertiaLink>
+              <InertiaLink as="v-btn" :class="{'orange white--text': $page.url === category.name}" :href="'/mobile/products/' + id" outlined text class="rounded-xl ml-2">{{ category }}</InertiaLink>
             </v-layout>
           </v-slide-group>
         </v-sheet>
