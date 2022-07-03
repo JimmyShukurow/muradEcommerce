@@ -54,7 +54,7 @@
           </v-col>
           <v-col cols="12" md="12">
             <v-row class="ma-5">
-              <v-btn color="error" @click="delRecord()">Delete</v-btn>
+              <v-btn color="error" @click="delRecord()">{{$t('Delete')}}</v-btn>
               <v-spacer></v-spacer>
               <v-btn color="primary" @click="edit ? updateProduct() : saveProduct()">{{buttonText}}</v-btn>
             </v-row>

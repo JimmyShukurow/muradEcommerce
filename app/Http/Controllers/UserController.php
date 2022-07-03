@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -93,6 +94,16 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return Inertia::render('Admin/Users/Form', ['user'=> $user]);
+        $roles = Role::select('id', 'name')->get();
+        $user->load('roles:id,name');
+        return Inertia::render('Admin/Users/Form', ['user'=> $user, 'roles' => $roles]);
+    }
+    public function updateRole(User $user, Request $request)
+    {
+        $user->syncRoles($request->role);
+        
+        // return'ok';
+        
+        return ['success'=>'Role was updated'];
     }
 }

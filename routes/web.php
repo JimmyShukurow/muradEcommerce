@@ -65,6 +65,7 @@ Route::delete('/product/{product}', [ProductController::class, 'delete']);
 
 //users
 Route::get('/users/{user}', [UserController::class, 'edit']);
+Route::post('/user/{user}/role', [UserController::class, 'updateRole']);
 
 //roles 
 Route::get('/roles/create', [RoleController::class, 'create']);

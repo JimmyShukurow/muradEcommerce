@@ -31,7 +31,8 @@ const messages = {
         "Settings": "Settings",
         "Update": "Update",
         "Drop files here...": "Drop files here...",
-        "category": " Category"
+        "category": " Category",
+        "Delete": "Delete"
       },
     tkm: {
         "cancel": 'Yok',
@@ -55,10 +56,36 @@ const messages = {
         "Settings": "Sazlamalar",
         "Update": "Tazele",
         "Drop files here...": "Suratlary şu yere taşla...",
-        "category": " Kategoriyasy"
+        "category": " Kategoriyasy",
+        "Delete": "Öçür"
 
 
       },
+    rus: {
+      "cancel": 'Otmnna',
+      "OK": 'Bass',
+      "confirm": "Tassykla",
+      "Are you sure you want to delete this record?": "Sen Uwerynmy?",
+      "no Image":"Surat Yok",
+      "name":"Ady",
+      "Language":"Dil",
+      "Dashboard": "Kontol Panel",
+      "Menus": "Menyular",
+      "Slides": "Slaydlar",
+      "Users": "Ulanyjylar",
+      "Products": "Önümler",
+      "Roles": "Rollar",
+      "Add new Product": "Taze önüm goş",
+      "Add new Role": "Taze rol goş",
+      "Product was deleted": "Önüm Yoklandy",
+      "Product was updated": "Önüm Tazelendi",
+      "Product was saved" : "Taze  Önüm Goşuldy",
+      "Settings": "Sazlamalar",
+      "Update": "Tazele",
+      "Drop files here...": "Suratlary şu yere taşla...",
+      "category": " Kategoriyasy",
+      "Delete": "Удалить"
+      }
   }
   const i18n = new VueI18n({
     locale: 'tkm', 
