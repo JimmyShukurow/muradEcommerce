@@ -58,10 +58,10 @@
           </v-row>
           <div class="d-flex justify-space-between mt-5 ml-2 mr-2">
             <span
-              v-for="(category, index) in categories"
-              :key="index"
+              v-for="(category, id) in categories"
+              :key="id"
               class="topmenu pl-2 pr-2"
-            >{{ category }}</span>
+            >{{ category.name }}</span>
           </div>
         </v-container>
       </div>

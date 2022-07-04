@@ -13,12 +13,12 @@
         <v-icon>mdi-moped</v-icon>
       </InertiaLink>
 
-      <InertiaLink as="v-btn">
+      <InertiaLink as="v-btn" href="/favorites" :class="{ 'orange': $page.url === '/favorites' }">
         <span class="textspacescloser">Favorilerim</span>
 
         <v-icon>mdi-heart</v-icon>
       </InertiaLink>
-      <InertiaLink as="v-btn">
+      <InertiaLink as="v-btn" href="/basket" :class="{ 'orange': $page.url === '/basket' }" >
         <span class="textspacescloser">Sepetim</span>
 
         <v-icon>mdi-cart</v-icon>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Basket;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -66,12 +67,14 @@ class UserController extends Controller
 
     public function favorites()
     {
-        return true;
+        return Inertia::render('Mobile/Favorites/Favorites');
     }
 
-    public function basket()
+    public function basket(Request  $request)
     {
-        return true;
+        $basket = Basket::where('user_id', $request->user()->id)->get();
+        $basket->load('previewImage');
+        return Inertia::render('Mobile/Basket/Basket', ['basket' => $basket]);
     }
 
     public function mobileLogin()

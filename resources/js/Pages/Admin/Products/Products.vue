@@ -68,4 +68,7 @@ export default {
 tr:hover {
   cursor: pointer;
 }
+.v-image {
+  border: solid 2px orange;
+}
 </style>

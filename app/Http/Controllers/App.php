@@ -11,7 +11,7 @@ class App extends Controller
 {
     public function index()
     {
-        $topmenus = Category::get()->pluck('name');
+        $topmenus = Category::all();
         $user = Auth::user();
         if($user != null && $user->roles->contains('name', 'admin')){
             $user['roles'] = $user->roles;

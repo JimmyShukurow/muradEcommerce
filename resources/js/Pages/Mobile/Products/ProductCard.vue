@@ -54,4 +54,7 @@ export default {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+.v-image {
+  border: solid 2px orange;
+}
 </style>

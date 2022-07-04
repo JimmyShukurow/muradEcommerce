@@ -2,7 +2,7 @@
   <MobileLayout>
     <v-layout class="ma-5">
       <v-row v-if="products" cols="12">
-        <v-col cols="6" v-for="(product, id) in products" :key="id" @click="getProduct(id)">
+        <v-col cols="6" v-for="(product, id) in products" :key="id" @click="getProduct(product.id)">
           <ProductCard :product="product"></ProductCard>
         </v-col>
       </v-row>

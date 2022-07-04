@@ -45,6 +45,7 @@ Route::post('/mobileLogin', [UserController::class, 'loginMobile']);
 Route::prefix('mobile')->group(function(){
     Route::get('/products/{category}', [MobileProductController::class, 'products']);
     Route::get('/product/{product}', [MobileProductController::class, 'product']);
+    Route::post('/basket/add/{product_id}', [MobileProductController::class, 'addToBasket']);
 
 });
 

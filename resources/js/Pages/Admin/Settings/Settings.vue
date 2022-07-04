@@ -66,9 +66,10 @@ export default {
     updateSettings() {
         let afterRequest = {
         onSuccess: (data) => {
-          if(data.props.message.success)
+          if(data.props.message.success){
             this.snackbar =true;
             this.message = data.props.message.success
+          }
         },
         onError: () => {}
       };
