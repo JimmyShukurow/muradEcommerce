@@ -20,6 +20,14 @@
         {{ $t("Update") }}</v-btn
       >
     </v-row>
+    <v-snackbar color="succes" v-model="snackbar" timeout="2000" transition="scale-transition">
+      {{ message }}
+      <template v-slot:action="{ attrs }">
+        <v-btn color="error" fab text v-bind="attrs" @click="snackbar=false">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
     <Confirm ref="confirm" />
   </AdminLayout>
 </template>
@@ -38,6 +46,8 @@ export default {
   },
   data: () => ({
     form: {},
+    snackbar: false,
+    message: ''
   }),
   mounted(){
     this.form.URL = this.url;
@@ -55,7 +65,11 @@ export default {
     },
     updateSettings() {
         let afterRequest = {
-        onSuccess: () => {},
+        onSuccess: (data) => {
+          if(data.props.message.success)
+            this.snackbar =true;
+            this.message = data.props.message.success
+        },
         onError: () => {}
       };
       this.form.image = [];

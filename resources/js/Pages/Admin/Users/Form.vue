@@ -66,7 +66,6 @@ export default {
         onError: () => {}
       };
     axios.post('/user/'+ this.form.id+'/role', {"role": role}).then((response) => {
-      console.log(response.data.success);
       if(response.status == 200){
           this.snackbar = true
           this.message = response.data.success

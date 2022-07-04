@@ -12,7 +12,7 @@ class SettingsController extends Controller
     public function store(Request $request)
     {
         config(['app.url'=>'jimi']);
-        return Redirect::route('admin.products')->with('success', 'Settings was updated');
+        return Redirect::back()->with('success', 'Settings was updated');
     }
 
     private function setEnv($key, $value)

@@ -32,10 +32,10 @@
           <v-btn color="primary" @click="edit ? updateMenu() : saveMenu()">{{ buttonText }}</v-btn>
         </v-row>
       </v-container>
-      <v-snackbar color="succes" v-model="snackbar" timeout="2000" transition="scale-transition">
-        {{ $page.props.message.success}}
+      <v-snackbar :color="sanckbarColor" v-model="snackbar" timeout="2000" transition="scale-transition">
+        {{ message }}
         <template v-slot:action="{ attrs }">
-          <v-btn color="error" fab text v-bind="attrs" @click="snackbar=false">
+          <v-btn color="dark" fab text v-bind="attrs" @click="snackbar=false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </template>
@@ -60,7 +60,9 @@ export default {
   data: () => ({
     form: {},
     buttonText: "save",
-    snackbar: false
+    snackbar: false,
+    message: '',
+    sanckbarColor: 'success'
   }),
   mounted() {
     if (this.edit) {
@@ -81,7 +83,7 @@ export default {
         onSuccess: () => {},
         onError: () => {},
       };
-      this.$inertia.put("/menus", this.form, afterRequest);
+      this.$inertia.put("/menus/" + this.menu.id, this.form, afterRequest);
     },
     async delRecord() {
         if (
@@ -95,18 +97,14 @@ export default {
       },
     deleteMenu(){
       let afterRequest = {
-        onSuccess: () => {
-            if (this.$page.props.message.success) {
-              this.snackbar = true;
-            }
-        },
-        onError: () => {
-          if (this.$page.props.message.success) {
-              this.snackbar = true;
-            }
+        onSuccess: () => {},
+        onError: (data) => {
+          this.sanckbarColor = 'error'
+          this.snackbar = true
+          this.message = data.error;
         }
       };
-      this.$inertia.delete("/menus/" + this.menu.id, {}, afterRequest);
+      this.$inertia.delete("/menus/" + this.menu.id, afterRequest);
     },
   },
 };

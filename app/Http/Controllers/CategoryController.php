@@ -33,15 +33,17 @@ class CategoryController extends Controller
         return Inertia::render('Admin/Menus/Form', ['menu' => $menu, 'categories' => $categories, 'edit' => true]);
     }
 
-    public function update(Category $menu)
+    public function update(Category $menu, CategoryRequest $request)
     {
+        $menu->update($request->validated());
         return Redirect::route('admin.menus')->setStatusCode(303)->with('success', 'Menu was updated');
     }
 
     public function delete(Category $menu)
     {
         if(Product::where('category_id', $menu->id)->first()){
-            return back();
+
+            return Redirect::back()->setStatusCode(303)->withErrors(['error' => 'There is a product in this category!']);
 
         }
         $menu->delete();

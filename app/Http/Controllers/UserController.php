@@ -102,7 +102,6 @@ class UserController extends Controller
     {
         $user->syncRoles($request->role);
         
-        // return'ok';
         
         return ['success'=>'Role was updated'];
     }
