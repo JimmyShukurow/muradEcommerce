@@ -3,28 +3,31 @@
     <v-container>
       <v-row>
         <v-col v-for="(product, id) in basket" :key="id" cols="12">
-          <v-card class="ma-1">
-            <h4 align-center class="mt-2">{{ product.name}}</h4>
-            <v-row class="ma-1">
-              <v-col class="mx-auto my-auto">
+          <v-card>
+            <h4 align-center>{{ product.product.name}}</h4>
+            <v-row class="little-margin">
+              <v-col class="mx-auto my-auto pa-0">
                 <v-sheet class="mx-auto">
-                  <v-img :src="product.preview_image.preview_url" max-width="100" max-height="100"></v-img>
+                  <v-img :src="product.product.preview_image.preview_url" max-width="100" max-height="100"></v-img>
                 </v-sheet>
               </v-col>
-              <v-col class="mx-auto my-auto" >
+              <v-col class="mx-auto my-auto px-0" >
                 <v-layout align-center>
                   <v-row class="mx-auto" align="center">
-                    <v-col cols="12">
-                      <v-btn fab elevation="0" x-small dark color="green"><v-icon>mdi-plus</v-icon></v-btn>
+                    <v-col cols="12" align="center" class="py-1">
+                      <v-btn fab elevation="0" x-small dark color="green" @click="product.quantity++"><v-icon>mdi-plus</v-icon></v-btn>
                     </v-col>
-                    <v-col cols="12" class="mx-auto">
-                      <span>14</span>
+                    <v-col cols="12" class="mx-auto py-1">
+                      <v-text-field readonly outlined :value="product.quantity"></v-text-field>
                     </v-col>
-                    <v-col cols="12">
-                       <v-btn fab elevation="0" x-small dark color="red"> <v-icon >mdi-minus</v-icon></v-btn>
+                    <v-col cols="12" align="center" class="py-1">
+                       <v-btn fab elevation="0" x-small dark color="red" @click="product.quantity--"> <v-icon >mdi-minus</v-icon></v-btn>
                     </v-col>
                   </v-row>
                 </v-layout>
+              </v-col >
+              <v-col   class="mx-auto my-auto px-0">
+                  <v-text-field solo readonly :value="product.quantity*product.product.price + 'm'" outlined></v-text-field>
               </v-col>
               <v-col class="mx-auto my-auto">
                 <v-layout align-center>
@@ -37,6 +40,7 @@
           </v-card>
         </v-col>
       </v-row>
+      <v-text-field readonly :value="1520" outlined prefix="toplam"></v-text-field>
     </v-container>
   </MobileLayout>
 </template>
@@ -56,5 +60,8 @@ export default {
 <style scoped>
 .v-image {
   border: solid 2px orange;
+}
+.little-margin {
+  margin: 5px;
 }
 </style>

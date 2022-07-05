@@ -11,7 +11,7 @@ class Basket extends Model
 
     protected $guarded = [];
 
-    public function products()
+    public function product()
     {
         return $this->hasOne(Product::class, 'id', 'product_id');
     }

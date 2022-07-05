@@ -73,7 +73,7 @@ class UserController extends Controller
     public function basket(Request  $request)
     {
         $basket = Basket::where('user_id', $request->user()->id)->get();
-        $basket->load('previewImage');
+        $basket->load('product.previewImage');
         return Inertia::render('Mobile/Basket/Basket', ['basket' => $basket]);
     }
 
