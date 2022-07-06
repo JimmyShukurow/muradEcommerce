@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\App;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\Mobile\ProductController as MobileProductController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
@@ -48,7 +49,7 @@ Route::prefix('mobile')->group(function(){
     Route::post('/basket/add/{product_id}', [MobileProductController::class, 'addToBasket']);
     Route::delete('/basket/remove/{product_id}', [MobileProductController::class, 'removeItem']);
     Route::post('/favorite/add/{product_id}', [MobileProductController::class, 'addToFavorites']);
-
+    Route::delete('/favorite/remove/{favorite}', [FavoriteController::class, 'delete']);
 });
 
 //Mobile Footer

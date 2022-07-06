@@ -21,7 +21,7 @@
             right
             absolute
             class="mt-8"
-            @click="addToFavorites(product.id)"
+            @click="removeFromFavorites(product.id)"
           >
             <v-icon color="red">mdi-heart</v-icon>
           </v-btn>
@@ -63,6 +63,13 @@ export default {
         onError: () => {},
       };
       this.$inertia.get("/mobile/product/" + id, {}, afterRequest);
+    },
+    removeFromFavorites(id) {
+      let afterRequest = {
+        onSuccess: () => {},
+        onError: () => {},
+      };
+      this.$inertia.delete("/mobile/favorite/remove/" + id, afterRequest);
     },
   },
 };
