@@ -35,4 +35,13 @@ class ProductController extends Controller
 
         return Redirect::back()->withSuccess('Product was added to Basket!');
     }
+
+    public function removeItem($id)
+    {
+        $product = Basket::find($id);
+        $product->delete();
+
+        return Redirect::back()->setStatusCode(303)->withSuccess('Product was removed from Basket!');
+
+    }
 }

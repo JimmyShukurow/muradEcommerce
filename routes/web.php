@@ -46,6 +46,7 @@ Route::prefix('mobile')->group(function(){
     Route::get('/products/{category}', [MobileProductController::class, 'products']);
     Route::get('/product/{product}', [MobileProductController::class, 'product']);
     Route::post('/basket/add/{product_id}', [MobileProductController::class, 'addToBasket']);
+    Route::delete('/basket/remove/{product_id}', [MobileProductController::class, 'removeItem']);
 
 });
 
