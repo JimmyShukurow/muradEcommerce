@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Basket;
+use App\Models\Favorite;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -65,9 +66,11 @@ class UserController extends Controller
         return true;
     }
 
-    public function favorites()
+    public function favorites(Request  $request)
     {
-        return Inertia::render('Mobile/Favorites/Favorites');
+        $products = Favorite::with('product.previewImage')->where('user_id', $request->user()->id)->get();
+
+        return Inertia::render('Mobile/Favorites/Favorites', ['products' => $products]);
     }
 
     public function basket(Request  $request)

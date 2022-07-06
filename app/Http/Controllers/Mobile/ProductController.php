@@ -7,6 +7,7 @@ use App\Models\Basket;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\Favorite;
 use Inertia\Inertia;
 
 class ProductController extends Controller
@@ -42,6 +43,18 @@ class ProductController extends Controller
         $product->delete();
 
         return Redirect::back()->setStatusCode(303)->withSuccess('Product was removed from Basket!');
+
+    }
+
+    public function addToFavorites($productID, Request $request)
+    {
+        $check = Favorite::where('user_id', $request->user()->id)->where('product_id', $productID)->first();
+        if ($check) {
+            return Redirect::back()->withErrors(['error'=>'Product is  already in Favorites']);
+        }
+        Favorite::create(['user_id' => $request->user()->id, 'product_id' => $productID]);
+
+        return Redirect::back()->setStatusCode(303)->with('success', 'Product was added');
 
     }
 }

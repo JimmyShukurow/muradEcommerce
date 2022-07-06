@@ -84,4 +84,6 @@ class ProductController extends Controller
         return Redirect::route('admin.products')->setStatusCode(303)->with('success', 'Product was deleted');
 
     }
+
+    
 }

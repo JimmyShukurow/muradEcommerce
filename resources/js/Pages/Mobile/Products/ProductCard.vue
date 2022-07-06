@@ -1,11 +1,6 @@
 <template>
   <v-layout>
     <v-card elevation="10" height="350">
-      <v-layout>
-        <v-btn color="orange" dark fab small absolute top right class="mt-8">
-          <v-icon color="red">{{ favorite }}</v-icon>
-        </v-btn>
-      </v-layout>
       <v-img
         class="ma-2"
         height="150"
@@ -19,13 +14,9 @@
       <v-card-text>
         <v-row align="center" class="mx-0">
           <v-rating :value="4.5" color="amber" dense half-increments readonly size="14"></v-rating>
-
           <div class="grey--text ms-4">4.5 (413)</div>
         </v-row>
       </v-card-text>
-      <v-card-action>
-        <v-btn>Learn More ...</v-btn>
-      </v-card-action>
     </v-card>
   </v-layout>
 </template>
@@ -35,7 +26,10 @@ export default {
   props: ["product"],
   data: () => ({
     favorite: "mdi-heart-outline"
-  })
+  }),
+  methods: {
+
+  }
 };
 </script>
 

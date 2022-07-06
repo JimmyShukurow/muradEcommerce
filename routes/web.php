@@ -47,6 +47,7 @@ Route::prefix('mobile')->group(function(){
     Route::get('/product/{product}', [MobileProductController::class, 'product']);
     Route::post('/basket/add/{product_id}', [MobileProductController::class, 'addToBasket']);
     Route::delete('/basket/remove/{product_id}', [MobileProductController::class, 'removeItem']);
+    Route::post('/favorite/add/{product_id}', [MobileProductController::class, 'addToFavorites']);
 
 });
 
