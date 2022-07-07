@@ -8,6 +8,7 @@ use App\Http\Controllers\Mobile\ProductController as MobileProductController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\SlideController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -83,3 +84,6 @@ Route::get('/menu/create', [CategoryController::class, 'create']);
 Route::post('/menus',[CategoryController::class, 'store']);
 Route::put('/menus/{menu}', [CategoryController::class, 'update']);
 Route::delete('/menus/{menu}', [CategoryController::class, 'delete']);
+
+//slides
+Route::post('/upload/slide', [SlideController::class, 'store']);

@@ -23,7 +23,7 @@ export default {
   methods: {
     isMobile() {
       let width = document.documentElement.clientWidth;
-      if (width < 480) return true;
+      if (width < 768) return true;
       return false;
     },
   },

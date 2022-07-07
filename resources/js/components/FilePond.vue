@@ -1,11 +1,11 @@
 <template>
     <file-pond
-      name="images"
+      :name="name"
       ref="pond"
       v-bind:label-idle = $t(hint)
       v-bind:allow-multiple="mulitpleImage"
       accepted-file-types="image/jpeg, image/png"
-      server="/api/upload"
+      :server="server"
     />
 </template>
 
@@ -21,7 +21,19 @@ const FilePond = vueFilePond(
   FilePondPluginImagePreview
 );
 export default {
-    props:['mulitpleImage'],
+    props:{
+      mulitpleImage: {
+        type: Boolean
+      },
+      name:{
+        type:String,
+        default: 'images'
+      },
+      server: {
+        type:String,
+        default: '/api/upload'
+      }
+    },
     data:()=>({
         hint:"Drop files here..."
     })
