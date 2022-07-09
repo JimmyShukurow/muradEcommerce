@@ -30,7 +30,7 @@
         <h2>Nothing here</h2>
       </v-layout>
     </v-layout>
-    <v-snackbar :color="sanckbarColor" v-model="snackbar" timeout="2000" transition="scale-transition">
+    <v-snackbar :color="snackbarColor" v-model="snackbar" timeout="2000" transition="scale-transition">
       {{ message }}
       <template v-slot:action="{ attrs }">
         <v-btn dark fab text v-bind="attrs" @click="snackbar=false">
@@ -70,13 +70,13 @@ export default {
       let afterRequest = {
         onSuccess: (data) => {
             if(data.props.message.success){
-            this.sanckbarColor = 'orange'
+            this.snackbarColor = 'orange'
             this.snackbar =true;
             this.message = data.props.message.success
             }
         },
         onError: (data) => {
-          this.sanckbarColor = 'error'
+          this.snackbarColor = 'error'
           this.snackbar = true;
           this.message = data.error;
         }

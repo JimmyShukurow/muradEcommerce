@@ -86,4 +86,4 @@ Route::put('/menus/{menu}', [CategoryController::class, 'update']);
 Route::delete('/menus/{menu}', [CategoryController::class, 'delete']);
 
 //slides
-Route::post('/upload/slide', [SlideController::class, 'store']);
+Route::delete('/slide/{slide}', [SlideController::class, 'destroy']);

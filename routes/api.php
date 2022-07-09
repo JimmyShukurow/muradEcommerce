@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SlideController;
 use App\Http\Controllers\UploadController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/upload',  [UploadController::class, 'store']);
 Route::delete('/upload', [UploadController::class, 'delete']);
+Route::post('/upload/slide/{type}', [SlideController::class, 'store']);
+

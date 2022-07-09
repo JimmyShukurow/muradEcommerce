@@ -5,15 +5,17 @@
     </v-sheet>
     <v-layout class="ma-2">
       <v-carousel
-        v-model="model"
+        cycle
+        interval="2000"
         :show-arrows="false"
         height="150px"
         hide-delimiters
       >
-        <v-carousel-item v-for="(color, i) in colors" :key="color">
-          <v-sheet :color="color" height="100%" tile>
+        <v-carousel-item v-for="(slide, id) in TopSlider" :key="id">
+          <v-sheet height="100%" tile>
             <v-row class="fill-height" align="center" justify="center">
-              <div class="text-h2">Slide {{ i + 1 }}</div>
+              <div class="text-h2"></div>
+              <v-img :src="slide.preview_image.original_url"></v-img>
             </v-row>
           </v-sheet>
         </v-carousel-item>
@@ -62,55 +64,59 @@
         </v-col>
       </v-row>
     </v-sheet>
-    <v-layout>
+    <v-layout class="ma-2" >  
       <v-carousel
-        v-model="model"
+        cycle
+        interval="2000"
         :show-arrows="false"
         height="250px"
         hide-delimiters
       >
-        <v-carousel-item v-for="(color, i) in colors" :key="color">
-          <v-sheet :color="color" height="100%" tile>
+        <v-carousel-item v-for="(slide, id) in FirstSlider" :key="id">
+          <v-sheet height="100%" tile>
             <v-row class="fill-height" align="center" justify="center">
-              <div class="text-h2">Slide {{ i + 1 }}</div>
+              <v-img :src="slide.preview_image.original_url"></v-img>
             </v-row>
           </v-sheet>
         </v-carousel-item>
       </v-carousel>
     </v-layout>
-     <v-layout>
+    <v-layout class="ma-2">
       <v-carousel
-        v-model="model"
+        cycle
+        interval="2000"
         :show-arrows="false"
         height="250px"
         hide-delimiters
       >
-        <v-carousel-item v-for="(color, i) in colors" :key="color">
-          <v-sheet :color="color" height="100%" tile>
+        <v-carousel-item v-for="(slide, id) in SecondSlider" :key="id">
+          <v-sheet height="100%" tile>
             <v-row class="fill-height" align="center" justify="center">
-              <div class="text-h2">Slide {{ i + 1 }}</div>
+              <v-img :src="slide.preview_image.original_url"></v-img>
+
             </v-row>
           </v-sheet>
         </v-carousel-item>
       </v-carousel>
     </v-layout>
-     <v-layout>
+    <v-layout class="ma-2">
       <v-carousel
-        v-model="model"
+        cycle
+        interval="2000"
         :show-arrows="false"
         height="250px"
         hide-delimiters
       >
-        <v-carousel-item v-for="(color, i) in colors" :key="color">
-          <v-sheet :color="color" height="100%" tile>
+        <v-carousel-item v-for="(slide, id) in ThirdSlider" :key="id">
+          <v-sheet  height="100%" tile>
             <v-row class="fill-height" align="center" justify="center">
-              <div class="text-h2">Slide {{ i + 1 }}</div>
+              <v-img :src="slide.preview_image.original_url"></v-img>
             </v-row>
           </v-sheet>
         </v-carousel-item>
       </v-carousel>
     </v-layout>
-    <FooterMobile/>
+    <FooterMobile />
   </div>
 </template>
 
@@ -119,11 +125,11 @@ import HeaderMobile from "./HeaderMobile.vue";
 import FooterMobile from "./FooterMobile.vue";
 import { Link } from "@inertiajs/inertia-vue";
 export default {
-  props:['user', 'topmenus'],
+  props: ["user", "topmenus", "slides"],
   components: {
     HeaderMobile,
     FooterMobile,
-    Link
+    Link,
   },
   data: () => ({
     model: 0,
@@ -131,14 +137,36 @@ export default {
     content: "4/5",
     value: "home",
   }),
+  computed: {
+    TopSlider() {
+      return this.slides.filter(
+        (element) => element.slide_name === "TopSlider"
+      );
+    },
+    FirstSlider() {
+      return this.slides.filter(
+        (element) => element.slide_name === "FirstSlider"
+      );
+    },
+    SecondSlider() {
+      return this.slides.filter(
+        (element) => element.slide_name === "SecondSlider"
+      );
+    },
+    ThirdSlider() {
+      return this.slides.filter(
+        (element) => element.slide_name === "ThirdSlider"
+      );
+    },
+  },
 };
 </script>
 
 <style scoped>
 .textspacescloser {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 600;
-    font-size: 0.75rem;
-    letter-spacing: -0.5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: -0.5px;
 }
 </style>

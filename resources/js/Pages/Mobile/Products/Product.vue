@@ -28,6 +28,7 @@
 
 <script>
 import MobileLayout from "../../../Layouts/mobile/MobileLayout.vue";
+import { Inertia } from "@inertiajs/inertia";
 export default {
   components: {
     MobileLayout,
@@ -40,7 +41,12 @@ export default {
   }),
   methods: {
     addToBasket() {
+
+      if(this.$page.props.user == null){
+         return this.$inertia.visit('/mobileLogin');
+        }
       let afterRequest = {
+        
         onSuccess: (data) => {
            if(data.props.message.success){
             this.sanckbarColor = 'succes'

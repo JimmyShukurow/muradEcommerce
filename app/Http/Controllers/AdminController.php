@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Slide;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
@@ -25,7 +26,8 @@ class AdminController extends Controller
 
     public function slides()
     {
-       return Inertia::render('Admin/Slides/Slides');
+        $slides = Slide::with('previewImage')->get();
+       return Inertia::render('Admin/Slides/Slides', ['slides'=> $slides]);
     }
 
     public function users()
