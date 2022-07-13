@@ -77,8 +77,11 @@ Route::delete('/product/{product}', [ProductController::class, 'delete']);
 Route::get('/users/{user}', [UserController::class, 'edit']);
 Route::post('/user/{user}/role', [UserController::class, 'updateRole']);
 
-//roles 
+//roles
 Route::get('/roles/create', [RoleController::class, 'create']);
+Route::get('role/{role}', [RoleController::class, 'edit']);
+Route::post('/roles', [RoleController::class, 'store']);
+Route::delete('/role/{role}', [RoleController::class, 'destroy']);
 
 //settings
 Route::post('/settings', [SettingsController::class, 'store']);
