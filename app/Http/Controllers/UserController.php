@@ -77,9 +77,14 @@ class UserController extends Controller
 
     public function favorites(Request  $request)
     {
-        $products = Favorite::with(['product' => fn($q) => $q->with('previewImage', 'brand', 'model')])->where('user_id', $request->user()->id)->get();
+        if(Auth::user()){
+            $products = Favorite::with(['product' => fn($q) => $q->with('previewImage', 'brand', 'model')])->where('user_id', $request->user()->id)->get();
 
-        return Inertia::render('Mobile/Favorites/Favorites', ['products' => $products]);
+            return Inertia::render('Mobile/Favorites/Favorites', ['products' => $products]);
+        }
+
+        return Inertia::render('Mobile/Login/Login');
+        
     }
 
     public function basket(Request  $request)
