@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->unsignedInteger('category_id');
+            $table->unsignedInteger('brand_id')->nullable();
+            $table->unsignedInteger('model_id')->nullable();
+            $table->float('size')->nullable();
+            $table->float('quantity');
             $table->float('price');
             $table->timestamps();
         });

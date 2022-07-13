@@ -18,6 +18,10 @@ class ProductsRequest extends FormRequest
             "description" => "required",
             "category_id" => "required",
             "price" => "required",
+            "quantity" => "required",
+            "brand_id" => "nullable",
+            "model_id" => "nullable",
+            "size" => "nullable",
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Mobile;
 
 use App\Http\Controllers\Controller;
 use App\Models\Basket;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -14,14 +15,14 @@ class ProductController extends Controller
 {
     public function products($category)
     {
-        $products = Product::with('previewImage')->where('category_id', $category)->orderBY('created_at', 'DESC')->get();
-        return Inertia::render('Mobile/Products/Products', ['products' => $products]);        
+        $category_name = Category::where('id',$category)->first('name');
+        $products = Product::with('previewImage', 'brand:id,name', 'model:id,name')->where('category_id', $category)->orderBY('created_at', 'DESC')->get();
+        return Inertia::render('Mobile/Products/Products', ['products' => $products, 'category' => $category_name]);        
     }
 
     public function product(Product $product)
     {
-        // $currentProduct = Product::where('id', $product)->first();
-        $product->load('previewImage');
+        $product->load('previewImage', 'brand:id,name', 'model:id,name');
         return Inertia::render('Mobile/Products/Product', ['product' => $product]);
     }
 

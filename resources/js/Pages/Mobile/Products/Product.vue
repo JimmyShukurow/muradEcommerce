@@ -6,10 +6,22 @@
       <v-card-title>
         {{ product.name }}
       </v-card-title>
-      <v-card-text>
+      <v-card-text class="black--text ">
         {{ product.description}}
+        <v-row class="ma-5 black--text font-weight-black title">
+          <div>
+            {{ product.brand.name}}
+          </div>
+          <v-spacer></v-spacer>
+          <div>
+            {{ product.model.name}}
+          </div>
+        </v-row>
       </v-card-text>
       <v-card-actions>
+        <div class="ml-5 font-weight-black title">
+          {{ product.price}} manat
+        </div>
         <v-spacer></v-spacer>
         <v-btn  dark color="orange" @click="addToBasket">Add To Basket</v-btn>
       </v-card-actions>
@@ -28,7 +40,7 @@
 
 <script>
 import MobileLayout from "../../../Layouts/mobile/MobileLayout.vue";
-import { Inertia } from "@inertiajs/inertia";
+
 export default {
   components: {
     MobileLayout,

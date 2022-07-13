@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('slide_name');
             $table->unsignedInteger('image_order')->nullable();
+            $table->unsignedInteger('category_id')->nullable();
             $table->timestamps();
         });
     }

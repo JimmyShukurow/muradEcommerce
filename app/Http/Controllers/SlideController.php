@@ -39,4 +39,10 @@ class SlideController extends Controller
 
         return Redirect::back()->setStatusCode(303)->withSuccess('Slide was deleted');
     }
+    public function addCategory($slide, $id)
+    {
+        Slide::where('slide_name', $slide)->update(['category_id' => $id]);
+
+        return Redirect::back()->withSuccess('Category was added');
+    }
 }

@@ -4,21 +4,21 @@
       <HeaderMobile :user="user" :categories="topmenus" />
     </v-sheet>
     <v-layout class="ma-2">
-      <v-carousel
+      <v-carousel 
         cycle
         interval="2000"
         :show-arrows="false"
         height="150px"
         hide-delimiters
       >
-        <v-carousel-item v-for="(slide, id) in TopSlider" :key="id">
+        <InertiaLink as="v-carousel-item" v-for="(slide, id) in TopSlider" :key="id" :href="'/mobile/products/' + TopSlider[0].category_id">
           <v-sheet height="100%" tile>
             <v-row class="fill-height" align="center" justify="center">
               <div class="text-h2"></div>
               <v-img :src="slide.preview_image.original_url"></v-img>
             </v-row>
           </v-sheet>
-        </v-carousel-item>
+        </InertiaLink>
       </v-carousel>
       <v-badge
         color="grey darken-4"
@@ -72,13 +72,13 @@
         height="250px"
         hide-delimiters
       >
-        <v-carousel-item v-for="(slide, id) in FirstSlider" :key="id">
+        <InertiaLink as="v-carousel-item"  v-for="(slide, id) in FirstSlider" :key="id" :href="'/mobile/products/' + FirstSlider[0].category_id">
           <v-sheet height="100%" tile>
             <v-row class="fill-height" align="center" justify="center">
               <v-img :src="slide.preview_image.original_url"></v-img>
             </v-row>
           </v-sheet>
-        </v-carousel-item>
+        </InertiaLink>
       </v-carousel>
     </v-layout>
     <v-layout class="ma-2">
@@ -89,14 +89,14 @@
         height="250px"
         hide-delimiters
       >
-        <v-carousel-item v-for="(slide, id) in SecondSlider" :key="id">
+        <InertiaLink as="v-carousel-item" v-for="(slide, id) in SecondSlider" :key="id" :href="'/mobile/products/' + SecondSlider[0].category_id">
           <v-sheet height="100%" tile>
             <v-row class="fill-height" align="center" justify="center">
               <v-img :src="slide.preview_image.original_url"></v-img>
 
             </v-row>
           </v-sheet>
-        </v-carousel-item>
+        </InertiaLink>
       </v-carousel>
     </v-layout>
     <v-layout class="ma-2">
@@ -107,13 +107,13 @@
         height="250px"
         hide-delimiters
       >
-        <v-carousel-item v-for="(slide, id) in ThirdSlider" :key="id">
+        <InertiaLink as="v-carousel-item" v-for="(slide, id) in ThirdSlider" :key="id" :href="'/mobile/products/' + ThirdSlider[0].category_id">
           <v-sheet  height="100%" tile>
             <v-row class="fill-height" align="center" justify="center">
               <v-img :src="slide.preview_image.original_url"></v-img>
             </v-row>
           </v-sheet>
-        </v-carousel-item>
+        </InertiaLink>
       </v-carousel>
     </v-layout>
     <FooterMobile />
@@ -123,13 +123,15 @@
 <script>
 import HeaderMobile from "./HeaderMobile.vue";
 import FooterMobile from "./FooterMobile.vue";
-import { Link } from "@inertiajs/inertia-vue";
+import { InertiaLink } from "@inertiajs/inertia-vue";
+import { Inertia } from "@inertiajs/inertia";
 export default {
   props: ["user", "topmenus", "slides"],
   components: {
     HeaderMobile,
     FooterMobile,
-    Link,
+    InertiaLink,
+    Inertia
   },
   data: () => ({
     model: 0,

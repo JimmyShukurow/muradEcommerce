@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Model;
 use App\Models\Product;
 use App\Models\Slide;
 use App\Models\User;
@@ -26,8 +28,9 @@ class AdminController extends Controller
 
     public function slides()
     {
+        $categories = Category::select('id', 'name')->get();
         $slides = Slide::with('previewImage')->get();
-       return Inertia::render('Admin/Slides/Slides', ['slides'=> $slides]);
+       return Inertia::render('Admin/Slides/Slides', ['slides'=> $slides, 'categories' => $categories]);
     }
 
     public function users()
@@ -55,5 +58,16 @@ class AdminController extends Controller
         
         return Inertia::render('Admin/Settings/Settings', ['url' => config('app.url')]);
     }
+    
+    public function models()
+    {
+        $models = Model::all();
+        return Inertia::render('Admin/Models/Models', ['models' => $models]);
+    }
 
+    public function brands()
+    {
+        $brands = Brand::all();
+        return Inertia::render('Admin/Brands/Brands', ['brands' => $brands]);
+    }
 }

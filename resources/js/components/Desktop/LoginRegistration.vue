@@ -9,7 +9,7 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field label="Email*" v-model="data.email" required></v-text-field>
+                <v-text-field label="Email*" v-model="data.username" required></v-text-field>
               </v-col>
               <v-col cols="12">
                 <v-text-field type="password" label="password*" v-model="data.password" required></v-text-field>

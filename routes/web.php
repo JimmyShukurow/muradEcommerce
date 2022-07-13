@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\App;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\Mobile\ProductController as MobileProductController;
+use App\Http\Controllers\ModelController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingsController;
@@ -40,6 +42,9 @@ Route::get('/users', [AdminController::class, 'users']);
 Route::get('/products', [AdminController::class, 'products'])->name('admin.products');
 Route::get('/roles', [AdminController::class, 'roles'])->name('admin.roles');
 Route::get('/settings', [AdminController::class, 'settings']);
+Route::get('/brands', [AdminController::class, 'brands']);
+Route::get('/models', [AdminController::class, 'models']);
+
 
 
 //Moblie
@@ -87,3 +92,20 @@ Route::delete('/menus/{menu}', [CategoryController::class, 'delete']);
 
 //slides
 Route::delete('/slide/{slide}', [SlideController::class, 'destroy']);
+Route::post('/slide/{slide}/{category_id}', [SlideController::class, 'addCategory']);
+
+
+
+//brands
+Route::get('/brand/create', [BrandController::class, 'create']);
+Route::post('/brand', [BrandController::class, 'store']);
+Route::get('/brands/{brand}', [BrandController::class, 'edit']);
+Route::put('/brands/{brand}', [BrandController::class, 'update']);
+
+
+
+//models
+Route::get('/models/create', [ModelController::class, 'create']);
+Route::post('/models', [ModelController::class, 'store']);
+Route::get('/model/{model}', [ModelController::class, 'edit']);
+Route::put('/models/{model}', [ModelController::class, 'update']);

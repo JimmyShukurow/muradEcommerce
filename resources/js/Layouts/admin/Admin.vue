@@ -59,6 +59,8 @@ export default {
       { title: "Dashboard", icon: "mdi-view-dashboard", route: "/admin" },
       { title: "Menus", icon: "mdi-book-open", route: "/menus" },
       { title: "Slides", icon: "mdi-image", route: "/slides" },
+      { title: "Brands", icon: "mdi-brightness-5", route: "/brands" },
+      { title: "Models", icon: "mdi-brightness-auto", route: "/models" },
       { title: "Users", icon: "mdi-account", route: "/users" },
       { title: "Products", icon: "mdi-inbox-multiple", route: "/products" },
       { title: "Roles", icon: "mdi-account-details", route: "/roles" },

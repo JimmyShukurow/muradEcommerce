@@ -5,7 +5,23 @@
       <v-spacer></v-spacer>
     </v-row>
     <v-sheet class="ma-5">
-      <h3>TopSlider</h3>
+      <v-row class="d-flex justify-space-between">
+        <h3>TopSlider</h3>
+        <v-spacer></v-spacer>
+        <div>
+          <v-select
+            v-model="top"
+            label="Select a category"
+            class="control-width mx-10"
+            outlined
+            :items="categories"
+            item-text="name"
+            item-value="id"
+            dense
+            @change="changeTopSlider"
+          ></v-select>
+        </div>
+      </v-row>
       <v-divider class="my-3"></v-divider>
       <v-row>
         <v-card
@@ -40,7 +56,21 @@
       </v-row>
     </v-sheet>
     <v-sheet class="ma-5">
-      <h3>FirstSlider</h3>
+      <v-row>
+        <h3>FirstSlider</h3>
+        <v-spacer></v-spacer>
+        <v-select
+          v-model="first"
+          label="Select a category"
+          class="control-width mx-10"
+          outlined
+          :items="categories"
+          item-text="name"
+          item-value="id"
+          dense
+          @change="changeFirstSlider"
+        ></v-select>
+      </v-row>
       <v-divider class="my-3"></v-divider>
       <v-row class="pb-5">
         <v-card
@@ -76,7 +106,21 @@
     </v-sheet>
 
     <v-sheet class="ma-5">
-      <h3>SecondSlider</h3>
+      <v-row>
+        <h3>SecondSlider</h3>
+        <v-spacer></v-spacer>
+        <v-select
+          v-model="second"
+          label="Select a category"
+          class="control-width mx-10"
+          outlined
+          :items="categories"
+          item-text="name"
+          item-value="id"
+          dense
+          @change="changeSecondSlider"
+        ></v-select>
+      </v-row>
       <v-divider class="my-3"></v-divider>
       <v-row class="pb-5">
         <v-card
@@ -111,7 +155,21 @@
       </v-row>
     </v-sheet>
     <v-sheet class="ma-5">
-      <h3>ThirdSlider</h3>
+      <v-row>
+        <h3>ThirdSlider</h3>
+        <v-spacer></v-spacer>
+        <v-select
+          v-model="third"
+          label="Select a category"
+          class="control-width mx-10"
+          outlined
+          :items="categories"
+          item-text="name"
+          item-value="id"
+          dense
+          @change="changeThirdSlider"
+        ></v-select>
+      </v-row>
       <v-divider class="my-3"></v-divider>
       <v-row class="pb-5">
         <v-card
@@ -166,7 +224,7 @@
 import AdminLayout from "../../../Layouts/admin/Admin.vue";
 import FilePond from "../../../components/FilePond.vue";
 export default {
-  props: ["slides"],
+  props: ["slides", "categories"],
   components: {
     AdminLayout,
     FilePond,
@@ -174,24 +232,47 @@ export default {
   data: () => ({
     snackbar: false,
     message: "",
+    top: null,
+    first: null,
+    second: null,
+    third: null,
   }),
   computed: {
     TopSlider() {
+      let key = this.slides.filter(
+        (element) => element.slide_name === "TopSlider"
+      );
+      this.top = key[0] == undefined  ? null : key[0].category_id ;
       return this.slides.filter(
         (element) => element.slide_name === "TopSlider"
       );
     },
     FirstSlider() {
+      let key = this.slides.filter(
+        (element) => element.slide_name === "FirstSlider"
+      );
+      this.first = key[0] == undefined ? null : key[0].category_id;
+
       return this.slides.filter(
         (element) => element.slide_name === "FirstSlider"
       );
     },
     SecondSlider() {
+      let key = this.slides.filter(
+        (element) => element.slide_name === "SecondSlider"
+      );
+      this.second = key[0] == undefined ? null : key[0].category_id;
+
       return this.slides.filter(
         (element) => element.slide_name === "SecondSlider"
       );
     },
     ThirdSlider() {
+      let key = this.slides.filter(
+        (element) => element.slide_name === "ThirdSlider"
+      );
+      this.third = key[0] == undefined ? null : key[0].category_id;
+
       return this.slides.filter(
         (element) => element.slide_name === "ThirdSlider"
       );
@@ -205,9 +286,52 @@ export default {
       };
       this.$inertia.delete("/slide/" + id, afterRequest);
     },
+    addCategory(slide, id) {
+      let afterRequest = {
+        onSuccess: () => {},
+        onError: () => {},
+      };
+
+      this.$inertia.post("/slide/" + slide + "/" + id, afterRequest);
+    },
+    changeTopSlider(a) {
+      let afterRequest = {
+        onSuccess: () => {},
+        onError: () => {},
+      };
+
+      this.$inertia.post("/slide/TopSlider/" + a, afterRequest);
+    },
+    changeFirstSlider(a) {
+      let afterRequest = {
+        onSuccess: () => {},
+        onError: () => {},
+      };
+
+      this.$inertia.post("/slide/FirstSlider/" + a, afterRequest);
+    },
+    changeSecondSlider(a) {
+      let afterRequest = {
+        onSuccess: () => {},
+        onError: () => {},
+      };
+
+      this.$inertia.post("/slide/SecondSlider/" + a, afterRequest);
+    },
+    changeThirdSlider(a) {
+      let afterRequest = {
+        onSuccess: () => {},
+        onError: () => {},
+      };
+
+      this.$inertia.post("/slide/ThirdSlider/" + a, afterRequest);
+    },
   },
 };
 </script>
 
-<style>
+<style scoped>
+.control-width {
+  max-width: 200px;
+}
 </style>

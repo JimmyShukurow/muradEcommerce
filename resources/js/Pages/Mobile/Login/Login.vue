@@ -9,7 +9,7 @@
           <v-container fluid>
             <v-row>
               <v-col cols="12" sm="6" md="6">
-                <v-text-field  label="Email*" v-model="data.email" required></v-text-field>
+                <v-text-field  label="Email*" v-model="data.username" required></v-text-field>
               </v-col>
               <v-col cols="12" sm="6" md="6">
                 <v-text-field type="password" label="password*" v-model="data.password" required></v-text-field>
@@ -67,6 +67,7 @@
 
 <script>
 import MobileLayout from "../../../Layouts/mobile/MobileLayout.vue";
+import { Inertia } from "@inertiajs/inertia";
 
 export default {
   components: {
@@ -82,9 +83,12 @@ export default {
   },
   methods:{
      loginUser() {
-      axios.post('/mobileLogin', this.data).then((response) => {
-       
-      });
+      let afterRequest = {
+        onSuccess:() => {},
+        onError:() => {},
+
+      }
+        this.$inertia.post('/mobileLogin', this.data, afterRequest);
     },
     registerUser() {
       axios.post('/register', this.data).then((response) => {

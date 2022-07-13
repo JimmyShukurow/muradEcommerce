@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use App\Models\Basket;
 use App\Models\Favorite;
 use App\Models\User;
@@ -13,42 +14,50 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-        $user = Auth::attempt($credentials);
-        if ($user){
-            return Redirect::route('home');
-        }
-        return response()->json('error');
+        
+        $credentials = $request->getCredentials();
+
+        if(!Auth::validate($credentials)):
+            return redirect()->to('login')
+                ->withErrors(trans('auth.failed'));
+        endif;
+
+        $user = Auth::getProvider()->retrieveByCredentials($credentials);
+
+        Auth::login($user);
+
+        return $this->authenticated($request, $user);
+
+    }
+    protected function authenticated(Request $request, $user) 
+    {
+        return redirect()->intended();
     }
     public function logout(Request $request)
     {
         Auth::logout();
- 
+
         $request->session()->invalidate();
-     
+
         $request->session()->regenerateToken();
-     
+
         return redirect('/');
     }
 
     public function register(Request $request)
     {
         $user = User::create([
-            'name' => $request->firstname.' '.$request->lastname,
+            'name' => $request->firstname . ' ' . $request->lastname,
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'address' => $request->address,
             'phone' => $request->phone
         ]);
-        if(User::all()->count() == 1){
+        if (User::all()->count() == 1) {
             $user->assignRole('admin');
-        }
-        else{
+        } else {
             $user->assignRole('user');
         }
         Auth::login($user);
@@ -75,9 +84,13 @@ class UserController extends Controller
 
     public function basket(Request  $request)
     {
-        $basket = Basket::where('user_id', $request->user()->id)->get();
-        $basket->load('product.previewImage');
-        return Inertia::render('Mobile/Basket/Basket', ['basket' => $basket]);
+        if (Auth::user()) {
+            $basket = Basket::where('user_id', $request->user()->id)->get();
+            $basket->load('product.previewImage');
+            return Inertia::render('Mobile/Basket/Basket', ['basket' => $basket]);
+        }
+
+        return Inertia::render('Mobile/Login/Login');
     }
 
     public function mobileLogin()
@@ -85,30 +98,33 @@ class UserController extends Controller
         return Inertia::render('Mobile/Login/Login');
     }
 
-    public function loginMobile(Request $request)
+    public function loginMobile(LoginRequest $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-        $user = Auth::attempt($credentials);
-        if ($user){
-            return Redirect::route('home');
-        }
-        return response()->json('error');
+        $credentials = $request->getCredentials();
+
+        if(!Auth::validate($credentials)):
+            return redirect()->to('login')
+                ->withErrors(trans('auth.failed'));
+        endif;
+
+        $user = Auth::getProvider()->retrieveByCredentials($credentials);
+
+        Auth::login($user);
+
+        return Redirect::route('home');
     }
 
     public function edit(User $user)
     {
         $roles = Role::select('id', 'name')->get();
         $user->load('roles:id,name');
-        return Inertia::render('Admin/Users/Form', ['user'=> $user, 'roles' => $roles]);
+        return Inertia::render('Admin/Users/Form', ['user' => $user, 'roles' => $roles]);
     }
     public function updateRole(User $user, Request $request)
     {
         $user->syncRoles($request->role);
-        
-        
-        return ['success'=>'Role was updated'];
+
+
+        return ['success' => 'Role was updated'];
     }
 }

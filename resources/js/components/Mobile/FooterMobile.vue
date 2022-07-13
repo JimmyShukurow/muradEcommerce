@@ -1,6 +1,6 @@
 <template>
   <v-layout>
-    <v-bottom-navigation app>
+    <v-bottom-navigation app grow>
       <InertiaLink as="v-btn" :class="{'orange white': $page.url === '/'}" href="/">
         <span class="textspacescloser" value="home">Home</span>
 

@@ -29,7 +29,7 @@
     </v-container>
     <v-app-bar class="white">
       <v-row align="center">
-        <v-sheet class="mx-auto fullwidth pr-2" max-width="480px">
+        <v-sheet class="mx-auto fullwidth pr-2" max-width="768px" width="100%">
           <v-slide-group multiple prev-icon="mdi-chevron-left" next-icon="mdi-chevron-right" >
 
             <v-btn outlined text class="mr-2">Keşfet</v-btn>

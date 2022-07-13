@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Product\ProductsRequest;
+use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Model;
 use App\Models\Product;
 use App\Models\TemporaryFile;
 use Illuminate\Http\Request;
@@ -21,17 +23,15 @@ class ProductController extends Controller
     {
         $product = Product::create($request->validated());
 
-        foreach($request->images as $image){
-            if($image != null){
+        foreach ($request->images as $image) {
+            if ($image != null) {
                 $temp = TemporaryFile::where('folder', $image)->first();
-                $product->addMedia(storage_path('app/public/images/temp/'.$image.'/'.$temp->filename))->toMediaCollection();
-                rmdir(storage_path('app/public/images/temp/'.$image));
+                $product->addMedia(storage_path('app/public/images/temp/' . $image . '/' . $temp->filename))->toMediaCollection();
+                rmdir(storage_path('app/public/images/temp/' . $image));
             }
-         
         }
 
         return Redirect::route('admin.products')->setStatusCode(303)->with('success', 'Product was saved');
-
     }
 
     public function create()
@@ -43,8 +43,10 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::select('id', 'name')->get();
+        $brands = Brand::select('id', 'name')->get();
+        $models = Model::select('id', 'name')->get();
         $product->getMedia();
-        return Inertia::render('Admin/Products/Form', ['product'=> $product, 'categories' => $categories, 'edit' => true]);
+        return Inertia::render('Admin/Products/Form', ['product' => $product, 'categories' => $categories, 'edit' => true, 'brands' => $brands, 'models' => $models]);
     }
 
     public function update(Product $product, ProductsRequest $request)
@@ -52,19 +54,18 @@ class ProductController extends Controller
 
         $product->update($request->validated());
 
-        foreach($request->images as $image){
-            if($image != null){
+        foreach ($request->images as $image) {
+            if ($image != null) {
                 $temp = TemporaryFile::where('folder', $image)->first();
-                $product->addMedia(storage_path('app/public/images/temp/'.$image.'/'.$temp->filename))->toMediaCollection();
-                rmdir(storage_path('app/public/images/temp/'.$image));
+                $product->addMedia(storage_path('app/public/images/temp/' . $image . '/' . $temp->filename))->toMediaCollection();
+                rmdir(storage_path('app/public/images/temp/' . $image));
             }
-         
         }
         $media = $product->getMedia();
-        foreach($request->delete as $index){
+        foreach ($request->delete as $index) {
             $media[$index]->delete();
         }
-        
+
 
         return Redirect::route('admin.products')->setStatusCode(303)->with('success', 'Product was updated');
     }
@@ -79,11 +80,11 @@ class ProductController extends Controller
 
     public function delete(Product $product)
     {
+        if ($product->inBasket) {
+            return Redirect::back()->setStatusCode(303)->withErrors(['error' => 'Product in the Basket']);
+        }
         $product->delete();
 
         return Redirect::route('admin.products')->setStatusCode(303)->with('success', 'Product was deleted');
-
     }
-
-    
 }

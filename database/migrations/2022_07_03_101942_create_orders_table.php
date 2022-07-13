@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('product_id');
-            $table->string('quantity');
+            $table->string('total_price');
             $table->timestamps();
         });
     }
