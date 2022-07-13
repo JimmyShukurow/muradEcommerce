@@ -16,7 +16,7 @@ class UserController extends Controller
 {
     public function login(LoginRequest $request)
     {
-        
+
         $credentials = $request->getCredentials();
 
         if(!Auth::validate($credentials)):
@@ -31,7 +31,7 @@ class UserController extends Controller
         return $this->authenticated($request, $user);
 
     }
-    protected function authenticated(Request $request, $user) 
+    protected function authenticated(Request $request, $user)
     {
         return redirect()->intended();
     }
@@ -77,7 +77,7 @@ class UserController extends Controller
 
     public function favorites(Request  $request)
     {
-        $products = Favorite::with('product.previewImage')->where('user_id', $request->user()->id)->get();
+        $products = Favorite::with(['product' => fn($q) => $q->with('previewImage', 'brand', 'model')])->where('user_id', $request->user()->id)->get();
 
         return Inertia::render('Mobile/Favorites/Favorites', ['products' => $products]);
     }

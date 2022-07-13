@@ -31,7 +31,7 @@
         </v-col>
       </v-row>
       <v-snackbar
-        :color="sanckbarColor"
+        :color="snackbarColor"
         v-model="snackbar"
         timeout="2000"
         transition="scale-transition"
@@ -56,6 +56,11 @@ export default {
     MobileLayout,
     ProductCard,
   },
+  data:() => ({
+    snackbarColor: 'success',
+    snackbar: false,
+    message: ''
+  }),
   methods: {
     getProduct(id) {
       let afterRequest = {
