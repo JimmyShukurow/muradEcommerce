@@ -3,13 +3,30 @@
     <v-form>
       <v-container>
         <v-row class="ma-5">
-          <h2>{{ product ? product.name : "New Product" }}</h2>
+          <h2>{{ product ? form.name.en : "New Product" }}</h2>
           <v-spacer></v-spacer>
           <InertiaLink as="v-btn" href="/products" color="secondary">Back</InertiaLink>
         </v-row>
+        <v-card flat class="py-5">
+          <v-card-text>
+            <v-row align="center" justify="center">
+              <v-btn-toggle  mandatory dark color="error">
+                <v-btn color="primary">
+                  en
+                </v-btn>
+                <v-btn color="primary">
+                  tkm
+                </v-btn >
+                <v-btn color="primary">
+                  ru
+                </v-btn>
+              </v-btn-toggle>
+            </v-row>
+          </v-card-text>
+        </v-card>
         <v-row>
           <v-col cols="12" md="6">
-            <v-text-field v-model="form.name" :counter="16" maxlength="16" outlined :label="$t('name')" required>
+            <v-text-field v-model="form.name.ru" :counter="16" maxlength="16" outlined :label="$t('name')" required>
             </v-text-field>
           </v-col>
           <v-col cols="12" md="6">
@@ -17,15 +34,15 @@
               item-text="name"></v-select>
           </v-col>
           <v-col cols="12" md="6">
-            <v-select outlined label="Brand" v-model="form.brand_id" :items="brands" item-value="id"
-              item-text="name"></v-select>
+            <v-select outlined label="Brand" v-model="form.brand_id" :items="brands" item-value="id" item-text="name">
+            </v-select>
           </v-col>
           <v-col cols="12" md="6">
-            <v-select outlined label="Model" v-model="form.model_id" :items="models" item-value="id"
-              item-text="name"></v-select>
+            <v-select outlined label="Model" v-model="form.model_id" :items="models" item-value="id" item-text="name">
+            </v-select>
           </v-col>
           <v-col cols="12" md="12">
-            <v-textarea v-model="form.description" :counter="1000" label="Last name" required outlined></v-textarea>
+            <v-textarea v-model="form.description.en" :counter="1000" label="Last name" required outlined></v-textarea>
           </v-col>
 
           <v-col cols="12" md="4">
@@ -86,7 +103,7 @@ import Confirm from "../../../components/ConfirmDlg.vue";
 import FilePond from "../../../components/FilePond.vue";
 
 export default {
-  props: ["product", "categories", "brands", "models", "edit"],
+  props: ["product", "categories", "edit", "brands", "models"],
   components: {
     AdminLayout,
     FilePond,
@@ -94,7 +111,10 @@ export default {
     Confirm,
   },
   data: () => ({
-    form: {},
+    form: {
+      name:{},
+      description: {},
+    },
     buttonText: "save",
     delete: [],
     snackbar: false,
@@ -111,7 +131,7 @@ export default {
     saveProduct() {
       let afterRequest = {
         onSuccess: () => { },
-        onError: () => { },
+        onError: () => {},
       };
       this.form.images = [];
       for (

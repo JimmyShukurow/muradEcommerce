@@ -37,7 +37,9 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::select('id', 'name')->get();
-        return Inertia::render('Admin/Products/Form', ['categories' => $categories]);
+        $brands = Brand::select('id', 'name')->get();
+        $models = Model::select('id', 'name')->get();
+        return Inertia::render('Admin/Products/Form', ['categories' => $categories, 'brands' => $brands, 'models' => $models]);
     }
 
     public function edit(Product $product)

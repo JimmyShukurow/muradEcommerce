@@ -18,9 +18,9 @@
           as="tr"
           :href="'/products/' + product.id"
           v-for="product in products"
-          :key="product.name"
+          :key="product.id"
         >
-          <td class="deep-orange--text">{{ product.name }}</td>
+          <td class="deep-orange--text">{{ product.name['en'] }}</td>
           <td class="red--text">{{ product.category.name }}</td>
           <td v-if="product.preview_image">
             <v-img :src="product.preview_image.preview_url" height="50" width="50"></v-img>
