@@ -8,9 +8,7 @@
         :href="'/brand/create'"
         class="ma-5"
         color="success"
-      >
-        {{ $t("Add new Brand") }}</InertiaLink
-      >
+      >{{ $t("Add new Brand") }}</InertiaLink>
     </v-row>
     <v-simple-table class="m-5">
       <thead>
@@ -25,16 +23,11 @@
           v-for="brand in brands"
           :key="brand.name"
         >
-          <td class="deep-orange--text">{{ brand.name }}</td>
+          <td class="deep-orange--text">{{ brand.name[$i18n.locale] }}</td>
         </InertiaLink>
       </tbody>
     </v-simple-table>
-    <v-snackbar
-      color="succes"
-      v-model="snackbar"
-      timeout="2000"
-      transition="scale-transition"
-    >
+    <v-snackbar color="succes" v-model="snackbar" timeout="2000" transition="scale-transition">
       {{ $t($page.props.message.success) }}
       <template v-slot:action="{ attrs }">
         <v-btn color="error" fab text v-bind="attrs" @click="snackbar = false">
@@ -53,16 +46,16 @@ export default {
   props: ["brands"],
   components: {
     AdminLayout,
-    InertiaLink,
+    InertiaLink
   },
   data: () => ({
-    snackbar: false,
+    snackbar: false
   }),
   mounted() {
     if (this.$page.props.message.success) {
       this.snackbar = true;
     }
-  },
+  }
 };
 </script>
 

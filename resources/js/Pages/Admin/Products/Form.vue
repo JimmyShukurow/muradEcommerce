@@ -3,46 +3,70 @@
     <v-form>
       <v-container>
         <v-row class="ma-5">
-          <h2>{{ product ? form.name.en : "New Product" }}</h2>
+          <h2>{{ product ? form.name[lang] : "New Product" }}</h2>
           <v-spacer></v-spacer>
           <InertiaLink as="v-btn" href="/products" color="secondary">Back</InertiaLink>
         </v-row>
         <v-card flat class="py-5">
           <v-card-text>
             <v-row align="center" justify="center">
-              <v-btn-toggle  mandatory dark color="error">
-                <v-btn color="primary">
-                  en
-                </v-btn>
-                <v-btn color="primary">
-                  tkm
-                </v-btn >
-                <v-btn color="primary">
-                  ru
-                </v-btn>
+              <v-btn-toggle mandatory dark color="error">
+                <v-btn color="primary" @click="lang='en'">en</v-btn>
+                <v-btn color="primary" @click="lang='tkm'">tkm</v-btn>
+                <v-btn color="primary" @click="lang='ru'">ru</v-btn>
               </v-btn-toggle>
             </v-row>
           </v-card-text>
         </v-card>
         <v-row>
           <v-col cols="12" md="6">
-            <v-text-field v-model="form.name.ru" :counter="16" maxlength="16" outlined :label="$t('name')" required>
-            </v-text-field>
+            <v-text-field
+              v-model="form.name[lang]"
+              :counter="16"
+              maxlength="16"
+              outlined
+              :label="$t('name')"
+              required
+            ></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
-            <v-select outlined label="Category" v-model="form.category_id" :items="categories" item-value="id"
-              item-text="name"></v-select>
+            <v-select
+              outlined
+              label="Category"
+              v-model="form.category_id"
+              :items="categories"
+              item-value="id"
+              item-text="name"
+            ></v-select>
           </v-col>
           <v-col cols="12" md="6">
-            <v-select outlined label="Brand" v-model="form.brand_id" :items="brands" item-value="id" item-text="name">
-            </v-select>
+            <v-select
+              outlined
+              label="Brand"
+              v-model="form.brand_id"
+              :items="brands"
+              item-value="id"
+              item-text="name"
+            ></v-select>
           </v-col>
           <v-col cols="12" md="6">
-            <v-select outlined label="Model" v-model="form.model_id" :items="models" item-value="id" item-text="name">
-            </v-select>
+            <v-select
+              outlined
+              label="Model"
+              v-model="form.model_id"
+              :items="models"
+              item-value="id"
+              item-text="name"
+            ></v-select>
           </v-col>
           <v-col cols="12" md="12">
-            <v-textarea v-model="form.description.en" :counter="1000" label="Last name" required outlined></v-textarea>
+            <v-textarea
+              v-model="form.description[lang]"
+              :counter="1000"
+              label="Last name"
+              required
+              outlined
+            ></v-textarea>
           </v-col>
 
           <v-col cols="12" md="4">
@@ -74,16 +98,24 @@
           </v-col>
           <v-col cols="12" md="12">
             <v-row class="ma-5">
-              <v-btn color="error" v-if="edit" @click="delRecord()">{{
-                  $t("Delete")
-              }}</v-btn>
+              <v-btn color="error" v-if="edit" @click="delRecord()">
+                {{$t("Delete")}}
+              </v-btn>
               <v-spacer></v-spacer>
-              <v-btn color="primary" @click="edit ? updateProduct() : saveProduct()">{{ buttonText }}</v-btn>
+              <v-btn
+                color="primary"
+                @click="edit ? updateProduct() : saveProduct()"
+              >{{ buttonText }}</v-btn>
             </v-row>
           </v-col>
         </v-row>
       </v-container>
-      <v-snackbar :color="sanckbarColor" v-model="snackbar" timeout="2000" transition="scale-transition">
+      <v-snackbar
+        :color="sanckbarColor"
+        v-model="snackbar"
+        timeout="2000"
+        transition="scale-transition"
+      >
         {{ message }}
         <template v-slot:action="{ attrs }">
           <v-btn color="dark" fab text v-bind="attrs" @click="snackbar = false">
@@ -108,18 +140,19 @@ export default {
     AdminLayout,
     FilePond,
     InertiaLink,
-    Confirm,
+    Confirm
   },
   data: () => ({
     form: {
-      name:{},
-      description: {},
+      name: {},
+      description: {}
     },
+    lang: "en",
     buttonText: "save",
     delete: [],
     snackbar: false,
     message: "",
-    sanckbarColor: "success",
+    sanckbarColor: "success"
   }),
   mounted() {
     if (this.edit) {
@@ -130,8 +163,8 @@ export default {
   methods: {
     saveProduct() {
       let afterRequest = {
-        onSuccess: () => { },
-        onError: () => {},
+        onSuccess: () => {},
+        onError: () => {}
       };
       this.form.images = [];
       for (
@@ -157,10 +190,10 @@ export default {
     },
     deleteProduct() {
       let afterRequest = {
-        onSuccess: () => { },
-        onError: (data) => {
-          this.sanckbarColor = 'error'
-          this.snackbar = true
+        onSuccess: () => {},
+        onError: data => {
+          this.sanckbarColor = "error";
+          this.snackbar = true;
           this.message = data.error;
         }
       };
@@ -168,8 +201,8 @@ export default {
     },
     updateProduct() {
       let afterRequest = {
-        onSuccess: () => { },
-        onError: () => { },
+        onSuccess: () => {},
+        onError: () => {}
       };
       this.form.images = [];
       this.form.delete = [...this.delete];
@@ -189,16 +222,16 @@ export default {
       );
     },
     deleteImage(id) {
-      let imageOrder = this.product.media.findIndex((element) => {
+      let imageOrder = this.product.media.findIndex(element => {
         return element.id === id;
       });
       this.delete.push(imageOrder);
-      let deleteOrder = this.form.media.findIndex((element) => {
+      let deleteOrder = this.form.media.findIndex(element => {
         return element.id === id;
       });
       this.form.media.splice(deleteOrder, 1);
-    },
-  },
+    }
+  }
 };
 </script>
 

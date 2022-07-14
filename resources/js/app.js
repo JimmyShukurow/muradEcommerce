@@ -88,7 +88,7 @@ const messages = {
       }
   }
   const i18n = new VueI18n({
-    locale: 'tkm', 
+    locale: 'en',
     messages,
   })
 

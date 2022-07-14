@@ -26,8 +26,8 @@
             ></v-select>
           </v-col>
         </v-row>
-        <v-row class="ma-5">
-          <v-btn color="error" @click="delRecord()">Delete</v-btn>
+        <v-row class="ma-5" >
+          <v-btn color="error" v-if="edit" @click="delRecord()">Delete</v-btn>
           <v-spacer></v-spacer>
           <v-btn color="primary" @click="edit ? updateMenu() : saveMenu()">{{ buttonText }}</v-btn>
         </v-row>

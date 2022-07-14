@@ -13,13 +13,16 @@
 <script>
 export default {
   data: () => ({
-    languages: ["EN", "TKM", "RUS", "TR"],
+    languages: ["EN", "TKM", "RUS"],
     selectedLanguage: "EN"
   }),
   watch: {
     selectedLanguage(val) {
       this.$i18n.locale = val.toLowerCase();
     }
+  },
+  mounted() {
+    this.selectedLanguage = this.$i18n.locale.toUpperCase()
   }
 };
 </script>
