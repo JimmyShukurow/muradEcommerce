@@ -46,7 +46,7 @@
               v-model="form.brand_id"
               :items="brands"
               item-value="id"
-              item-text="name"
+              :item-text="'name[' + lang + ']'"
             ></v-select>
           </v-col>
           <v-col cols="12" md="6">
