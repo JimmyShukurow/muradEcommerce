@@ -14,6 +14,12 @@ class RolesSeeder extends Seeder
         ],
         [
             'name' => 'admin',
+        ],
+        [
+            'name' => 'operator',
+        ],
+        [
+            'name' => 'wallet',
         ]
     ];
 
