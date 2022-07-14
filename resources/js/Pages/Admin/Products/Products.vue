@@ -10,6 +10,10 @@
         <tr>
           <th class="text-left headline">{{$t('name')}}</th>
           <th class="text-left headline">Category</th>
+          <th class="text-left headline">Brand</th>
+          <th class="text-left headline">Model</th>
+          <th class="text-left headline">Price</th>
+          <th class="text-left headline">Quantity</th>
           <th class="text-left headline">Image</th>
         </tr>
       </thead>
@@ -20,8 +24,13 @@
           v-for="product in products"
           :key="product.id"
         >
-          <td class="deep-orange--text">{{ product.name['en'] }}</td>
-          <td class="red--text">{{ product.category.name }}</td>
+          <td class="deep-orange--text">{{ product.name[$i18n.locale] }}</td>
+          <td class="red--text">{{ product.category.name[$i18n.locale] }}</td>
+          <td class="red--text">{{ product.brand.name[$i18n.locale] }}</td>
+          <td class="red--text">{{ product.model.name[$i18n.locale] }}</td>
+          <td class="red--text">{{ product.price }}</td>
+          <td class="red--text">{{ product.quantity }}</td>
+
           <td v-if="product.preview_image">
             <v-img :src="product.preview_image.preview_url" height="50" width="50"></v-img>
           </td>

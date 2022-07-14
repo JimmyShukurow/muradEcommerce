@@ -36,7 +36,7 @@
               v-model="form.category_id"
               :items="categories"
               item-value="id"
-              item-text="name"
+              :item-text="'name[' + lang + ']'"
             ></v-select>
           </v-col>
           <v-col cols="12" md="6">
@@ -56,7 +56,7 @@
               v-model="form.model_id"
               :items="models"
               item-value="id"
-              item-text="name"
+              :item-text="'name[' + lang + ']'"
             ></v-select>
           </v-col>
           <v-col cols="12" md="12">

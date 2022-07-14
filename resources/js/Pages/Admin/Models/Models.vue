@@ -16,8 +16,8 @@
       </thead>
       <tbody>
         <InertiaLink as="tr" :href="'/model/' + model.id" v-for="model in models" :key="model.name">
-          <td class="deep-orange--text">{{ model.name }}</td>
-          <td class="deep-orange--text">{{ model.name }}</td>
+          <td class="deep-orange--text">{{ model.name[$i18n.locale]}}</td>
+          <td class="deep-orange--text">{{ model.name[$i18n.locale]}}</td>
         </InertiaLink>
       </tbody>
     </v-simple-table>

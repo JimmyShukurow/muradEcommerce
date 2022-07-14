@@ -27,7 +27,7 @@
           v-for="(item, id) in allcategories"
           :key="id"
         >
-          <td class="deep-orange--text">{{ item.name }}</td>
+          <td class="deep-orange--text">{{ item.name[$i18n.locale] }}</td>
 
           <td v-if="item.parent" class="red--text">{{ item.parent.name }}</td>
           <td v-else>No parent</td>

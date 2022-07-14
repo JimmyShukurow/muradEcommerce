@@ -41,7 +41,7 @@ class AdminController extends Controller
 
     public function products()
     {
-        $products = Product::with('category','previewImage')->orderBY('created_at', 'DESC')->get();
+        $products = Product::with('category','previewImage', 'brand:id,name', 'model:id,name')->orderBY('created_at', 'DESC')->get();
         
         return Inertia::render('Admin/Products/Products', ['products' => $products]);
     }

@@ -24,16 +24,16 @@
           </v-col>
 
           <v-row class="ma-5">
-            <v-btn color="error" v-if="edit" >Delete</v-btn>
+            <v-btn color="error" v-if="edit" @click="delRecord" >Delete</v-btn>
             <v-spacer></v-spacer>
             <v-btn color="primary" @click="edit ? updateBrand() : saveBrand()">{{ buttonText }}</v-btn>
           </v-row>
         </v-row>
       </v-container>
-      <v-snackbar color="succes" v-model="snackbar" timeout="2000" transition="scale-transition">
+      <v-snackbar color="error" v-model="snackbar" timeout="2000" transition="scale-transition">
         {{ message }}
         <template v-slot:action="{ attrs }">
-          <v-btn color="error" fab text v-bind="attrs" @click="snackbar = false">
+          <v-btn dark fab text v-bind="attrs" @click="snackbar = false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </template>
@@ -84,6 +84,28 @@ export default {
         onError: () => {}
       };
       this.$inertia.put("/brands/" + this.brand.id, this.form, afterRequest);
+    },
+    async delRecord() {
+      if (
+        await this.$refs.confirm.open(
+          this.$t("confirm"),
+          this.$t("Are you sure you want to delete this record?")
+        )
+      ) {
+        this.deleteBrand();
+      }
+    },
+
+    deleteBrand() {
+      let afterRequest = {
+        onSuccess:() => {},
+        onError:(data) => {
+          this.snackbar = true
+          this.message = data.error
+        }
+      }
+
+      this.$inertia.delete('/brands/' + this.brand.id, afterRequest);
     }
   }
 };

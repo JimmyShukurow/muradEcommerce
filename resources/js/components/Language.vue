@@ -13,7 +13,7 @@
 <script>
 export default {
   data: () => ({
-    languages: ["EN", "TKM", "RUS"],
+    languages: ["EN", "TKM", "RU"],
     selectedLanguage: "EN"
   }),
   watch: {

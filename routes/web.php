@@ -104,6 +104,7 @@ Route::get('/brand/create', [BrandController::class, 'create']);
 Route::post('/brand', [BrandController::class, 'store']);
 Route::get('/brands/{brand}', [BrandController::class, 'edit']);
 Route::put('/brands/{brand}', [BrandController::class, 'update']);
+Route::delete('/brands/{brand}', [BrandController::class, 'destroy']);
 
 
 
@@ -112,3 +113,4 @@ Route::get('/models/create', [ModelController::class, 'create']);
 Route::post('/models', [ModelController::class, 'store']);
 Route::get('/model/{model}', [ModelController::class, 'edit']);
 Route::put('/models/{model}', [ModelController::class, 'update']);
+Route::delete('/models/{model}', [ModelController::class, 'destroy']);
