@@ -8,6 +8,8 @@ return new class extends Migration
 {
     public function up(): void
     {
+        Schema::dropIfExists('media');
+
         Schema::create('media', function (Blueprint $table) {
             $table->bigIncrements('id');
 
@@ -28,5 +30,9 @@ return new class extends Migration
 
             $table->nullableTimestamps();
         });
+    }
+    public function down()
+    {
+        Schema::dropIfExists('media');
     }
 };
