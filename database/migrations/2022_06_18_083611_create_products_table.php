@@ -24,6 +24,7 @@ return new class extends Migration
             $table->float('quantity');
             $table->float('price');
             $table->timestamps();
+            
         });
     }
 
