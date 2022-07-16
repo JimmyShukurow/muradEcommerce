@@ -10,8 +10,8 @@
     <v-simple-table class="m-5">
       <thead>
         <tr>
-          <th class="text-left headline">{{ $t("name") }}</th>
-          <th class="text-left headline">{{ $t("brand") }}</th>
+          <th class="text-left headline" style="width:50%">{{ $t("name") }}</th>
+          <th class="text-left headline" style="width:50%">{{ $t("Brand") }}</th>
         </tr>
       </thead>
       <tbody>

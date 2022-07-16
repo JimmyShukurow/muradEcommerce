@@ -81,6 +81,7 @@
         </InertiaLink>
       </v-carousel>
     </v-layout>
+    <MobileLanguage class="lang"/>
     <FooterMobile />
   </v-container>
 </template>
@@ -90,13 +91,15 @@ import HeaderMobile from "./HeaderMobile.vue";
 import FooterMobile from "./FooterMobile.vue";
 import { InertiaLink } from "@inertiajs/inertia-vue";
 import { Inertia } from "@inertiajs/inertia";
+import MobileLanguage from "../MobileLanguage.vue";
 export default {
   props: ["user", "topmenus", "slides"],
   components: {
     HeaderMobile,
     FooterMobile,
     InertiaLink,
-    Inertia
+    Inertia,
+    MobileLanguage
   },
   data: () => ({
     model: 0,
@@ -144,5 +147,11 @@ export default {
   left: 50%;
   margin-top: -4%;
   top: 4%;
+}
+.lang {
+  position: fixed;
+  bottom: 80px;
+  right: 15px;
+  z-index: 10;
 }
 </style>

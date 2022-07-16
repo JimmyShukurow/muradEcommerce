@@ -6,21 +6,21 @@
           ? product.preview_image.preview_url
           : 'http://127.0.0.1:8000/images/noImage.png'
       "></v-img>
-      <v-card-title>{{ product.name }}</v-card-title>
+      <v-card-title>{{ product.name[$i18n.locale] }}</v-card-title>
       <v-card-text>
         <v-row align="center" class="mx-0">
           <v-rating :value="4.5" color="amber" dense half-increments readonly size="14"></v-rating>
           <div class="grey--text ms-4"></div>
         </v-row>
         <v-row class="my-4 mx-1">
-          {{ product.brand.name }}
+          {{ product.brand.name[$i18n.locale] }}
           <v-spacer></v-spacer>
-          {{ product.model.name }}
+          {{ product.model.name[$i18n.locale] }}
         </v-row>
         {{ product.size }} razmer
       </v-card-text>
       <div class="mx-3" align="center">
-        {{ product.price }} manat
+        {{ product.price }} mnt
       </div>
     </v-card>
   </v-layout>

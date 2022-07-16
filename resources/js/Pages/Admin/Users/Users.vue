@@ -1,15 +1,15 @@
 <template>
   <AdminLayout>
     <v-row>
-      <h1 class="ma-5">Users</h1>
+      <h1 class="ma-5">{{$t('Users')}}</h1>
       <v-spacer></v-spacer>
     </v-row>
     <v-simple-table class="m-5">
       <thead>
         <tr>
-          <th class="text-left headline">{{$t('name')}}</th>
-          <th class="text-left headline">Email</th>
-          <th class="text-left headline">Role</th>
+          <th class="text-left headline" style="width:33%">{{$t('name')}}</th>
+          <th class="text-left headline" style="width:33%">{{$t('Email')}}</th>
+          <th class="text-left headline" style="width:33%">{{$t('Role')}}</th>
         </tr>
       </thead>
       <tbody>

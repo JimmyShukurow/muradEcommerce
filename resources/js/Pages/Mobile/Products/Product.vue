@@ -4,17 +4,17 @@
       <v-card >
       <v-img class="ma-2" :src="product.preview_image.preview_url"></v-img>
       <v-card-title>
-        {{ product.name }}
+        {{ product.name[$i18n.locale] }}
       </v-card-title>
       <v-card-text class="black--text ">
-        {{ product.description}}
+        {{ product.description[$i18n.locale]}}
         <v-row class="ma-5 black--text font-weight-black title">
           <div>
-            {{ product.brand.name}}
+            {{ product.brand.name[$i18n.locale]}}
           </div>
           <v-spacer></v-spacer>
           <div>
-            {{ product.model.name}}
+            {{ product.model.name[$i18n.locale]}}
           </div>
         </v-row>
       </v-card-text>

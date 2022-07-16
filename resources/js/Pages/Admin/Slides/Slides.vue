@@ -6,12 +6,12 @@
     </v-row>
     <v-sheet class="ma-5">
       <v-row class="d-flex justify-space-between">
-        <h3>TopSlider</h3>
+        <h3>{{$t('TopSlider')}}</h3>
         <v-spacer></v-spacer>
         <div>
           <v-select
             v-model="top"
-            label="Select a category"
+            :label="$t('Select a category')"
             class="control-width mx-10"
             outlined
             :items="categories"
@@ -37,10 +37,10 @@
             height="150px"
           >
             <v-card-actions
-              ><v-btn x-small color="primary">Detail</v-btn>
+              ><v-btn x-small color="primary">{{$t('Detail')}}</v-btn>
               <v-spacer></v-spacer
               ><v-btn x-small color="error" @click="deleteSlide(slide.id)"
-                >Sil</v-btn
+                >{{$t('Delete')}}</v-btn
               >
             </v-card-actions>
           </v-img>
@@ -57,11 +57,11 @@
     </v-sheet>
     <v-sheet class="ma-5">
       <v-row>
-        <h3>FirstSlider</h3>
+        <h3>{{$t('FirstSlider')}}</h3>
         <v-spacer></v-spacer>
         <v-select
           v-model="first"
-          label="Select a category"
+          :label="$t('Select a category')"
           class="control-width mx-10"
           outlined
           :items="categories"
@@ -86,10 +86,10 @@
             height="150px"
           >
             <v-card-actions
-              ><v-btn x-small color="primary">Detail</v-btn>
+              ><v-btn x-small color="primary">{{$t('Detail')}}</v-btn>
               <v-spacer></v-spacer
               ><v-btn x-small color="error" @click="deleteSlide(slide.id)"
-                >Sil</v-btn
+                >{{$t('Delete')}}</v-btn
               >
             </v-card-actions>
           </v-img>
@@ -107,11 +107,11 @@
 
     <v-sheet class="ma-5">
       <v-row>
-        <h3>SecondSlider</h3>
+        <h3>{{$t('SecondSlider')}}</h3>
         <v-spacer></v-spacer>
         <v-select
           v-model="second"
-          label="Select a category"
+          :label="$t('Select a category')"
           class="control-width mx-10"
           outlined
           :items="categories"
@@ -136,10 +136,10 @@
             height="150px"
           >
             <v-card-actions
-              ><v-btn x-small color="primary">Detail</v-btn>
+              ><v-btn x-small color="primary">{{$t('Detail')}}</v-btn>
               <v-spacer></v-spacer
               ><v-btn x-small color="error" @click="deleteSlide(slide.id)"
-                >Sil</v-btn
+                >{{$t('Delete')}}</v-btn
               >
             </v-card-actions>
           </v-img>
@@ -156,11 +156,11 @@
     </v-sheet>
     <v-sheet class="ma-5">
       <v-row>
-        <h3>ThirdSlider</h3>
+        <h3>{{$t('ThirdSlider')}}</h3>
         <v-spacer></v-spacer>
         <v-select
           v-model="third"
-          label="Select a category"
+          :label="$t('Select a category')"
           class="control-width mx-10"
           outlined
           :items="categories"
@@ -185,10 +185,10 @@
             height="150px"
           >
             <v-card-actions
-              ><v-btn x-small color="primary">Detail</v-btn>
+              ><v-btn x-small color="primary">{{$t('Detail')}}</v-btn>
               <v-spacer></v-spacer
               ><v-btn x-small color="error" @click="deleteSlide(slide.id)"
-                >Sil</v-btn
+                >{{$t('Delete')}}</v-btn
               >
             </v-card-actions>
           </v-img>

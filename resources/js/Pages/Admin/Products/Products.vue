@@ -9,12 +9,12 @@
       <thead>
         <tr>
           <th class="text-left headline">{{$t('name')}}</th>
-          <th class="text-left headline">Category</th>
-          <th class="text-left headline">Brand</th>
-          <th class="text-left headline">Model</th>
-          <th class="text-left headline">Price</th>
-          <th class="text-left headline">Quantity</th>
-          <th class="text-left headline">Image</th>
+          <th class="text-left headline">{{$t('category')}}</th>
+          <th class="text-left headline">{{$t('Brand')}}</th>
+          <th class="text-left headline">{{$t('Model')}}</th>
+          <th class="text-left headline">{{$t('Price')}}</th>
+          <th class="text-left headline">{{$t('Quantity')}}</th>
+          <th class="text-left headline">{{$t('Image')}}</th>
         </tr>
       </thead>
       <tbody>

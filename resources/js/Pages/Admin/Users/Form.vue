@@ -4,26 +4,26 @@
       <v-container>
         <v-row class="ma-5">
           <v-spacer></v-spacer>
-          <InertiaLink as="v-btn" href="/users" color="secondary">Back</InertiaLink>
+          <InertiaLink as="v-btn" href="/users" color="secondary">{{$t('Back')}}</InertiaLink>
         </v-row>
         <v-row>
           <v-col cols="12" md="6">
             <v-text-field :label="$t('name')" readonly outlined v-model="form.name"></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
-            <v-text-field :label="$t('email')" readonly outlined v-model="form.email"></v-text-field>
+            <v-text-field :label="$t('Email')" readonly outlined v-model="form.email"></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
-            <v-text-field :label="$t('phone')" readonly outlined v-model="form.phone"></v-text-field>
+            <v-text-field :label="$t('Phone')" readonly outlined v-model="form.phone"></v-text-field>
           </v-col>
            <v-col cols="12" md="6">
-            <v-textarea :label="$t('adress')" readonly outlined v-model="form.phone"></v-textarea>
+            <v-textarea :label="$t('Address')" readonly outlined v-model="form.phone"></v-textarea>
           </v-col>
           <v-col cols="12" md="6">
-            <v-select :items="roles" item-text="name" item-value="id" :label="$t('adress')" outlined v-model="role_id" ></v-select>
+            <v-select :items="roles" item-text="name" item-value="id" :label="$t('Role')" outlined v-model="role_id" ></v-select>
           </v-col>
           <v-col cols="12" md="6">
-            <v-btn color="primary" @click="updateRole(form.id, role_id)">Update</v-btn>
+            <v-btn color="primary" @click="updateRole(form.id, role_id)">{{$t('Update')}}</v-btn>
           </v-col>
         </v-row>
       </v-container>

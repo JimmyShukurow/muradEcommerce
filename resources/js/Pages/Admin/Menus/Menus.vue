@@ -9,15 +9,15 @@
         class="ma-5"
         color="success"
       >
-        {{ $t("Add new Product") }}</InertiaLink
+        {{ $t("Add new Menu") }}</InertiaLink
       >
     </v-row>
     <v-simple-table>
       <thead>
         <tr>
-          <th class="text-left headline">Name</th>
-          <th class="text-left headline">Parent</th>
-          <th class="text-left headline">Icon</th>
+          <th class="text-left headline" style="width:33%">{{$t('name')}}</th>
+          <th class="text-left headline" style="width:33%">{{$t('Parent')}}</th>
+          <th class="text-left headline" style="width:33%">{{$t('Icon')}}</th>
         </tr>
       </thead>
       <tbody>

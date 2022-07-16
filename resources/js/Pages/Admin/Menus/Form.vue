@@ -3,9 +3,9 @@
     <v-form>
       <v-container>
         <v-row>
-          <h2 class="ma-5">{{ menu ? menu.name[lang] : "New Menu" }}</h2>
+          <h2 class="ma-5">{{ menu ? menu.name[lang] : $t('New Menu') }}</h2>
           <v-spacer></v-spacer>
-          <InertiaLink as="v-btn" href="/menus" color="secondary" class="ma-5">Back</InertiaLink>
+          <InertiaLink as="v-btn" href="/menus" color="secondary" class="ma-5">{{$t('Back')}}</InertiaLink>
         </v-row>
         <v-card flat class="py-5">
           <v-card-text>
@@ -28,9 +28,9 @@
           </v-col>
         </v-row>
         <v-row class="ma-5">
-          <v-btn color="error" v-if="edit" @click="delRecord()">Delete</v-btn>
+          <v-btn color="error" v-if="edit" @click="delRecord()">{{ $t('Delete')}}</v-btn>
           <v-spacer></v-spacer>
-          <v-btn color="primary" @click="edit ? updateMenu() : saveMenu()">{{ buttonText }}</v-btn>
+          <v-btn color="primary" @click="edit ? updateMenu() : saveMenu()">{{ $t(buttonText) }}</v-btn>
         </v-row>
       </v-container>
       <v-snackbar :color="sanckbarColor" v-model="snackbar" timeout="2000" transition="scale-transition">
@@ -63,7 +63,7 @@ export default {
       name:{}
     },
     lang:'en',
-    buttonText: "save",
+    buttonText: "Save",
     snackbar: false,
     message: '',
     sanckbarColor: 'success'

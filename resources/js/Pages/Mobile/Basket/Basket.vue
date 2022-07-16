@@ -2,13 +2,13 @@
   <MobileLayout>
     <v-container>
       <v-sheet class="mb-2">
-        <h1>Sepetim</h1>
+        <h1>{{$t('My Basket')}}</h1>
         <v-divider></v-divider>
       </v-sheet>
       <v-row>
         <v-col v-for="(product, id) in basket" :key="id" cols="12">
           <v-card>
-            <v-subheader class="py-0 font-weight-black">{{ product.product.name}}</v-subheader>
+            <v-subheader class="py-0 font-weight-black">{{ product.product.name[$i18n.locale]}}</v-subheader>
             <v-row class="little-margin">
               <v-col class="mx-auto my-auto pa-0">
                 <v-sheet class="mx-auto">

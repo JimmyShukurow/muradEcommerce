@@ -1,12 +1,11 @@
 <template>
   <AdminLayout>
-    <h1>Create Model</h1>
     <v-form>
       <v-container>
         <v-row class="ma-5">
-          <h2>{{ model ? model.name[lang] : "New Model" }}</h2>
+          <h2>{{ model ? model.name[lang] : $t('New Model') }}</h2>
           <v-spacer></v-spacer>
-          <InertiaLink as="v-btn" href="/models" color="secondary">Back</InertiaLink>
+          <InertiaLink as="v-btn" href="/models" color="secondary">{{$t('Back')}}</InertiaLink>
         </v-row>
         <v-card flat class="py-5">
           <v-card-text>
@@ -26,9 +25,9 @@
 
           <v-col cols="12" class="ma-5">
             <v-row>
-              <v-btn color="error" v-if="edit" @click="delRecord">Delete</v-btn>
+              <v-btn color="error" v-if="edit" @click="delRecord">{{$t('Delete')}}</v-btn>
               <v-spacer></v-spacer>
-              <v-btn color="primary" @click="edit ? updateModel() : saveModel()">{{ buttonText }}</v-btn>
+              <v-btn color="primary" @click="edit ? updateModel() : saveModel()">{{ $t(buttonText) }}</v-btn>
             </v-row>
           </v-col>
         </v-row>
@@ -63,14 +62,14 @@ export default {
       name: {}
     },
     lang: 'en',
-    buttonText: "Create",
+    buttonText: "Save",
     message: "",
     snackbar: false,
   }),
   mounted() {
     if (this.edit) {
       this.form = JSON.parse(JSON.stringify(this.model));
-      this.buttonText = "update";
+      this.buttonText = "Update";
     }
   },
   methods: {

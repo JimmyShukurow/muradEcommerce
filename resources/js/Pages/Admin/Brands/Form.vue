@@ -3,9 +3,9 @@
     <v-form>
       <v-container>
         <v-row class="ma-5">
-          <h2>{{ brand ? brand.name[lang] : "New Brand" }}</h2>
+          <h2>{{ brand ? brand.name[lang] : $t('New Brand') }}</h2>
           <v-spacer></v-spacer>
-          <InertiaLink as="v-btn" href="/brands" color="secondary">Back</InertiaLink>
+          <InertiaLink as="v-btn" href="/brands" color="secondary">{{$t('Back')}}</InertiaLink>
         </v-row>
         <v-card flat class="py-5">
           <v-card-text>
@@ -24,9 +24,9 @@
           </v-col>
 
           <v-row class="ma-5">
-            <v-btn color="error" v-if="edit" @click="delRecord" >Delete</v-btn>
+            <v-btn color="error" v-if="edit" @click="delRecord" >{{$t('Delete')}}</v-btn>
             <v-spacer></v-spacer>
-            <v-btn color="primary" @click="edit ? updateBrand() : saveBrand()">{{ buttonText }}</v-btn>
+            <v-btn color="primary" @click="edit ? updateBrand() : saveBrand()">{{ $t(buttonText) }}</v-btn>
           </v-row>
         </v-row>
       </v-container>
@@ -59,7 +59,7 @@ export default {
     form: {
         name:{}
     },
-    buttonText: "Create",
+    buttonText: "Save",
     message: "",
     snackbar: false,
     lang: "en"
@@ -67,7 +67,7 @@ export default {
   mounted() {
     if (this.edit) {
       this.form = JSON.parse(JSON.stringify(this.brand));
-      this.buttonText = "update";
+      this.buttonText = "Update";
     }
   },
   methods: {

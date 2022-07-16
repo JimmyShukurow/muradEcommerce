@@ -3,9 +3,9 @@
     <v-form>
       <v-container>
         <v-row class="ma-5">
-          <h2>{{ product ? form.name[lang] : "New Product" }}</h2>
+          <h2>{{ product ? form.name[lang] : $t('New Product') }}</h2>
           <v-spacer></v-spacer>
-          <InertiaLink as="v-btn" href="/products" color="secondary">Back</InertiaLink>
+          <InertiaLink as="v-btn" href="/products" color="secondary">{{$t('Back')}}</InertiaLink>
         </v-row>
         <v-card flat class="py-5">
           <v-card-text>
@@ -32,7 +32,7 @@
           <v-col cols="12" md="6">
             <v-select
               outlined
-              label="Category"
+              :label="$t('category')"
               v-model="form.category_id"
               :items="categories"
               item-value="id"
@@ -42,7 +42,7 @@
           <v-col cols="12" md="6">
             <v-select
               outlined
-              label="Brand"
+              :label="$t('Brand')"
               v-model="form.brand_id"
               :items="brands"
               item-value="id"
@@ -52,7 +52,7 @@
           <v-col cols="12" md="6">
             <v-select
               outlined
-              label="Model"
+              :label="$t('Model')"
               v-model="form.model_id"
               :items="models"
               item-value="id"
@@ -63,20 +63,20 @@
             <v-textarea
               v-model="form.description[lang]"
               :counter="1000"
-              label="Last name"
+              :label="$t('Description')"
               required
               outlined
             ></v-textarea>
           </v-col>
 
           <v-col cols="12" md="4">
-            <v-text-field label="Size" v-model="form.size" type="number" outlined required></v-text-field>
+            <v-text-field :label="$t('Size')" v-model="form.size" type="number" outlined required></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
-            <v-text-field label="Price" v-model="form.price" type="number" outlined required></v-text-field>
+            <v-text-field :label="$t('Price')" v-model="form.price" type="number" suffix="manat" outlined required></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
-            <v-text-field label="Quantity" v-model="form.quantity" type="number" outlined required></v-text-field>
+            <v-text-field :label="$t('Quantity')" v-model="form.quantity" type="number" outlined required></v-text-field>
           </v-col>
 
           <v-col cols="12" md="6">
@@ -105,7 +105,7 @@
               <v-btn
                 color="primary"
                 @click="edit ? updateProduct() : saveProduct()"
-              >{{ buttonText }}</v-btn>
+              >{{ $t(buttonText) }}</v-btn>
             </v-row>
           </v-col>
         </v-row>
@@ -148,7 +148,7 @@ export default {
       description: {}
     },
     lang: "en",
-    buttonText: "save",
+    buttonText: "Save",
     delete: [],
     snackbar: false,
     message: "",
@@ -157,7 +157,7 @@ export default {
   mounted() {
     if (this.edit) {
       this.form = JSON.parse(JSON.stringify(this.product));
-      this.buttonText = "update";
+      this.buttonText = "Update";
     }
   },
   methods: {

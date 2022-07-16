@@ -2,7 +2,7 @@
   <MobileLayout>
     <v-container>
       <v-sheet class="mb-2">
-        <h1>Favorites</h1>
+        <h1>{{$t('Favorites')}}</h1>
         <v-divider></v-divider>
       </v-sheet>
       <v-row>

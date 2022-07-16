@@ -2,7 +2,7 @@
   <MobileLayout>
     <v-container>
       <v-sheet class="mb-2">
-        <h1>{{category.name }}</h1>
+        <h1>{{category.name[$i18n.locale] }}</h1>
         <v-divider></v-divider>
       </v-sheet>
       <v-layout class="ma-5">

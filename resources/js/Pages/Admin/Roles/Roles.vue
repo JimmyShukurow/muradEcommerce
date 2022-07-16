@@ -8,9 +8,9 @@
     <v-simple-table class="m-5">
       <thead>
         <tr>
-          <th class="text-left headline">{{$t('name')}}</th>
-          <th class="text-left headline">Category</th>
-          <th class="text-left headline">Image</th>
+          <th class="text-left headline" style="width:33%">{{$t('name')}}</th>
+          <th class="text-left headline" style="width:33%">{{$t('category')}}</th>
+          <th class="text-left headline" style="width:33%">{{$t('Image')}}</th>
         </tr>
       </thead>
       <tbody>

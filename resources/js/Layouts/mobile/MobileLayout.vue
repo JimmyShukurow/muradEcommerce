@@ -5,20 +5,28 @@
         <slot></slot>
       </v-main>
     </v-layout>
-    <FooterMobile/>
+    <MobileLanguage  class="lang"/>
+    <FooterMobile />
   </v-app>
 </template>
 
 <script>
 import FooterMobile from "../../components/Mobile/FooterMobile.vue";
+import MobileLanguage from "../../components/MobileLanguage.vue";
 export default {
   components: {
-    FooterMobile
+    FooterMobile,
+    MobileLanguage,
   },
   data: () => ({})
 };
 </script>
 
 <style scoped>
-
+.lang {
+  position: absolute;
+  bottom: 80px;
+  right: 15px;
+  z-index: 10;
+}
 </style>
