@@ -61,7 +61,7 @@
               v-for="(category, id) in categories"
               :key="id"
               class="topmenu pl-2 pr-2"
-            >{{ category.name }}</span>
+            >{{ category.name.en }}</span>
           </div>
         </v-container>
       </div>
