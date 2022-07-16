@@ -84,4 +84,12 @@ class AdminController extends Controller
         $brands = Brand::all();
         return Inertia::render('Admin/Brands/Brands', ['brands' => $brands]);
     }
+
+    public function orders()
+    {
+        
+        $orders = Order::with('user')->get();
+
+        return Inertia::render('Admin/Orders/Orders', ['orders' => $orders]);
+    }
 }

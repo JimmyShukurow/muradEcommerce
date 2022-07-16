@@ -63,6 +63,7 @@ export default {
       { title: "Models", icon: "mdi-brightness-auto", route: "/models" },
       { title: "Users", icon: "mdi-account", route: "/users" },
       { title: "Products", icon: "mdi-inbox-multiple", route: "/products" },
+      { title: "Orders", icon: "mdi-order-bool-ascending-variant", route: "/orders" },
       { title: "Roles", icon: "mdi-account-details", route: "/roles" },
       { title: "Settings", icon: "mdi-cog", route: "/settings" },
 

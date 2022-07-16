@@ -35,7 +35,7 @@
           </v-row>
         </v-row>
       </InertiaLink>
-      <InertiaLink as="v-card" href="/" class="ma-5" height="200px" width="30%" color="#eb4c34">
+      <InertiaLink as="v-card" href="/orders" class="ma-5" height="200px" width="30%" color="#eb4c34">
         <v-row class="ma-1 display-2 yellow--text">
           <div style="width:100%">
             <v-row class="pa-5">

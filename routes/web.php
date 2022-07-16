@@ -41,6 +41,7 @@ Route::get('/menus', [AdminController::class, 'menus'])->name('admin.menus');
 Route::get('/slides', [AdminController::class, 'slides']);
 Route::get('/users', [AdminController::class, 'users']);
 Route::get('/products', [AdminController::class, 'products'])->name('admin.products');
+Route::get('/orders', [AdminController::class, 'orders'])->name('admin.orders');
 Route::get('/roles', [AdminController::class, 'roles'])->name('admin.roles');
 Route::get('/settings', [AdminController::class, 'settings']);
 Route::get('/brands', [AdminController::class, 'brands']);

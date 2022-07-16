@@ -69,7 +69,8 @@ const messages = {
         "Favorites": "Favorites",
         "My Basket": "My Basket",
         "Profile": "Profile",
-        "Sells": "Sells"
+        "Sells": "Sells",
+        "Orders": "Orders",
       },
     tkm: {
         "cancel": 'Yok',
@@ -131,7 +132,8 @@ const messages = {
         "Favorites": "Saýlamalar",
         "My Basket": "Sepedim",
         "Profile": "Hasabym",
-        "Sells": "Satyşlar"
+        "Sells": "Satyşlar",
+        "Orders": "Zakazlar",
 
       },
     ru: {
@@ -147,8 +149,8 @@ const messages = {
       "Slides": "Слайды",
       "Users": "Пользователи",
       "Products": "Товары",
-      "Roles": "Rollar",
-      "Role": "Role",
+      "Roles": "Роли",
+      "Role": "Роль",
       "Add new Product": "Täze önüm goş",
       "Add new Role": "Taze rol goş",
       "Product was deleted": "Önüm Yoklandy",
@@ -156,15 +158,15 @@ const messages = {
       "Product was saved" : "Taze  Önüm Goşuldy",
       "Add new Brand": "Add new Brand",
       "Add new Model": "Add new Model",
-      "Settings": "Sazlamalar",
-      "Update": "Tazele",
-      "Drop files here...": "Suratlary şu yere taşla...",
-      "category": " Kategoriyasy",
+      "Settings": "Настройки",
+      "Update": "Обновить",
+      "Drop files here...": "Перетащите сюда файлы...",
+      "category": " Категории",
       "Delete": "Удалить",
-      "Brands" : "Brands",
-      "Brand": "Brand",
-      "Models": "Modeller",
-      "Model": "Model",
+      "Brands" : "Бренды",
+      "Brand": "Бренд",
+      "Models": "Модели",
+      "Model": "Модель",
       "New Menu": "New Menu",
       "New Brand": "New Brand",
       "New Model": "New Model",
@@ -193,8 +195,8 @@ const messages = {
       "Favorites": "Favorites",
       "My Basket": "My Basket",
       "Profile": "Profile",
-      "Sells": "Продажи"
-
+      "Sells": "Продажи",
+      "Orders": "Заказы",
 
       }
   }

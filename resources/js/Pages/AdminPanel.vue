@@ -17,5 +17,8 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.v-list-item__title {
+  white-space: pre-wrap !important;
+}
 </style>
