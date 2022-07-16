@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Model;
+use App\Models\Order;
 use App\Models\OrderDetails;
 use App\Models\Product;
 use App\Models\Slide;
@@ -21,8 +22,16 @@ class AdminController extends Controller
         $users = User::with('roles')->get();
         $orderDetails = OrderDetails::with('product:id,name')->get();
         $products_count = Product::all()->count();
+        $total_sell = Order::sum('total_price');
 
-        return Inertia::render('AdminPanel', ['orderDetails' => $orderDetails, 'users' => $users, 'users_count' => $users->count(), 'products_count' => $products_count]);
+        return Inertia::render('AdminPanel', 
+            [
+                'orderDetails' => $orderDetails,
+                'users' => $users, 'users_count' => $users->count(),
+                'products_count' => $products_count,
+                'total_sell' => $total_sell
+            ]
+        );
     }
 
     public function menus()

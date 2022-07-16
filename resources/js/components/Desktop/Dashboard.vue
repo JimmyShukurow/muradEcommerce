@@ -1,46 +1,55 @@
 <template>
   <v-layout class="ma-2">
     <v-row>
-      <InertiaLink href="/users" as="v-card" class="ma-5" height="200px" width="30%">
+      <InertiaLink href="/users" as="v-card" class="ma-5" height="200px" width="30%" color="#34eb52">
         <v-row class="ma-1 display-2 blue--text">
           <div style="width:100%">
             <v-row class="pa-5">
-              {{$t('Users')}}
+              {{ $t('Users') }}
               <v-spacer></v-spacer>
               <v-btn depressed dark fab color="blue">
                 <v-icon large>mdi-account</v-icon>
               </v-btn>
             </v-row>
           </div>
-          {{users_count}}
+          <v-row class="ma-5">
+            <v-spacer></v-spacer>
+            {{ users_count }}
+          </v-row>
         </v-row>
       </InertiaLink>
-      <InertiaLink href="/products" as="v-card" class="ma-5" height="200px" width="30%">
-        <v-row class="ma-1 display-2 blue--text">
+      <InertiaLink href="/products" as="v-card" class="ma-5" height="200px" width="30%" color="#d534eb">
+        <v-row class="ma-1 display-2 red--text">
           <div style="width:100%">
             <v-row class="pa-5">
-              {{$t('Products')}}
+              {{ $t('Products') }}
               <v-spacer></v-spacer>
               <v-btn depressed dark fab color="blue">
                 <v-icon large>mdi-inbox-multiple</v-icon>
               </v-btn>
             </v-row>
           </div>
-          {{ products_count }}
+          <v-row class="ma-5">
+            <v-spacer></v-spacer>
+            {{ products_count }}
+          </v-row>
         </v-row>
       </InertiaLink>
-      <InertiaLink as="v-card" href="/" class="ma-5" height="200px" width="30%">
-        <v-row class="ma-1 display-2 blue--text">
+      <InertiaLink as="v-card" href="/" class="ma-5" height="200px" width="30%" color="#eb4c34">
+        <v-row class="ma-1 display-2 yellow--text">
           <div style="width:100%">
             <v-row class="pa-5">
-              {{$t('Sells')}}
+              {{ $t('Sells') }}
               <v-spacer></v-spacer>
               <v-btn depressed dark fab color="blue">
                 <v-icon large>mdi-cash</v-icon>
               </v-btn>
             </v-row>
           </div>
-          119
+          <v-row class="ma-5">
+            <v-spacer></v-spacer>
+            {{ total_sell }} manat
+          </v-row>
         </v-row>
       </InertiaLink>
       <v-data-table :headers="orderHeaders" :items="orderDetails" :items-per-page="10" style="width:45%"
@@ -57,7 +66,7 @@
 import { InertiaLink } from "@inertiajs/inertia-vue";
 
 export default {
-  props: ['orderDetails', 'users', 'products_count', 'users_count'],
+  props: ['orderDetails', 'users', 'products_count', 'users_count', "total_sell"],
   components: {
     InertiaLink,
   },
