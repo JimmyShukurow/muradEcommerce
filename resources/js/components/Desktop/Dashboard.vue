@@ -5,35 +5,35 @@
         <v-row class="ma-1 display-2 blue--text">
           <div style="width:100%">
             <v-row class="pa-5">
-              Users
+              {{$t('Users')}}
               <v-spacer></v-spacer>
               <v-btn depressed dark fab color="blue">
                 <v-icon large>mdi-account</v-icon>
               </v-btn>
             </v-row>
           </div>
-          119
+          {{users_count}}
         </v-row>
       </InertiaLink>
       <InertiaLink href="/products" as="v-card" class="ma-5" height="200px" width="30%">
         <v-row class="ma-1 display-2 blue--text">
           <div style="width:100%">
             <v-row class="pa-5">
-              Products
+              {{$t('Products')}}
               <v-spacer></v-spacer>
               <v-btn depressed dark fab color="blue">
                 <v-icon large>mdi-inbox-multiple</v-icon>
               </v-btn>
             </v-row>
           </div>
-          119
+          {{ products_count }}
         </v-row>
       </InertiaLink>
       <InertiaLink as="v-card" href="/" class="ma-5" height="200px" width="30%">
         <v-row class="ma-1 display-2 blue--text">
           <div style="width:100%">
             <v-row class="pa-5">
-              Sells
+              {{$t('Sells')}}
               <v-spacer></v-spacer>
               <v-btn depressed dark fab color="blue">
                 <v-icon large>mdi-cash</v-icon>
@@ -57,7 +57,7 @@
 import { InertiaLink } from "@inertiajs/inertia-vue";
 
 export default {
-  props: ['orderDetails', 'users'],
+  props: ['orderDetails', 'users', 'products_count', 'users_count'],
   components: {
     InertiaLink,
   },
@@ -74,7 +74,7 @@ export default {
         { text: 'Ulanyjy', align: 'start', value: 'name' },
         { text: 'Email', value: 'email' },
         { text: 'Role', value: 'roles[0].name' },
-        { text: 'Wagty', value: 'created_at' },
+        { text: 'Döredilen Wagty', value: 'created_at' },
       ],
     }
 
@@ -82,5 +82,8 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.v-list-item__title {
+  white-space: pre-wrap !important;
+}
 </style>

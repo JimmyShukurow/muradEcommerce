@@ -19,7 +19,7 @@
                 <v-layout align-center>
                   <v-row class="mx-auto" align="center" justify="center">
                     <v-col cols="12" align="center" class="py-1">
-                      <v-btn fab elevation="0" x-small dark color="green" @click="product.quantity++">
+                      <v-btn fab elevation="0" x-small dark color="green" @click="[product.quantity < product.product.quantity ? product.quantity++ : '']">
                         <v-icon>mdi-plus</v-icon>
                       </v-btn>
                     </v-col>

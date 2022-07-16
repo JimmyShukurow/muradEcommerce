@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Basket;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -23,6 +24,11 @@ class OrderController extends Controller
                 'current_price' => $basket['product']['price'],
                 'total_price' =>  $basket['quantity']* $basket['product']['price'],
             ]);
+
+            $product = Product::find($basket['product_id']);
+
+            $newQuantity = $product->quantity - $basket['quantity'];
+            $product->update(['quantity' => $newQuantity]);
         }
 
         $basket = Basket::where('user_id', $request->user()->id)->delete();

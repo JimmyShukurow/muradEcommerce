@@ -20,8 +20,9 @@ class AdminController extends Controller
     {
         $users = User::with('roles')->get();
         $orderDetails = OrderDetails::with('product:id,name')->get();
+        $products_count = Product::all()->count();
 
-        return Inertia::render('AdminPanel', ['orderDetails' => $orderDetails, 'users' => $users]);
+        return Inertia::render('AdminPanel', ['orderDetails' => $orderDetails, 'users' => $users, 'users_count' => $users->count(), 'products_count' => $products_count]);
     }
 
     public function menus()

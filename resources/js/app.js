@@ -69,6 +69,7 @@ const messages = {
         "Favorites": "Favorites",
         "My Basket": "My Basket",
         "Profile": "Profile",
+        "Sells": "Sells"
       },
     tkm: {
         "cancel": 'Yok',
@@ -130,6 +131,7 @@ const messages = {
         "Favorites": "Saýlamalar",
         "My Basket": "Sepedim",
         "Profile": "Hasabym",
+        "Sells": "Satyşlar"
 
       },
     ru: {
@@ -143,8 +145,8 @@ const messages = {
       "Dashboard": "Контрольная Панель",
       "Menus": "Категории",
       "Slides": "Слайды",
-      "Users": "Ulanyjylar",
-      "Products": "Önümler",
+      "Users": "Пользователи",
+      "Products": "Товары",
       "Roles": "Rollar",
       "Role": "Role",
       "Add new Product": "Täze önüm goş",
@@ -191,6 +193,7 @@ const messages = {
       "Favorites": "Favorites",
       "My Basket": "My Basket",
       "Profile": "Profile",
+      "Sells": "Продажи"
 
 
       }

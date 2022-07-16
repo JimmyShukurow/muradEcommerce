@@ -7,7 +7,7 @@
         </v-layout>
         <v-list>
           <v-list-item v-for="item in items" :key="item.title" link>
-            <inertia-link as="v-list-item" :href="item.route">
+            <inertia-link as="v-list-item" :href="item.route" active-class>
               <v-list-item-icon>
                 <v-icon>{{ item.icon }}</v-icon>
               </v-list-item-icon>
