@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\Mobile\ProductController as MobileProductController;
 use App\Http\Controllers\ModelController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingsController;
@@ -114,3 +115,7 @@ Route::post('/models', [ModelController::class, 'store']);
 Route::get('/model/{model}', [ModelController::class, 'edit']);
 Route::put('/models/{model}', [ModelController::class, 'update']);
 Route::delete('/models/{model}', [ModelController::class, 'destroy']);
+
+// orders
+
+Route::post('/orders', [OrderController::class, 'store']);

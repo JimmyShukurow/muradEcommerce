@@ -1,6 +1,6 @@
 <template>
   <AdminLayout>
-    <Dashboard />
+    <Dashboard :orderDetails="orderDetails" :users="users"/>
   </AdminLayout>
 </template>
 
@@ -9,6 +9,7 @@ import Dashboard from "../components/Desktop/Dashboard.vue";
 import AdminLayout from "../Layouts/admin/Admin.vue";
 
 export default {
+  props: ['orderDetails', 'users'],
   components: {
     Dashboard,
     AdminLayout,

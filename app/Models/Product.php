@@ -11,6 +11,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use App\Traits\HasTranslations;
+use Carbon\Carbon;
 
 class Product extends Model implements HasMedia
 {
@@ -50,7 +51,7 @@ class Product extends Model implements HasMedia
 
     public function inBasket()
     {
-        return $this->belongsTo(Basket::class,'id', 'product_id');
+        return $this->belongsTo(Basket::class, 'id', 'product_id');
     }
 
     public function brand()
@@ -61,5 +62,10 @@ class Product extends Model implements HasMedia
     public function model()
     {
         return $this->hasOne(ModelsModel::class, 'id', 'model_id');
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->format('Y-m-d H:i:s');
     }
 }

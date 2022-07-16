@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -34,5 +35,14 @@ class User extends Authenticatable
     public function basket()
     {
         return $this->belongsToMany(Product::class, 'baskets', 'user_id');
+    }
+    public function getCreatedAtAttribute($date)
+    {
+        return Carbon::parse($date)->format('d-m-Y H:i:s');
+    }
+
+    public function getUpdatedAtAttribute($date)
+    {
+        return Carbon::parse($date)->format('d-m-Y H:i:s');
     }
 }

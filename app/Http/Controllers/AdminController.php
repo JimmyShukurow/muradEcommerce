@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Model;
+use App\Models\OrderDetails;
 use App\Models\Product;
 use App\Models\Slide;
 use App\Models\User;
@@ -17,7 +18,10 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return Inertia::render('AdminPanel');
+        $users = User::with('roles')->get();
+        $orderDetails = OrderDetails::with('product:id,name')->get();
+
+        return Inertia::render('AdminPanel', ['orderDetails' => $orderDetails, 'users' => $users]);
     }
 
     public function menus()
