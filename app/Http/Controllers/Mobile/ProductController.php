@@ -58,4 +58,12 @@ class ProductController extends Controller
         return Redirect::back()->setStatusCode(303)->with('success', 'Product was added');
 
     }
+
+    public function allProducts()
+    {
+        $products =  Product::with('previewImage', 'brand:id,name', 'model:id,name')->orderBY('created_at', 'DESC')->get();
+        
+        return Inertia::render('Mobile/Products/Products', ['products' => $products]);        
+
+    }
 }
