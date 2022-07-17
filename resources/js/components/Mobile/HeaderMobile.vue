@@ -18,7 +18,7 @@
     </v-container>
     <v-app-bar class="white">
       <v-row align="center">
-        <v-sheet class="mx-auto fullwidth pr-2" max-width="768px" width="100%">
+        <v-sheet class="mx-auto fullwidth pr-2" max-width="100%" width="100%">
           <v-slide-group multiple prev-icon="mdi-chevron-left" next-icon="mdi-chevron-right">
 
             <InertiaLink as="v-btn" href="/mobile/all-products" outlined text class="mr-2">{{$t('Discover')}}</InertiaLink>
@@ -58,5 +58,8 @@ export default {
 .fullwidth {
   max-width: 100%;
   width: 100%;
+}
+.v-sheet {
+  overflow-x: scroll;
 }
 </style>
