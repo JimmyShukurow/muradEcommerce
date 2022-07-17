@@ -193,7 +193,7 @@ export default {
       this.$inertia.post('/orders', { "basket": this.basket, "total_price": this.totalPrice }, afterRequest);
     },
     payFromWallet() {
-      if (this.walletsum >= this.totalPrice) {
+      if (this.walletsum >= this.totalPrice && this.wallet > 0) {
         let afterRequest = {
           onSuccess: (data) => {
             this.sanckbarColor = 'success';
