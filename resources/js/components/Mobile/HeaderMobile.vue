@@ -5,7 +5,7 @@
         <v-col cols="10">
           <v-text-field class="rounded-lg" flat dense height="50px" solo prepend-inner-icon="mdi-magnify"
             hide-details="auto" color="orange" outlined clearable clear-icon="mdi-close"
-            label="Birazatlar yaz gozlemek ucin"></v-text-field>
+            :label="$t('What to search...')"></v-text-field>
         </v-col>
         <v-col cols="2" align="center">
           <v-badge overlap color="orange darken-4" content="8+">
@@ -21,7 +21,7 @@
         <v-sheet class="mx-auto fullwidth pr-2" max-width="768px" width="100%">
           <v-slide-group multiple prev-icon="mdi-chevron-left" next-icon="mdi-chevron-right">
 
-            <InertiaLink as="v-btn" href="/mobile/all-products" outlined text class="mr-2">Keşfet</InertiaLink>
+            <InertiaLink as="v-btn" href="/mobile/all-products" outlined text class="mr-2">{{$t('Discover')}}</InertiaLink>
             <v-divider vertical></v-divider>
 
             <v-layout v-for="(category, id) in categories" :key="id">

@@ -18,7 +18,7 @@
           {{ product.model.name[$i18n.locale] }}
         </v-row>
         <v-row class="ma-0">
-          {{ product.size }} razmer
+          {{ product.size + ' ' + $t('size')}} 
           <v-spacer></v-spacer>
           <span class="font-weight-bold">{{ product.price }} mnt</span>
         </v-row>

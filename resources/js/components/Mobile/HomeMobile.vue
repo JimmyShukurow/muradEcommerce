@@ -18,7 +18,7 @@
       <v-badge color="grey darken-4" bottom overlap offset-x="40" offset-y="40" :content="content"></v-badge>
     </v-layout>
     <v-sheet class="ma-2">
-      <span class="font-weight-black"> Yeni Hizmetlerimizi Keşfet!</span>
+      <span class="font-weight-black"> {{$t('Discover Our New Services!')}}</span>
     </v-sheet>
     <v-sheet class="ma-2">
       <v-row>

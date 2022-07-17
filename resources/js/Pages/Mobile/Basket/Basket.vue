@@ -19,7 +19,8 @@
                 <v-layout align-center>
                   <v-row class="mx-auto" align="center" justify="center">
                     <v-col cols="12" align="center" class="py-1">
-                      <v-btn fab elevation="0" x-small dark color="green" @click="[product.quantity < product.product.quantity ? product.quantity++ : '']">
+                      <v-btn fab elevation="0" x-small dark color="green"
+                        @click="[product.quantity < product.product.quantity ? product.quantity++ : '']">
                         <v-icon>mdi-plus</v-icon>
                       </v-btn>
                     </v-col>
@@ -51,12 +52,30 @@
       </v-row>
       <v-divider class="my-5"></v-divider>
       <v-row class="ma-5">
-        <span class="text-h5"> Toplam: </span>
+        <span class="text-h5"> {{ $t('Sum:') }} </span>
         <v-spacer></v-spacer>
         <span class="text-h5"> {{ totalPrice }} manat</span>
       </v-row>
+      <v-card class="mb-5">
+        <v-btn block dark color="orange" @click="openWallet"> {{ $t('Pay From Wallet') }} </v-btn>
+        <v-expand-transition>
+          <div v-show="wallet">
+            <v-divider></v-divider>
+            <v-card-text ref="wallet">
+              <div class="text-center text-h4 my-5">
+                {{ $t('In the Wallet:') + ' ' + walletsum + ' ' + 'manat' }}
+              </div>
+              <v-row class="mx-2 my-1">
+                <v-btn dark color="primary" @click="payFromWallet()"> {{ $t('Pay') }} </v-btn>
+                <v-spacer></v-spacer>
+                <span class="text-h5 ">{{ totalPrice }} manat </span>
+              </v-row>
+            </v-card-text>
+          </div>
+        </v-expand-transition>
+      </v-card>
       <v-card>
-        <v-btn block dark color="orange" @click="openVisaCard"> Tolegi gecir </v-btn>
+        <v-btn block  color="orange" disabled @click="openVisaCard"> {{ $t('Pay All') }} </v-btn>
         <v-expand-transition>
           <div v-show="show">
             <v-divider></v-divider>
@@ -73,7 +92,7 @@
                   </v-col>
                 </v-row>
                 <v-row class="mx-2 my-1">
-                  <v-btn dark color="primary" @click="pay()"> Pay </v-btn>
+                  <v-btn dark color="primary" @click="pay()"> {{ $t('Pay') }} </v-btn>
                   <v-spacer></v-spacer>
                   <span class="text-h5">{{ totalPrice }} manat </span>
                 </v-row>
@@ -101,7 +120,7 @@ import { InertiaLink } from "@inertiajs/inertia-vue";
 import Confirm from "../../../components/ConfirmDlg.vue";
 
 export default {
-  props: ["basket"],
+  props: ["basket", "walletsum"],
   components: {
     MobileLayout,
     InertiaLink,
@@ -109,6 +128,7 @@ export default {
   },
   data: () => ({
     show: false,
+    wallet: false,
     snackbar: false,
     sanckbarColor: 'success',
     message: ''
@@ -154,6 +174,12 @@ export default {
         this.$vuetify.goTo(this.$refs.visa);
       }, 100);
     },
+    openWallet() {
+      this.wallet = !this.wallet;
+      setTimeout(() => {
+        this.$vuetify.goTo(this.$refs.wallet);
+      }, 100);
+    },
     pay() {
       let afterRequest = {
         onSuccess: (data) => {
@@ -162,9 +188,27 @@ export default {
           this.message = data.props.message.success;
           this.show = false;
         },
-        onError: () => {}
+        onError: () => { }
       }
       this.$inertia.post('/orders', { "basket": this.basket, "total_price": this.totalPrice }, afterRequest);
+    },
+    payFromWallet() {
+      if (this.walletsum >= this.totalPrice) {
+        let afterRequest = {
+          onSuccess: (data) => {
+            this.sanckbarColor = 'success';
+            this.snackbar = true;
+            this.message = data.props.message.success;
+            this.show = false;
+          },
+          onError: () => { }
+        }
+        this.$inertia.post('/orders', { "basket": this.basket, "total_price": this.totalPrice }, afterRequest);
+      } else {
+        this.sanckbarColor = 'error'
+        this.snackbar = true;
+        this.message = this.$t('Not enough money');
+      }
     }
   }
 };

@@ -6,6 +6,7 @@ use App\Http\Requests\LoginRequest;
 use App\Models\Basket;
 use App\Models\Favorite;
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -55,6 +56,7 @@ class UserController extends Controller
             'address' => $request->address,
             'phone' => $request->phone
         ]);
+        $user->wallet()->create(['quantity' => 0]);
         if (User::all()->count() == 1) {
             $user->assignRole('admin');
         } else {
@@ -90,9 +92,10 @@ class UserController extends Controller
     public function basket(Request  $request)
     {
         if (Auth::user()) {
+            $wallet = Wallet::where('user_id', $request->user()->id)->first()->pluck('quantity');
             $basket = Basket::where('user_id', $request->user()->id)->get();
             $basket->load('product.previewImage');
-            return Inertia::render('Mobile/Basket/Basket', ['basket' => $basket]);
+            return Inertia::render('Mobile/Basket/Basket', ['basket' => $basket, 'walletsum' => $wallet]);
         }
 
         return Inertia::render('Mobile/Login/Login');

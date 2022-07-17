@@ -45,4 +45,9 @@ class User extends Authenticatable
     {
         return Carbon::parse($date)->format('d-m-Y H:i:s');
     }
+
+    public function wallet()
+    {
+        return $this->hasOne(Wallet::class,'user_id', 'id');
+    }
 }

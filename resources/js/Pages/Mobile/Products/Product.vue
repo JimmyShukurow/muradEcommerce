@@ -23,7 +23,7 @@
           {{ product.price}} manat
         </div>
         <v-spacer></v-spacer>
-        <v-btn  dark color="orange" @click="addToBasket">Add To Basket</v-btn>
+        <v-btn  dark color="orange" @click="addToBasket">{{$t("Add To Basket")}}</v-btn>
       </v-card-actions>
       </v-card>
        <v-snackbar :color="sanckbarColor" v-model="snackbar" timeout="2000" transition="scale-transition">
