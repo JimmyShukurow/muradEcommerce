@@ -62,7 +62,7 @@ class UserController extends Controller
         }
         Auth::login($user);
         $user['roles'] = $user->roles;
-        return $user;
+        return Redirect::to('/');
     }
 
     public function profile()
@@ -107,16 +107,15 @@ class UserController extends Controller
     {
         $credentials = $request->getCredentials();
 
-        if(!Auth::validate($credentials)):
-            return redirect()->to('login')
-                ->withErrors(trans('auth.failed'));
-        endif;
+        if(!Auth::validate($credentials)){
+            return Redirect::to('/loginMobile')->withErrors('Error');
+        }
 
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
         Auth::login($user);
 
-        return Redirect::route('home');
+        return Redirect::to('/');
     }
 
     public function edit(User $user)

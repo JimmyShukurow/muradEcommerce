@@ -42,6 +42,14 @@
         <v-icon color="orange" class="mr-1">mdi-chevron-right</v-icon>
       </v-sheet>
       <v-divider class="ml-8"></v-divider>
+      <InertiaLink as="v-sheet" href="/logout" method="post" class="py-3 d-flex justify-space-between">
+        <div>
+          <v-icon class="mr-2">mdi-logout</v-icon>
+          Logout
+        </div>
+        <v-icon color="orange" class="mr-1">mdi-chevron-right</v-icon>
+      </InertiaLink>
+      <v-divider class="ml-8"></v-divider>
     </v-container>
   </MobileLayout>
 </template>
@@ -80,5 +88,4 @@ export default {
   padding: 20px;
   transform: translateY(-20px);
 }
-
 </style>

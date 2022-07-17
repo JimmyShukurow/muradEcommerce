@@ -18,9 +18,9 @@
           </v-container>
         </v-card-text>
         <v-card-actions>
-          <v-btn color="blue darken-1" text @click="register = true, login = false">Register</v-btn>
+          <v-btn color="blue darken-1" text @click="register = true, login = false">{{$t('Register')}}</v-btn>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="loginUser()">Login</v-btn>
+          <v-btn color="blue darken-1" text @click="loginUser()">{{$t('Login')}}</v-btn>
         </v-card-actions>
       </v-card>
     </v-layout>
@@ -88,14 +88,15 @@ export default {
         onError:() => {},
 
       }
-        this.$inertia.post('/mobileLogin', this.data, afterRequest);
+        this.$inertia.post('/loginMobile', this.data, afterRequest);
     },
     registerUser() {
-      axios.post('/register', this.data).then((response) => {
-    
-      }
+       let afterRequest = {
+        onSuccess:() => {},
+        onError:() => {},
 
-      );
+      }
+      this.$inertia.post('/register', this.data, afterRequest );
     }
   }
 };
