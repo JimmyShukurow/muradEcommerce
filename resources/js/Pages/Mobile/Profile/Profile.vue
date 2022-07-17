@@ -1,6 +1,5 @@
 <template>
   <MobileLayout>
-
     <v-container>
       <v-layout class=" gradientclass ">
         <span class="white--text font-weight-bold title">{{ $page.props.user.name }}</span>
@@ -27,13 +26,13 @@
         <v-icon color="orange" class="mr-1">mdi-chevron-right</v-icon>
       </v-sheet>
       <v-divider class="ml-8"></v-divider>
-      <v-sheet class="py-3 d-flex justify-space-between">
+      <InertiaLink as="v-sheet" href="/mobile/wallet" class="py-3 d-flex justify-space-between">
         <div>
           <v-icon class="mr-2">mdi-wallet</v-icon>
           cuzdanim
         </div>
         <v-icon color="orange" class="mr-1">mdi-chevron-right</v-icon>
-      </v-sheet>
+      </InertiaLink>
       <v-divider class="ml-8"></v-divider>
       <v-sheet class="py-3 d-flex justify-space-between">
         <div>
@@ -49,9 +48,12 @@
 
 <script>
 import MobileLayout from "../../../Layouts/mobile/MobileLayout.vue";
+import { InertiaLink } from "@inertiajs/inertia-vue";
+
 export default {
   components: {
-    MobileLayout
+    MobileLayout,
+    InertiaLink,
   }
 };
 </script>
@@ -77,6 +79,6 @@ export default {
   width: 85%;
   padding: 20px;
   transform: translateY(-20px);
-
 }
+
 </style>

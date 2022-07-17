@@ -13,6 +13,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WalletController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,6 +60,9 @@ Route::prefix('mobile')->group(function(){
     Route::delete('/basket/remove/{product_id}', [MobileProductController::class, 'removeItem']);
     Route::post('/favorite/add/{product_id}', [MobileProductController::class, 'addToFavorites']);
     Route::delete('/favorite/remove/{favorite}', [FavoriteController::class, 'delete']);
+    Route::get('/wallet', [WalletController::class, 'myMallet']);
+    Route::middleware('wallet')->get('/wallet/purchase/{code}', [WalletController::class, 'myMallet']);
+
 });
 
 //Mobile Footer
@@ -119,5 +123,7 @@ Route::put('/models/{model}', [ModelController::class, 'update']);
 Route::delete('/models/{model}', [ModelController::class, 'destroy']);
 
 // orders
-
 Route::post('/orders', [OrderController::class, 'store']);
+
+// wallets
+

@@ -15,7 +15,7 @@
             class="control-width mx-10"
             outlined
             :items="categories"
-            item-text="name"
+            :item-text="'name[' + $i18n.locale + ']'"
             item-value="id"
             dense
             @change="changeTopSlider"
@@ -65,7 +65,7 @@
           class="control-width mx-10"
           outlined
           :items="categories"
-          item-text="name"
+          :item-text="'name[' + $i18n.locale + ']'"
           item-value="id"
           dense
           @change="changeFirstSlider"
@@ -115,7 +115,7 @@
           class="control-width mx-10"
           outlined
           :items="categories"
-          item-text="name"
+          :item-text="'name[' + $i18n.locale + ']'"
           item-value="id"
           dense
           @change="changeSecondSlider"
@@ -164,7 +164,7 @@
           class="control-width mx-10"
           outlined
           :items="categories"
-          item-text="name"
+          :item-text="'name[' + $i18n.locale + ']'"
           item-value="id"
           dense
           @change="changeThirdSlider"

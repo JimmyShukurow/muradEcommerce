@@ -84,9 +84,12 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .admin-layout a {
   text-decoration: none;
   max-height: 100vh;
+}
+.v-list-item__title {
+  white-space: pre-wrap !important;
 }
 </style>

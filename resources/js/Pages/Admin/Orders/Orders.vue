@@ -7,17 +7,17 @@
         <v-simple-table class="m-5">
             <thead>
                 <tr>
-                    <th class="text-left headline">{{ $t("User") }}</th>
-                    <th class="text-left headline">{{ $t("Total_price") }}</th>
-                    <th class="text-left headline">{{ $t("Created_at") }}</th>
+                    <th class="text-left headline" style="width:30%">{{ $t("User") }}</th>
+                    <th class="text-left headline" style="width:30%">{{ $t("Total price") }}</th>
+                    <th class="text-left headline" style="width:30%">{{ $t("Created at") }}</th>
 
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="(order, id) in orders" :key="id">
-                    <td class="deep-orange--text">{{ order.user.name }}</td>
-                    <td class="deep-orange--text">{{ order.total_price }} manat</td>
-                    <td class="deep-orange--text">{{ order.created_at }}</td>
+                    <td class="deep-orange--text" >{{ order.user.name }}</td>
+                    <td class="deep-orange--text" >{{ order.total_price }} manat</td>
+                    <td class="deep-orange--text" >{{ order.created_at }}</td>
                 </tr>
             </tbody>
         </v-simple-table>

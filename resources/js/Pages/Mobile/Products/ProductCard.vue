@@ -17,11 +17,12 @@
           <v-spacer></v-spacer>
           {{ product.model.name[$i18n.locale] }}
         </v-row>
-        {{ product.size }} razmer
+        <v-row class="ma-0">
+          {{ product.size }} razmer
+          <v-spacer></v-spacer>
+          <span class="font-weight-bold">{{ product.price }} mnt</span>
+        </v-row>
       </v-card-text>
-      <div class="mx-3" align="center">
-        {{ product.price }} mnt
-      </div>
     </v-card>
   </v-layout>
 </template>

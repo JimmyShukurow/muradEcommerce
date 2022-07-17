@@ -21,6 +21,7 @@ const messages = {
         "Menus": "Menus",
         "Slides": "Slides",
         "Users": "Users",
+        "User": "User",
         "Products": "Products",
         "Roles": "Roles",
         "Role": "Role",
@@ -71,6 +72,8 @@ const messages = {
         "Profile": "Profile",
         "Sells": "Sells",
         "Orders": "Orders",
+        "Total price": "Total price",
+        "Created at": "Created at",
       },
     tkm: {
         "cancel": 'Yok',
@@ -84,6 +87,7 @@ const messages = {
         "Menus": "Kategoriýalar",
         "Slides": "Slaýdlar",
         "Users": "Ulanyjylar",
+        "User": "Ulanyjy",
         "Products": "Önümler",
         "Roles": "Rollar",
         "Role": "Roly",
@@ -134,6 +138,8 @@ const messages = {
         "Profile": "Hasabym",
         "Sells": "Satyşlar",
         "Orders": "Zakazlar",
+        "Total price": "Jemi Baha",
+        "Created at": "Alnan wagty",
 
       },
     ru: {
@@ -148,6 +154,7 @@ const messages = {
       "Menus": "Категории",
       "Slides": "Слайды",
       "Users": "Пользователи",
+      "User": "Пользователь",
       "Products": "Товары",
       "Roles": "Роли",
       "Role": "Роль",
@@ -197,6 +204,8 @@ const messages = {
       "Profile": "Profile",
       "Sells": "Продажи",
       "Orders": "Заказы",
+      "Total price": "Итоговая цена",
+      "Created at": "Дата покупки"
 
       }
   }
