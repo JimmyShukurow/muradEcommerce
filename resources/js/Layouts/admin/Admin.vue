@@ -21,7 +21,7 @@
 
         <template v-slot:append>
           <div class="pa-2">
-            <v-btn  @click="logout()" block>Logout</v-btn>
+            <v-btn  @click="logout()" block>{{$t('Logout')}}</v-btn>
           </div>
         </template>
       </v-navigation-drawer>

@@ -94,7 +94,10 @@ const messages = {
         "Phone Number": "Phone Number",
         "Address": "Address",
         "Already has profile": "Already has profile",
-        "indicates required field": "indicates required field"
+        "indicates required field": "indicates required field",
+        "Hello!": "Hello!",
+        "Logout": "Logout",
+
       },
     tkm: {
         "cancel": 'Yok',
@@ -181,7 +184,9 @@ const messages = {
         "Phone Number": "Telefon nomeri",
         "Adress": "Salgysy",
         "Already has profile": "Hasabyňyz barmy?",
-        "indicates required field": "hökman doldurmaly ýerler"
+        "indicates required field": "hökman doldurmaly ýerler",
+        "Hello!": "Salam!",
+        "Logout": "Hasapdan çykmak",
 
       },
     ru: {
@@ -268,7 +273,9 @@ const messages = {
         "Phone Number": "Номер телефона",
         "Adress": "Адрес",
         "Already has profile": "Уже есть профиль",
-        "indicates required field": "указывает обязательное поле"
+        "indicates required field": "указывает обязательное поле",
+        "Hello!": "Привет!",
+        "Logout": "Выйти",
 
       }
   }

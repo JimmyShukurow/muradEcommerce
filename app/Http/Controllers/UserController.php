@@ -111,14 +111,14 @@ class UserController extends Controller
         $credentials = $request->getCredentials();
 
         if(!Auth::validate($credentials)){
-            return Redirect::to('/loginMobile')->withErrors('Error');
+            return Redirect::to('/mobileLogin')->withErrors(['error' => 'Error']);
         }
 
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
         Auth::login($user);
 
-        return Redirect::to('/');
+        return Redirect::route('home');
     }
 
     public function edit(User $user)
