@@ -24,7 +24,7 @@ export default {
 
 <style scoped>
 .lang {
-  position: absolute;
+  position: fixed;
   bottom: 80px;
   right: 15px;
   z-index: 10;
