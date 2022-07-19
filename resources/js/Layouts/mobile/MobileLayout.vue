@@ -29,4 +29,7 @@ export default {
   right: 15px;
   z-index: 10;
 }
+main {
+  max-width: 100vw;
+}
 </style>
