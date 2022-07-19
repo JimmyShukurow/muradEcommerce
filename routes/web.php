@@ -61,7 +61,7 @@ Route::prefix('mobile')->group(function(){
     Route::post('/favorite/add/{product_id}', [MobileProductController::class, 'addToFavorites']);
     Route::delete('/favorite/remove/{favorite}', [FavoriteController::class, 'delete']);
     Route::get('/wallet', [WalletController::class, 'myMallet']);
-    Route::middleware('wallet')->get('/wallet/purchase/{code}', [WalletController::class, 'myMallet']);
+    Route::middleware('wallet')->get('/wallet/purchase/{code}', [WalletController::class, 'purchase']);
 
 });
 

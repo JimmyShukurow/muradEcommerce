@@ -13,7 +13,7 @@
       <v-sheet class="py-3 d-flex justify-space-between">
         <div>
           <v-icon class="mr-2">mdi-basket</v-icon>
-          siparishlerim
+          {{$t('Orders')}}
         </div>
         <v-icon color="orange" class="mr-1">mdi-chevron-right</v-icon>
       </v-sheet>
@@ -21,7 +21,7 @@
       <v-sheet class="py-3 d-flex justify-space-between">
         <div>
           <v-icon class="mr-2">mdi-cog</v-icon>
-          shifre degishtir
+          {{$t('Change Password')}}
         </div>
         <v-icon color="orange" class="mr-1">mdi-chevron-right</v-icon>
       </v-sheet>
@@ -29,7 +29,7 @@
       <InertiaLink as="v-sheet" href="/mobile/wallet" class="py-3 d-flex justify-space-between">
         <div>
           <v-icon class="mr-2">mdi-wallet</v-icon>
-          cuzdanim
+          {{ $t('Wallet')}}
         </div>
         <v-icon color="orange" class="mr-1">mdi-chevron-right</v-icon>
       </InertiaLink>
@@ -37,7 +37,7 @@
       <v-sheet class="py-3 d-flex justify-space-between">
         <div>
           <v-icon class="mr-2">mdi-help-circle</v-icon>
-          Yardim
+          {{$t('Help')}}
         </div>
         <v-icon color="orange" class="mr-1">mdi-chevron-right</v-icon>
       </v-sheet>

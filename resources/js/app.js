@@ -97,6 +97,9 @@ const messages = {
         "indicates required field": "indicates required field",
         "Hello!": "Hello!",
         "Logout": "Logout",
+        "Change Password" : "Change Password",
+        "Wallet": "Wallet",
+        "Help": "Help",
 
       },
     tkm: {
@@ -187,6 +190,10 @@ const messages = {
         "indicates required field": "hökman doldurmaly ýerler",
         "Hello!": "Salam!",
         "Logout": "Hasapdan çykmak",
+        "Change Password" : "Paroly çalyş",
+        "Wallet": "Gapjyk",
+        "Help": "Ugrukdurma",
+
 
       },
     ru: {
@@ -244,11 +251,11 @@ const messages = {
         "Image": "Image",
         "Description": "Description",
         "Size": "Size",
-        "Home": "Home",
-        "Fast Delivery": "Fast Delivery",
+        "Home": "Главная ",
+        "Fast Delivery": "Быстров",
         "Favorites": "Избранное",
         "My Basket": "Моя корзина",
-        "Profile": "Profile",
+        "Profile": "Профиль",
         "Sells": "Продажи",
         "Orders": "Заказы",
         "Total price": "Итоговая цена",
@@ -276,6 +283,11 @@ const messages = {
         "indicates required field": "указывает обязательное поле",
         "Hello!": "Привет!",
         "Logout": "Выйти",
+        "Change Password" : "Изменить пароль",
+        "Wallet": "Wallet",
+        "Help": "Справка",
+
+
 
       }
   }

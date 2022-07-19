@@ -12,12 +12,15 @@ class WalletController extends Controller
 {
     public function myMallet(Request $request)
     {
-        $url = 'http://www.nar-jan.com/'.$request->user()->id.Str::random(3).Carbon::now()->timestamp;
+        $url = 'http://www.nar-jan.com//wallet/purchase/'.$request->user()->id.Str::random(3).'-'.Carbon::now()->timestamp;
         return Inertia::render('Mobile/Wallet/Wallet', ['user' => $request->user()->id, 'url' => $url]);
     }
 
-    public function purchase(Request $request)
+    public function purchase($code)
     {
-        return Inertia::render('Mobile/Wallet/Purchase', ['user'=>User::first()]);
+        $array = explode('-', $code);
+        $id = substr($array[0], 0, strlen($array[0])-3);
+        $user = User::find($id);
+        return Inertia::render('Mobile/Wallet/Wallet', ['client' => $user->name, 'paycheckopen' => true ]);
     }
 }

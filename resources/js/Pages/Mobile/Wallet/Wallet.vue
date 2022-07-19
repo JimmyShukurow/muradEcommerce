@@ -14,8 +14,11 @@
             </div>
             <v-btn block class="mt-5" color="success">Pul tashla</v-btn>
 
-            <div class="text-center mt-5 pa-2 orange rounded-lg">
+            <div v-if="url" class="text-center mt-5 pa-2 orange rounded-lg">
                 <QRcode :url="url"></QRcode>
+            </div>
+            <div v-if="url" class="text-center mt-5 pa-2 orange rounded-lg">
+                <DepositMoney></DepositMoney>
             </div>
         </v-container>
     </MobileLayout>
@@ -24,12 +27,14 @@
 <script>
 import MobileLayout from "../../../Layouts/mobile/MobileLayout.vue";
 import QRcode from "../../../components/QRcode.vue";
+import DepositMoney from "../../../components/DepositMoney.vue";
 
 export default {
-    props: ['user', 'url'],
+    props: ['client', 'url', 'paycheckopen'],
     components: {
         MobileLayout,
-        QRcode
+        QRcode,
+        DepositMoney
     }
 
 }

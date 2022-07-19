@@ -10,7 +10,7 @@
     props:["url"],
     data() {
       return {
-        size: 300,
+        size: 250,
       }
     },
     components: {

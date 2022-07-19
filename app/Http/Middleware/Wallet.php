@@ -10,7 +10,6 @@ class Wallet
 
     public function handle($code ,Request $request, Closure $next)
     {
-        logger($code);
         $user = $request->user();
         if ($user->hasRole('wallet')) {
             return $next($request);

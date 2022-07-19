@@ -92,10 +92,10 @@ class UserController extends Controller
     public function basket(Request  $request)
     {
         if (Auth::user()) {
-            $wallet = Wallet::where('user_id', $request->user()->id)->first()->pluck('quantity');
+            $wallet = Wallet::where('user_id', $request->user()->id)->first();
             $basket = Basket::where('user_id', $request->user()->id)->get();
             $basket->load('product.previewImage');
-            return Inertia::render('Mobile/Basket/Basket', ['basket' => $basket, 'walletsum' => $wallet]);
+            return Inertia::render('Mobile/Basket/Basket', ['basket' => $basket, 'walletsum' => $wallet->quantity]);
         }
 
         return Inertia::render('Mobile/Login/Login');
