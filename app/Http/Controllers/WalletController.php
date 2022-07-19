@@ -12,7 +12,7 @@ class WalletController extends Controller
 {
     public function myMallet(Request $request)
     {
-        $url = 'http://www.nar-jan.com//wallet/purchase/'.$request->user()->id.Str::random(3).'-'.Carbon::now()->timestamp;
+        $url = 'http://www.nar-jan.com/mobile/wallet/purchase/'.$request->user()->id.Str::random(3).'-'.Carbon::now()->timestamp;
         return Inertia::render('Mobile/Wallet/Wallet', ['user' => $request->user()->id, 'url' => $url]);
     }
 
