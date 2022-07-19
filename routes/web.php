@@ -52,7 +52,7 @@ Route::get('/models', [AdminController::class, 'models']);
 
 //Moblie
 Route::post('/loginMobile', [UserController::class, 'loginMobile']);
-Route::prefix('mobile')->group(function(){
+Route::prefix('mobile')->group(function () {
     Route::get('/all-products', [MobileProductController::class, 'allProducts']);
     Route::get('/products/{category}', [MobileProductController::class, 'products']);
     Route::get('/product/{product}', [MobileProductController::class, 'product']);
@@ -61,8 +61,9 @@ Route::prefix('mobile')->group(function(){
     Route::post('/favorite/add/{product_id}', [MobileProductController::class, 'addToFavorites']);
     Route::delete('/favorite/remove/{favorite}', [FavoriteController::class, 'delete']);
     Route::get('/wallet', [WalletController::class, 'myMallet']);
-    Route::middleware('wallet')->get('/wallet/purchase/{code}', [WalletController::class, 'purchase']);
-
+    Route::group(['middleware' => ['role:wallet']], function () {
+        Route::get('/wallet/purchase/{code}', [WalletController::class, 'purchase']);
+    });
 });
 
 //Mobile Footer
@@ -96,7 +97,7 @@ Route::post('/settings', [SettingsController::class, 'store']);
 //menus
 Route::get('/menus/{menu}', [CategoryController::class, 'edit'])->name('admin.menu.edit');
 Route::get('/menu/create', [CategoryController::class, 'create']);
-Route::post('/menus',[CategoryController::class, 'store']);
+Route::post('/menus', [CategoryController::class, 'store']);
 Route::put('/menus/{menu}', [CategoryController::class, 'update']);
 Route::delete('/menus/{menu}', [CategoryController::class, 'delete']);
 
@@ -126,4 +127,3 @@ Route::delete('/models/{model}', [ModelController::class, 'destroy']);
 Route::post('/orders', [OrderController::class, 'store']);
 
 // wallets
-
