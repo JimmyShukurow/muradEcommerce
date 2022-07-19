@@ -87,6 +87,14 @@ const messages = {
         "Pay From Wallet": "Pay From Wallet",
         "In the Wallet:" : "In the wallet:",
         "Not enough money": "Not enough money!",
+        "password": "Password",
+        "User Profile": "User Profile",
+        "First name": "First name",
+        "Last name": "Last name",
+        "Phone Number": "Phone Number",
+        "Address": "Address",
+        "Already has profile": "Already has profile",
+        "indicates required field": "indicates required field"
       },
     tkm: {
         "cancel": 'Yok',
@@ -136,7 +144,7 @@ const messages = {
         "SecondSlider":"Ikinji slaýder",
         "ThirdSlider": "Üçünji slaýder",
         "Detail": "Görkez",
-        "Email": "Email",
+        "Email": "E-poçta",
         "Phone": "Telefony",
         "Address": "Adresi",
         "Price": "Bahasy",
@@ -166,7 +174,14 @@ const messages = {
         "Pay From Wallet": "Gapjykdan töle",
         "In the Wallet:" : "Gapjykda:",
         "Not enough money": "Gapjykda pul az!",
-
+        "password": "Parol",
+        "User Profile": "Ulanyjy bilgileri",
+        "First name": "Ady",
+        "Last name": "Familiýasy",
+        "Phone Number": "Telefon nomeri",
+        "Adress": "Salgysy",
+        "Already has profile": "Hasabyňyz barmy?",
+        "indicates required field": "hökman doldurmaly ýerler"
 
       },
     ru: {
@@ -216,7 +231,7 @@ const messages = {
         "SecondSlider":"SecondSlider",
         "ThirdSlider": "ThirdSlider",
         "Detail": "Detail",
-        "Email": "Email",
+        "Email": "Эл. адрес",
         "Phone": "Phone",
         "Address": "Address",
         "Price": "Price",
@@ -246,6 +261,14 @@ const messages = {
         "Pay From Wallet": "Оплатить из кошелька",
         "In the Wallet:" : "В кошельке:",
         "Not enough money": "Недостаточно денег!",
+        "password": "Пароль",
+        "User Profile": "Профиль пользователя",
+        "First name": "Имя",
+        "Last name": "Фамилия",
+        "Phone Number": "Номер телефона",
+        "Adress": "Адрес",
+        "Already has profile": "Уже есть профиль",
+        "indicates required field": "указывает обязательное поле"
 
       }
   }
