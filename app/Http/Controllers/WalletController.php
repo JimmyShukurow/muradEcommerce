@@ -18,9 +18,9 @@ class WalletController extends Controller
 
     public function purchase($code)
     {
-        $array = explode('-', $code);
-        $id = substr($array[0], 0, strlen($array[0])-3);
-        $user = User::find($id);
-        return Inertia::render('Mobile/Wallet/Wallet', ['client' => $user->name, 'paycheckopen' => true ]);
+        // $array = explode('-', $code);
+        // $id = substr($array[0], 0, strlen($array[0])-3);
+        // $user = User::find($id);
+        return Inertia::render('Mobile/Wallet/Wallet', ['client' => 'jimi', 'paycheckopen' => true ]);
     }
 }
