@@ -17,7 +17,7 @@
             <div v-if="url" class="text-center mt-5 pa-2 orange rounded-lg">
                 <QRcode :url="url"></QRcode>
             </div>
-            <div v-if="url" class="text-center mt-5 pa-2 orange rounded-lg">
+            <div v-if="paycheckopen" class="text-center mt-5 pa-2 orange rounded-lg">
                 <DepositMoney></DepositMoney>
             </div>
         </v-container>
