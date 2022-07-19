@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class Wallet
 {
 
-    public function handle($code ,Request $request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         $user = $request->user();
         if ($user->hasRole('wallet')) {
