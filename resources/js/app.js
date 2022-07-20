@@ -284,7 +284,7 @@ const messages = {
         "Hello!": "Привет!",
         "Logout": "Выйти",
         "Change Password" : "Изменить пароль",
-        "Wallet": "Wallet",
+        "Wallet": "Kошелек",
         "Help": "Справка",
 
 
