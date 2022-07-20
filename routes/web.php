@@ -61,9 +61,9 @@ Route::prefix('mobile')->group(function () {
     Route::post('/favorite/add/{product_id}', [MobileProductController::class, 'addToFavorites']);
     Route::delete('/favorite/remove/{favorite}', [FavoriteController::class, 'delete']);
     Route::get('/wallet', [WalletController::class, 'myMallet']);
-    // Route::group(['middleware' => ['role:wallet']], function () {
+    Route::group(['middleware' => ['role:wallet']], function () {
         Route::get('/wallet/purchase/{code}', [WalletController::class, 'purchase']);
-    // });
+    });
 });
 
 //Mobile Footer
