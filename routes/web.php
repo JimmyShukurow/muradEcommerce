@@ -127,3 +127,4 @@ Route::delete('/models/{model}', [ModelController::class, 'destroy']);
 Route::post('/orders', [OrderController::class, 'store']);
 
 // wallets
+Route::post('/wallet/deposit', [WalletController::class, 'deposit']);

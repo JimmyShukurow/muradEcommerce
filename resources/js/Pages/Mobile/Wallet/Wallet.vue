@@ -9,16 +9,19 @@
                     My Wallet
                 </v-sheet>
             </div>
-            <div class="text-center text-h4 border rounded-lg">
-                153 manat
+            <div v-if="!paycheckopen" class="text-center text-h4 border rounded-lg">
+                {{user.wallet.quantity + ' manat'}}
             </div>
-            <v-btn block class="mt-5" color="success">Pul tashla</v-btn>
+            <div v-if="client" class="text-center text-h4 border rounded-lg">
+                {{client.wallet.quantity + ' manat'}}
+            </div>
+            <v-btn v-if="!paycheckopen" block class="mt-5" color="success" @click="pay=!pay">Pul tashla</v-btn>
 
-            <div v-if="url" class="text-center mt-5 pa-2 orange rounded-lg">
+            <div v-if="url && pay" class="text-center mt-5 pa-2 orange rounded-lg">
                 <QRcode :url="url"></QRcode>
             </div>
-            <div v-if="paycheckopen" class="text-center mt-5 pa-2 orange rounded-lg">
-                <DepositMoney></DepositMoney>
+            <div v-if="paycheckopen" class="text-center mt-5 pa-2 rounded-lg">
+                <DepositMoney :user_id="client.id" ></DepositMoney>
             </div>
         </v-container>
     </MobileLayout>
@@ -30,12 +33,15 @@ import QRcode from "../../../components/QRcode.vue";
 import DepositMoney from "../../../components/DepositMoney.vue";
 
 export default {
-    props: ['client', 'url', 'paycheckopen'],
+    props: ['user', 'client', 'url', 'paycheckopen'],
     components: {
         MobileLayout,
         QRcode,
         DepositMoney
-    }
+    },
+    data:()=>({
+        pay:false
+    })
 
 }
 </script>
