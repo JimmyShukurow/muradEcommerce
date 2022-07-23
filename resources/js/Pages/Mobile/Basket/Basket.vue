@@ -64,6 +64,10 @@
             <v-card-text ref="wallet">
               <div class="text-center text-h4 my-5">
                 {{ $t('In the Wallet:') + ' ' + walletsum + ' ' + 'manat' }}
+                <v-row class="mt-5">
+                  <v-select  dense outlined :label="$t('State')" v-model="state" color="orange" :items="states[lang]" class="col-4"></v-select>
+                  <v-text-field outlined dense :label="$t('Address')" color="orange" v-model="address" class="col-8" required></v-text-field>
+                </v-row>
               </div>
               <v-row class="mx-2 my-1">
                 <v-btn dark color="primary" @click="payFromWallet()"> {{ $t('Pay') }} </v-btn>
@@ -75,7 +79,7 @@
         </v-expand-transition>
       </v-card>
       <v-card>
-        <v-btn block  color="orange" disabled @click="openVisaCard"> {{ $t('Pay All') }} </v-btn>
+        <v-btn block color="orange" disabled @click="openVisaCard"> {{ $t('Pay All') }} </v-btn>
         <v-expand-transition>
           <div v-show="show">
             <v-divider></v-divider>
@@ -129,9 +133,16 @@ export default {
   data: () => ({
     show: false,
     wallet: false,
+    state: null,
+    address: null,
     snackbar: false,
     sanckbarColor: 'success',
-    message: ''
+    message: null,
+    states: {
+      "en":["Ashgabat", "Ahal", "Balkan", "Dashoguz", "Lebap", "Mary"],
+      "tkm":["Aşgabat", "Ahal", "Balkan", "Daşoguz", "Lebap", "Mary"],
+      "ru":["Ашхабад", "Ахал", "Балкан", "Дашогуз", "Лебап", "Мaры"],
+    }
   }),
   computed: {
     totalPrice() {
@@ -140,6 +151,9 @@ export default {
         total += product.quantity * product.product.price;
       });
       return total;
+    },
+    lang() {
+      return this.$i18n.locale;
     }
   },
   methods: {
@@ -181,6 +195,13 @@ export default {
       }, 100);
     },
     pay() {
+      if (this.address == null || this.state == null) {
+        this.sanckbarColor = 'error';
+        this.snackbar = true;
+        this.message = this.$t('Address');
+        this.address = null;
+        return;
+      }
       let afterRequest = {
         onSuccess: (data) => {
           this.sanckbarColor = 'success';
@@ -190,20 +211,29 @@ export default {
         },
         onError: () => { }
       }
-      this.$inertia.post('/orders', { "basket": this.basket, "total_price": this.totalPrice }, afterRequest);
+      this.$inertia.post('/orders', { "basket": this.basket, "total_price": this.totalPrice, "address": this.state + ', ' + this.address }, afterRequest);
     },
     payFromWallet() {
+      if (this.address == null || this.state == null) {
+        this.sanckbarColor = 'error';
+        this.snackbar = true;
+        this.message = this.$t('Address');
+        this.address = null;
+        this.state = null;
+        return;
+      }
       if (this.walletsum >= this.totalPrice && this.wallet > 0) {
         let afterRequest = {
           onSuccess: (data) => {
             this.sanckbarColor = 'success';
             this.snackbar = true;
             this.message = data.props.message.success;
-            this.show = false;
+            this.address = null;
+            this.state = null;
           },
           onError: () => { }
         }
-        this.$inertia.post('/orders', { "basket": this.basket, "total_price": this.totalPrice }, afterRequest);
+        this.$inertia.post('/orders', { "basket": this.basket, "total_price": this.totalPrice, "address": this.state + ', ' + this.address }, afterRequest);
       } else {
         this.sanckbarColor = 'error'
         this.snackbar = true;

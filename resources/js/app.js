@@ -100,6 +100,7 @@ const messages = {
         "Change Password" : "Change Password",
         "Wallet": "Wallet",
         "Help": "Help",
+        "State": "State",
 
       },
     tkm: {
@@ -193,7 +194,7 @@ const messages = {
         "Change Password" : "Paroly çalyş",
         "Wallet": "Gapjyk",
         "Help": "Ugrukdurma",
-
+        "State": "Welaýat",
 
       },
     ru: {
@@ -245,7 +246,7 @@ const messages = {
         "Detail": "Detail",
         "Email": "Эл. адрес",
         "Phone": "Phone",
-        "Address": "Address",
+        "Address": "Адрес",
         "Price": "Price",
         "Quantity": "Quantity",
         "Image": "Image",
@@ -286,6 +287,7 @@ const messages = {
         "Change Password" : "Изменить пароль",
         "Wallet": "Kошелек",
         "Help": "Справка",
+        "State": "Bелаят",
 
 
 
